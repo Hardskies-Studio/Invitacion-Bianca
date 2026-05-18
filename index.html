@@ -549,5 +549,255 @@ const urlWhatsapp = https://api.whatsapp.com/send?phone=${telefono}&text=${encod
 window.open(urlWhatsapp, '_blank');
 }
 </script>
+<body>
+<audio id="audio-invitacion" loop>
+<source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mp3">
+</audio>
+<button id="btn-audio" aria-label="Controlar música">
+<svg class="icono-audio" viewBox="0 0 24 24">
+<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+</svg>
+</button>
+
+<!-- SISTEMA DE INTERACCIÓN INTEGRAL: ABRE AL TOCAR CUALQUIER PARTE -->
+<div id="contenedor-sobre" onclick="abrirInvitacion()">
+<p class="texto-sobre-superior">Has recibido una invitación especial</p>
+<div class="sobre" id="elemento-sobre">
+<div class="solapa"></div>
+<!-- TARJETA INTERNA DE SOPORTE FÍSICO -->
+<div class="tarjeta-interna-sobre">
+<div class="tarjeta-interna-contenido">
+<span class="corona-mini">✨</span>
+<p class="nombre-mini">Bianca Eilany</p>
+<p class="fecha-mini">06 . 06 . 2026</p>
+</div>
+</div>
+<div class="sello-oro">
+<span>B</span>
+</div>
+<p class="cta-sobre-inferior">Toca la pantalla para abrir</p>
+</div>
+
+<!-- FRASE EMOTIVA MEJORADA CON CENTRADO CINEMÁTICO DE GALA -->
+<div class="frase-psicologica-sobre" id="mensaje-emotivo">
+"Diseñamos este día para compartirlo con las personas que guían nuestra vida. Tu lugar en nuestra mesa te espera; confírmanos tu compañía y descubre los detalles de este gran día."
+</div>
+</div>
+
+<main id="contenido-principal">
+<!-- SECCIÓN 1: PORTADA -->
+<section class="seccion-editorial" id="hero-arco">
+<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
+<div class="overlay-contraste"></div>
+<div class="canvas-magico" id="contenedor-sorpresas"></div>
+<div class="contenedor-titulo-hero">
+<p class="sub-tag-hero">Nuestra bendición</p>
+<h1 class="nombre-principal">Bianca Eilany</h1>
+<p class="fecha-hero">Sábado 06 . 06 . 2026</p>
+<p class="prosa-invitacion">Tiene el agrado de invitarte a su santo bautizo y a la celebración de sus dos añitos</p>
+</div>
+</section>
+<!-- SECCIÓN 2: LINAJE (EFECTO FUSIÓN DE IMAGEN) -->
+<section class="seccion-editorial" id="linaje-corona">
+<div class="bg-fade-layer"></div>
+<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
+<div class="tarjeta-linaje">
+<div class="bloque-familia">
+<p class="rol-familiar">Con el amor de mis padres</p>
+<p class="nombre-familiar">Blanca Lanchimba</p>
+<p class="nombre-familiar">Álvaro Ayala</p>
+</div>
+<div class="separador-floral">✦ ✨ ✦</div>
+<div class="bloque-familia">
+<p class="rol-familiar">Y mi padrino</p>
+<p class="nombre-familiar">Edwin Ayala</p>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 3: LOGÍSTICA -->
+<section class="seccion-editorial" id="logistica-tela">
+<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
+<div class="contenedor-reloj reveal">
+<p class="titulo-reloj-alerta">Faltan pocos días para el gran momento</p>
+<div class="grid-reloj">
+<div class="modulo-tiempo">
+<div class="numero-reloj" id="dias">00</div>
+<div class="etiqueta-reloj">días</div>
+</div>
+<div class="modulo-tiempo">
+<div class="numero-reloj" id="horas">00</div>
+<div class="etiqueta-reloj">horas</div>
+</div>
+<div class="modulo-tiempo">
+<div class="numero-reloj" id="minutos">00</div>
+<div class="etiqueta-reloj">min</div>
+</div>
+<div class="modulo-tiempo">
+<div class="numero-reloj" id="segundos">00</div>
+<div class="etiqueta-reloj">seg</div>
+</div>
+</div>
+
+
+<button class="btn-luxury-animated" onclick="agregarCalendario(event)">Agendar Evento</button>
+</div>
+<div class="tarjeta-glass reveal">
+<h3>La Ceremonia</h3>
+<p class="detalle-logistica">Acompáñanos a la misa de bautizo que se celebrará solemnemente en la <strong>Iglesia de Imantag</strong> a las <strong>4:00 PM</strong>.</p>
+<a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">Ver Mapa de la Iglesia</a>
+</div>
+<div class="tarjeta-glass reveal">
+<h3>La Recepción</h3>
+<p class="detalle-logistica">Tras la ceremonia, los esperamos para festejar juntos en el salón de eventos <strong>San Luis de la Carbonería</strong> a partir de las <strong>5:30 PM</strong>.</p>
+<a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">Ver Mapa de Recepción</a>
+</div>
+<div class="tarjeta-asistencia-premium reveal">
+<h3>Confirmar Asistencia</h3>
+<p class="detalle-logistica">Tu presencia es nuestro mejor regalo. Por favor, indícanos los pases que necesitas reservar para coordinar tu lugar en la mesa.</p>
+<select id="selector-cupos" class="selector-pases-premium" onclick="event.stopPropagation()">
+<option value="1 Pase Confirmado">1 Persona</option>
+<option value="2 Pases Confirmados">2 Personas</option>
+<option value="3 Pases Confirmados">3 Personas</option>
+<option value="Familia Completa Confirmada">Familia Completa</option>
+</select>
+<button class="btn-luxury-animated btn-cta-primario" onclick="enviarRSVP(event)">Confirmar Asistencia</button>
+</div>
+</section>
+</main>
+<script>
+const audio = document.getElementById('audio-invitacion');
+const btnAudio = document.getElementById('btn-audio');
+const reveal_elements = document.querySelectorAll('.reveal');
+let sobreAbierto = false;
+
+function abrirInvitacion() {
+if (sobreAbierto) return;
+sobreAbierto = true;
+
+const sobreContenedor = document.getElementById('contenedor-sobre');
+const sobreElemento = document.getElementById('elemento-sobre');
+const heroArco = document.getElementById('hero-arco');
+
+// 1. Iniciar reproducción de la música al instante de la interacción del toque
+btnAudio.classList.add('visible');
+audio.play().then(() => {
+btnAudio.classList.add('reproduciendo');
+}).catch(err => {
+console.log("Audio bloqueado o requiere interacción directa:", err);
+});
+
+// 2. Iniciar transiciones visuales de apertura física y despliegue del mensaje emotivo
+sobreElemento.classList.add('sobre-abierto');
+sobreContenedor.classList.add('sobre-abierto-activo');
+
+// 3. Esperar 5.5s exactos para leer con calma antes del fade-out del contenedor
+setTimeout(() => {
+sobreContenedor.classList.add('sobre-oculto');
+heroArco.classList.add('cargado');
+generarSorpresas();
+setTimeout(() => {
+sobreContenedor.remove();
+reveal();
+}, 900);
+}, 5500); 
+}
+
+function generarSorpresas() {
+const contenedor = document.getElementById('contenedor-sorpresas');
+if (!contenedor) return;
+for (let i = 0; i < 6; i++) {
+const mariposa = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+mariposa.setAttribute("viewBox", "0 0 24 24");
+mariposa.classList.add("mariposa-oro");
+mariposa.innerHTML = `<path d="M12,21C12,21 12,15 14,13C16,11 21,11 21,7C21,3 17,2 14,6C13,7 12,9 12,9C12,9 11,7 10,6C7,2 3,3 3,7C3,11 8,11 10,13C12,15 12,21 12,21Z" fill="#dfba4f"/>`;
+mariposa.style.left = `${Math.random() * 80 + 10}%`;
+mariposa.style.width = `${Math.random() * 12 + 14}px`;
+mariposa.style.height = mariposa.style.width;
+mariposa.style.animation = `aleteoVolador ${Math.random() * 5 + 8}s ease-in-out infinite`;
+mariposa.style.animationDelay = `${Math.random() * 3}s`;
+contenedor.appendChild(mariposa);
+}
+for (let i = 0; i < 14; i++) {
+const destello = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+destello.setAttribute("viewBox", "0 0 24 24");
+destello.classList.add("destello-oro");
+destello.innerHTML = `<path d="M12,2L14.5,9.5L22,12L14.5,14.5L12,22L9.5,14.5L2,12L9.5,9.5Z" fill="#fff3d1"/>`;
+destello.style.left = `${Math.random() * 90}%`;
+destello.style.top = `${Math.random() * 80 + 10}%`;
+destello.style.width = `${Math.random() * 9 + 6}px`;
+destello.style.height = destello.style.width;
+destello.style.animation = `destelloBrillo ${Math.random() * 3 + 2}s ease-in-out infinite`;
+destello.style.animationDelay = `${Math.random() * 2}s`;
+contenedor.appendChild(destello);
+}
+}
+
+btnAudio.addEventListener('click', (e) => {
+e.stopPropagation(); // Evitar colisiones del botón con el click general del sobre
+if (audio.paused) {
+audio.play().catch(e => console.log("Error"));
+btnAudio.classList.add('reproduciendo');
+} else {
+audio.pause();
+btnAudio.classList.remove('reproduciendo');
+}
+});
+
+function reveal() {
+const windowHeight = window.innerHeight;
+for (let i = 0; i < reveal_elements.length; i++) {
+const elementTop = reveal_elements[i].getBoundingClientRect().top;
+if (elementTop < windowHeight - 80) {
+reveal_elements[i].classList.add('active');
+}
+}
+const linajeCorona = document.getElementById('linaje-corona');
+if (linajeCorona) {
+const linajeTop = linajeCorona.getBoundingClientRect().top;
+if (linajeTop < windowHeight * 0.7) {
+linajeCorona.classList.add('active');
+}
+}
+}
+
+window.addEventListener('scroll', reveal);
+
+const fechaEvento = new Date('June 6, 2026 16:00:00').getTime();
+const cuentaRegresiva = setInterval(() => {
+const ahora = new Date().getTime();
+const diferencia = fechaEvento - ahora;
+if (diferencia <= 0) {
+clearInterval(cuentaRegresiva);
+return;
+}
+const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+const s = Math.floor((diferencia % (1000 * 60)) / 1000);
+document.getElementById('dias').innerHTML = d < 10 ? '0' + d : d;
+document.getElementById('horas').innerHTML = h < 10 ? '0' + h : h;
+document.getElementById('minutos').innerHTML = m < 10 ? '0' + m : m;
+document.getElementById('segundos').innerHTML = s < 10 ? '0' + s : s;
+}, 1000);
+
+function agregarCalendario(e) {
+if (e) e.stopPropagation();
+const titulo = encodeURIComponent("Bautizo y 2 Añitos de Bianca Eilany");
+const fechas = "20260606T210000Z/20260607T050000Z";
+const detalles = encodeURIComponent("Acompáñanos a celebrar el santo Bautizo y los dos añitos de Bianca Eilany. ¡Te esperamos!");
+const ubicacion = encodeURIComponent("Iglesia de Imantag / San Luis de la Carbonería, Imbabura, Ecuador");
+const urlCalendar = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${fechas}&details=${detalles}&location=${ubicacion}&reminders=true&sf=true&output=xml`;
+window.open(urlCalendar, '_blank');
+}
+
+function enviarRSVP(e) {
+if (e) e.stopPropagation();
+const telefono = "593959244811";
+const cuposSeleccionados = document.getElementById('selector-cupos').value;
+const mensajeOriginal = `¡Hola! ✨ Confirmamos nuestra asistencia para celebrar el Bautizo y los 2 añitos de Bianca Eilany. Reservaremos: *${cuposSeleccionados}*. ¡Nos vemos el sábado 6 de junio!`;
+const urlWhatsapp = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensajeOriginal)}`;
+window.open(urlWhatsapp, '_blank');
+}
+</script>
 </body>
-</html>
+  </html>
