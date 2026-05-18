@@ -58,8 +58,7 @@ border-left: 200px solid transparent; border-right: 200px solid transparent;
 border-top: 130px solid #ece6dc; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.08));
 transform-origin: top center; transition: transform 0.8s var(--cubic-luxury), filter 0.8s var(--cubic-luxury); z-index: 3;
 }
-@media(max-width: 450px) { .solapa { border-left-width: calc(90vw / 2); border-right-width: calc(90vw / 2); } }
-.sello-oro {
+@media(max-width: 450px) { .solapa { border-left-width: calc(90vw / 2); border-right-width: calc(90vw / 2); } }.sello-oro {
 position: absolute; top: 100px; left: calc(50% - 35px);
 width: 70px; height: 70px; background: radial-gradient(circle, #fceebd 0%, var(--oro-medio) 100%);
 border-radius: 50%; border: 2.5px solid #fff; display: flex; justify-content: center; align-items: center;
@@ -136,7 +135,7 @@ transform: scale(0.9) translateY(-20px);
 filter: blur(8px);
 }
 .sobre-oculto { opacity: 0; transform: scale(1.1) translateY(-30px); filter: blur(15px); pointer-events: none; }
-/* --- BOTÓN CONTROL AUDIO --- /
+/* --- BOTÓN CONTROL AUDIO --- */
 #btn-audio {
 position: fixed; top: 20px; right: 20px; z-index: 1500;
 background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -149,8 +148,7 @@ cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility
 @keyframes pulsoSutil { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 @keyframes parpadeoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
 @keyframes flotarTexto { 0%, 100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(-3px); opacity: 1; } }
-@keyframes rotarIcono { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-/ --- SECCIONES EDITORIALES --- /
+@keyframes rotarIcono { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }/* --- SECCIONES EDITORIALES --- /
 .seccion-editorial {
 position: relative; width: 100%; min-height: 100vh;
 display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -189,22 +187,15 @@ transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 2.5s var(--cubic-
 / NUESTRA BENDICIÓN: AHORA TOTALMENTE ANIMADO Y DINÁMICO /
 .sub-tag-hero {
 font-family: var(--font-editorial); text-transform: uppercase; letter-spacing: 11px; font-size: 26px; font-weight: 600; margin-bottom: 24px;
-/ Efecto de Oro Líquido Fluyendo en el Texto /
 background: linear-gradient(to right, var(--oro-oscuro), var(--oro-brillante), var(--oro-oscuro));
 background-size: 200% auto;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-/ Animación compuesta: Brillo pasando + Flotación /
 animation: textShine 3s linear infinite, heroFloat 4s ease-in-out infinite;
 filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
 }
-@keyframes textShine {
-to { background-position: 200% center; }
-}
-@keyframes heroFloat {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-6px); }
-}
+@keyframes textShine { to { background-position: 200% center; } }
+@keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 / NOMBRE BIANCA EILANY /
 .nombre-principal {
 font-family: var(--font-editorial); font-size: 84px; line-height: 1.05; font-weight: 900; margin-bottom: 30px; letter-spacing: 3px;
@@ -322,8 +313,10 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 .fecha-hero { font-size: 12px; padding: 8px 24px; }
 .prosa-invitacion { font-size: 13px; max-width: 90%; }
 .sub-tag-hero { font-size: 18px; letter-spacing: 6px; }
-.tarjeta-asistencia-premi
-  <body>
+.tarjeta-asistencia-premium { padding: 35px 20px; }
+}
+</style>
+</head><body>
 <audio id="audio-invitacion" loop>
 <source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mp3">
 </audio>
@@ -433,7 +426,7 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 </div>
 </section>
 </main>
-  <script>
+<script>
 const audio = document.getElementById('audio-invitacion');
 const btnAudio = document.getElementById('btn-audio');
 const reveal_elements = document.querySelectorAll('.reveal');
