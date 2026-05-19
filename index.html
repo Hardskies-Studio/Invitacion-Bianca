@@ -1,463 +1,1176 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Bautizo y 2 Añitos - Bianca Eilany</title>
-<!-- FAVICON SVG PERSONALIZADO EN ORO PULIDO Y NEGRO CARBÓN -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23161514' stroke='%23dfba4f' stroke-width='3'/%3E%3Cpath d='M30 65 L35 40 L50 55 L65 40 L70 65 Z' fill='none' stroke='%23fff3d1' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='35' r='4' fill='%23dfba4f'/%3E%3Ccircle cx='35' cy='32' r='3' fill='%23dfba4f'/%3E%3Ccircle cx='65' cy='32' r='3' fill='%23dfba4f'/%3E%3Cpath d='M30 65 L70 65' stroke='%23dfba4f' stroke-width='4'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* --- VARIABLES DE DISEÑO (HARD SKIES STUDIO LUXURY) --- */
-:root {
---oro-brillante: #fff3d1;
---oro-medio: #dfba4f;
---oro-oscuro: #967632;
---negro-carbon: #161514;
---hueso: #fefcf9;
---arena: #f7f3ec;
---glass-claro: rgba(254, 252, 249, 0.92);
---glass-oscuro: rgba(22, 21, 20, 0.96);
---glass-border: rgba(223, 186, 79, 0.5);
---font-editorial: 'Cinzel', serif;
---font-clean: 'Montserrat', sans-serif;
---cubic-luxury: cubic-bezier(0.25, 1, 0.5, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body, html { background-color: var(--hueso); color: var(--negro-carbon); font-family: var(--font-clean); overflow-x: hidden; scroll-behavior: smooth; }
-/* Textura cinematográfica superior */
-body::after {
-content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-opacity: 0.04; pointer-events: none; z-index: 9999;
-background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* --- MOTOR DE FONDOS CON FUSIÓN CINEMATOGRÁFICA SUTIL (CANVAS FIJO) --- */
-#motor-fondos {
-position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; background: var(--hueso);
-}
-.fondo-fusion {
-position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;
-opacity: 0; transform: scale(1.08); transition: opacity 2s ease-in-out, transform 12s var(--cubic-luxury);
-}
-.fondo-fusion::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.fondo-fusion.activo { opacity: 1; transform: scale(1.01); }
-/* Filtro oscuro EXCLUSIVO para el Hero (Imagen 1) */
-#fondo-1 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG1.png'); }
-#fondo-1::after { background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%); }
-/* Filtros claros y nítidos para las Secciones 2 y 3 */
-#fondo-2 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG2.jpg'); }
-#fondo-2::after { background: linear-gradient(to bottom, rgba(254, 252, 249, 0.05) 0%, rgba(254, 252, 249, 0.25) 100%); }
-#fondo-3 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.png'); }
-#fondo-3::after { background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%); }
-/* --- UNBOXING: SOBRE INTERACTIVO 3D --- */
-#contenedor-sobre {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--hueso); z-index: 2000;
-display: flex; flex-direction: column; justify-content: center; align-items: center;
-perspective: 1500px; transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease; cursor: pointer;
-}
-.texto-sobre-superior {
-font-family: var(--font-editorial); font-size: 13px; color: var(--oro-oscuro); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; text-align: center;
-animation: flotarTexto 2.5s infinite ease-in-out; font-weight: 600; transition: transform 1s var(--cubic-luxury), filter 1s ease, opacity 0.8s ease;
-}
-.sobre {
-position: relative; width: 90%; max-width: 400px; height: 260px; background-color: var(--arena); box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 4px;
-transition: transform 1.2s var(--cubic-luxury), opacity 1.2s ease, filter 1.2s ease;
-}
-.solapa {
-position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 200px solid transparent; border-right: 200px solid transparent; border-top: 130px solid #ece6dc; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.08));
-transform-origin: top center; transition: transform 0.8s var(--cubic-luxury), filter 0.8s var(--cubic-luxury); z-index: 3;
-}
-@media(max-width: 450px) { .solapa { border-left-width: calc(90vw / 2); border-right-width: calc(90vw / 2); } }
-.sello-oro {
-position: absolute; top: 100px; left: calc(50% - 35px); width: 70px; height: 70px; background: radial-gradient(circle, #fceebd 0%, var(--oro-medio) 100%);
-border-radius: 50%; border: 2.5px solid #fff; display: flex; justify-content: center; align-items: center;
-box-shadow: 0 10px 25px rgba(223,186,79,0.4); animation: pulsoSutil 2s infinite ease-in-out; z-index: 5; transition: transform 0.8s var(--cubic-luxury), opacity 0.5s ease;
-}
-.sello-oro span { font-family: var(--font-editorial); color: #fff; font-size: 24px; font-weight: 700; }
-.cta-sobre-inferior {
-position: absolute; bottom: 30px; width: 100%; text-align: center; font-family: var(--font-clean); font-size: 10px; color: var(--oro-medio);
-letter-spacing: 3px; text-transform: uppercase; font-weight: 600; animation: parpadeoSuave 1.5s infinite ease-in-out; z-index: 5; transition: transform 0.6s ease, opacity 0.6s ease;
-}
-/* Tarjeta interna que se extrae físicamente */
-.tarjeta-interna-sobre {
-position: absolute; top: 15px; left: 5%; width: 90%; height: 230px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-top: 3.5px solid var(--oro-medio);
-border-radius: 6px; z-index: 2; opacity: 0; transform: translateY(20px) scale(0.95); transition: transform 1.2s var(--cubic-luxury), opacity 0.8s ease, box-shadow 1.2s var(--cubic-luxury);
-display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); pointer-events: none;
-}
-.tarjeta-interna-contenido { text-align: center; font-family: var(--font-editorial); color: var(--negro-carbon); padding: 20px; }
-.corona-mini { font-size: 22px; display: block; margin-bottom: 8px; animation: flotarTexto 3s infinite ease-in-out; }
-.nombre-mini { font-size: 19px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--negro-carbon); margin-bottom: 6px; }
-.fecha-mini { font-family: var(--font-clean); font-size: 10px; letter-spacing: 3px; color: var(--oro-oscuro); font-weight: 700; }
-/* Frase emotiva con centrado cinematográfico */
-.frase-psicologica-sobre {
-position: absolute; top: 50%; left: 50%; transform: translate(-50%, -30%) scale(0.9); width: 85%; max-width: 380px; text-align: center;
-font-family: var(--font-clean); font-size: 11px; line-height: 1.8; color: var(--negro-carbon); letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-opacity: 0; transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); z-index: 100; pointer-events: none;
-padding: 24px 20px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-}
-/* Comportamientos dinámicos del sobre */
-.sobre-abierto .solapa { transform: rotateX(180deg) translateY(-2px); z-index: 1; filter: drop-shadow(0 -15px 15px rgba(0,0,0,0.03)); }
-.sobre-abierto .sello-oro { transform: translateY(110px) scale(0.9); opacity: 0; pointer-events: none; }
-.sobre-abierto .cta-sobre-inferior { opacity: 0; transform: translateY(10px); }
-.sobre-abierto .tarjeta-interna-sobre { opacity: 1; transform: translateY(-135px) scale(1.02) rotate(-0.5deg); z-index: 4; box-shadow: 0 30px 60px rgba(96,70,30,0.18); }
-.sobre-abierto-activo .frase-psicologica-sobre { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 1.2s; }
-.sobre-abierto-activo .sobre { transform: scale(0.9) translateY(40px); opacity: 0.15; filter: blur(4px); }
-.sobre-abierto-activo .texto-sobre-superior { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(8px); }
-.sobre-oculto { opacity: 0; transform: scale(1.1) translateY(-30px); filter: blur(15px); pointer-events: none; }
-/* --- BOTÓN AUDIO --- */
-#btn-audio {
-position: fixed; top: 20px; right: 20px; z-index: 1500; background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transition: 0.5s;
-}
-#btn-audio.visible { opacity: 1; visibility: visible; }
-.icono-audio { width: 18px; height: 18px; fill: var(--negro-carbon); transition: fill 0.3s; }
-#btn-audio.reproduciendo .icono-audio { fill: var(--oro-medio); animation: rotarIcono 4s linear infinite; }
-/* --- SECCIONES EDITORIALES --- */
-main { position: relative; z-index: 10; }
-.seccion-editorial { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 20px; overflow: hidden; background: transparent; }
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-/* --- TEXTOS HERO --- */
-.contenedor-titulo-hero { position: relative; max-width: 90%; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-/* Nuestra bendición: Animación de Brillo de Oro Líquido Fluyendo */
-.sub-tag-hero {
-font-family: var(--font-editorial); text-transform: uppercase; letter-spacing: 11px; font-size: 26px; font-weight: 600; margin-bottom: 24px;
-background: linear-gradient(to right, var(--oro-oscuro), var(--oro-brillante), var(--oro-oscuro)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-animation: textShine 3s linear infinite, heroFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
-}
-@keyframes textShine { to { background-position: 200% center; } }
-@keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-/* Bianca Eilany /
-.nombre-principal {
-font-family: var(--font-editorial); font-size: 84px; line-height: 1.05; font-weight: 900; margin-bottom: 30px; letter-spacing: 3px;
-background: linear-gradient(135deg, var(--oro-brillante) 0%, var(--oro-medio) 30%, #ffffff 50%, var(--oro-oscuro) 75%, var(--oro-medio) 100%);
-background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.95)); animation: brilloMetalico 6s ease-in-out infinite;
-}
-/ Fecha compacta de una línea */
-.fecha-hero {
-font-family: var(--font-editorial); font-size: 13px; color: #ffffff; letter-spacing: 5px; font-weight: 700; text-transform: uppercase;
-border-top: 1px solid rgba(223, 186, 79, 0.60); border-bottom: 1px solid rgba(223, 186, 79, 0.60); padding: 8px 24px; display: inline-block;
-margin-top: 5px; margin-bottom: 28px; white-space: nowrap; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
-}
-/* PROSA EDITORIAL DE INVITACIÓN: CURSIVA/ITALIC LUXURY PERSONAL /
-.prosa-invitacion {
-font-family: var(--font-clean);
-font-size: 16px;
-color: #ffffff;
-letter-spacing: 1.5px;
-font-weight: 300;
-line-height: 1.8;
-max-width: 480px;
-margin: 0 auto;
-font-style: italic; / Aplicado efecto cursiva */
-text-transform: none;
-filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-}
-/* --- TARJETA LINAJE CON FUSIÓN BLUR --- */
-.tarjeta-linaje {
-position: relative; z-index: 3; background: rgba(254, 252, 249, 0.9); border: 1px solid var(--glass-border); border-top: 4px solid var(--oro-medio);
-padding: 50px 30px; width: 90%; max-width: 380px; border-radius: 8px; box-shadow: 0 40px 80px rgba(0,0,0,0.15); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-}
-.separador-floral { font-size: 18px; color: var(--oro-medio); margin: 20px 0; letter-spacing: 2px; }
-.rol-familiar { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--oro-oscuro); margin-bottom: 10px; font-weight: 700; }
-.nombre-familiar { font-family: var(--font-editorial); font-size: 25px; color: var(--negro-carbon); font-weight: 700; letter-spacing: 0.5px; line-height: 1.4; }
-/* --- SECCIÓN RECOLECTORA / LOGÍSTICA --- */
-.contenedor-reloj { position: relative; z-index: 3; width: 100%; max-width: 380px; margin-bottom: 60px; margin-top: 20px; text-align: center; }
-.titulo-reloj-alerta {
-font-family: var(--font-clean); font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; margin-bottom: 25px;
-display: inline-block; background: rgba(16, 15, 14, 0.95); padding: 12px 24px; border-radius: 6px; border: 1.5px solid var(--oro-medio); box-shadow: 0 8px 25px rgba(0,0,0,0.45);
-}
-.grid-reloj { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
-.modulo-tiempo { background: var(--glass-claro); border: 1.5px solid var(--oro-medio); padding: 22px 5px; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
-.numero-reloj { font-family: var(--font-editorial); font-size: 32px; color: var(--negro-carbon); font-weight: 900; }
-.etiqueta-reloj { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--negro-carbon); margin-top: 6px; font-weight: 800; }
-.tarjeta-glass {
-position: relative; z-index: 3; background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-width: 100%; max-width: 380px; padding: 40px 30px; margin-bottom: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 8px; text-align: center;
-}
-.tarjeta-glass h3 { font-family: var(--font-editorial); font-size: 24px; margin-bottom: 15px; color: var(--negro-carbon); letter-spacing: 1.5px; font-weight: 700; border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 8px; }
-.detalle-logistica { font-size: 14px; color: var(--negro-carbon); line-height: 1.7; margin-bottom: 25px; }
-/* --- BLOQUE DE ASISTENCIA --- */
-.tarjeta-asistencia-premium {
-position: relative; z-index: 3; background: var(--glass-oscuro); border: 2.5px solid var(--oro-medio); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-width: 100%; max-width: 380px; padding: 45px 30px; margin-bottom: 60px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); border-radius: 12px; text-align: center;
-}
-.tarjeta-asistencia-premium h3 { font-family: var(--font-editorial); font-size: 26px; margin-bottom: 15px; color: var(--oro-brillante); letter-spacing: 2px; font-weight: 700; border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 10px; }
-.tarjeta-asistencia-premium .detalle-logistica { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 400; line-height: 1.7; margin-bottom: 30px; }
-.selector-pases-premium {
-width: 100%; padding: 16px; background: #262524; border: 1.5px solid var(--oro-medio); font-family: var(--font-clean); font-size: 14px; color: #ffffff; margin-bottom: 30px; outline: none; border-radius: 6px; font-weight: 600; text-align: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-}
-.selector-pases-premium option { background: var(--negro-carbon); color: #fff; }
-/* --- ICONOS PREMIUM PARA BOTONES --- */
-.icono-btn { width: 18px; height: 18px; margin-right: 10px; stroke: currentColor; transition: transform 0.4s var(--cubic-luxury); }
-.btn-luxury-animated:hover .icono-btn { transform: scale(1.15) translateY(-2px); }
-/* --- BOTONES PREMIUM ULTRA-DINÁMICOS --- */
-.btn-luxury-animated {
-position: relative; display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 18px 20px;
-background: linear-gradient(135deg, var(--oro-oscuro) 0%, var(--oro-medio) 45%, var(--oro-brillante) 70%, var(--oro-medio) 100%); background-size: 300% 300%;
-color: #161514; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; border: 1px solid var(--oro-brillante); cursor: pointer; border-radius: 6px; overflow: hidden;
-animation: bgShift 4s ease-in-out infinite, pulseBtnBase 2.5s infinite ease-in-out; box-shadow: 0 10px 25px rgba(223,186,79,0.4); transition: transform 0.2s ease, filter 0.2s ease;
-}
-.btn-luxury-animated::before {
-content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
-background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
-transform: skewX(-25deg); animation: sweepLight 3.5s infinite;
-}
-.btn-luxury-animated:active { transform: scale(0.95); }
-/* Pulso de asistencia expansivo */
-.btn-cta-primario { font-size: 13px; padding: 20px 20px; animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bezier(0.16, 1, 0.3, 1); }
-/* KEYFRAMES */
-.mariposa-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
-.destello-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
-@keyframes pulsoSutil { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-@keyframes parpadeoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-@keyframes flotarTexto { 0%, 100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(-3px); opacity: 1; } }
-@keyframes rotarIcono { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes aleteoVolador { 0% { transform: translateY(110vh) translateX(0) scale(0.5) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-10vh) translateX(100px) scale(0.8) rotate(360deg); opacity: 0; } }
-@keyframes destelloBrillo { 0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; } 50% { transform: scale(1) rotate(180deg); opacity: 0.85; } }
-@keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes sweepLight { 0% { left: -150%; } 50% { left: 150%; } 100% { left: 150%; } }
-@keyframes pulseBtnBase { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-@keyframes pulseOuterRing { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(223, 186, 79, 0.7); } 50% { transform: scale(1.04); box-shadow: 0 0 0 15px rgba(223, 186, 79, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(223, 186, 79, 0); } }
-@media (max-width: 480px) {
-.nombre-principal { font-size: 54px; }
-.tarjeta-linaje { padding: 45px 24px; }
-.fecha-hero { font-size: 12px; padding: 8px 24px; }
-.prosa-invitacion { font-size: 13px; max-width: 90%; }
-.sub-tag-hero { font-size: 18px; letter-spacing: 6px; }
-.tarjeta-asistencia-premium { padding: 35px 20px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bautizo y 2 Añitos - Bianca Eilany</title>
+    
+    <!-- Fuentes de Alta Gama -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Iconografía Premium -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold-base: #C5A059;
+            --gold-light: #F4E2BB;
+            --gold-dark: #8F6B2D;
+            --vivid-pink: #E84393; /* Rosado vivo vibrante */
+            --blush-pink: #FF7597;
+            --text-main: #1F1514; /* Contraste ultra alto para dispositivos móviles */
+            --text-muted: #4A3A38;
+            --bg-card-full: rgba(255, 255, 255, 0.72); /* Glassmorphism total */
+            --transition-cinema: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FAF6F0;
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* --- SISTEMA DE FONDOS CRUZADOS (CROSS-DISSOLVE) --- */
+        .viewport-backgrounds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 12s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: brightness(1.08) contrast(1.02); /* Ajuste de Brillo +8 para visualización premium */
+            transform: scale(1.06);
+        }
+
+        .bg-layer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(250, 246, 240, 0.55) 0%, 
+                rgba(31, 21, 20, 0.3) 50%, 
+                rgba(250, 246, 240, 0.55) 100%);
+            z-index: 2;
+        }
+
+        .bg-layer.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- EFECTOS AMBIENTALES DE PÉTALOS Y DESTELLOS --- */
+        .ambient-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .rose-petal {
+            position: absolute;
+            background: radial-gradient(circle, var(--blush-pink) 30%, var(--vivid-pink) 100%);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.85;
+            pointer-events: none;
+            animation: floatPetal 14s linear infinite;
+        }
+
+        .sparkle {
+            position: absolute;
+            background: radial-gradient(circle, #FFF 20%, var(--gold-light) 60%, transparent 100%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulseSparkle 5s ease-in-out infinite;
+        }
+
+        /* --- CONTROL DE MÚSICA ULTRA DISCRETO Y ELEGANTE --- */
+        .music-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid var(--vivid-pink);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(232, 108, 128, 0.15);
+            opacity: 0;
+            transform: scale(0.8) translateY(-10px);
+            transition: var(--transition-cinema);
+            pointer-events: none;
+        }
+
+        .music-widget.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .music-widget i {
+            color: var(--vivid-pink);
+            font-size: 1.1rem;
+        }
+
+        .music-widget.playing i {
+            animation: spinMusic 4s linear infinite;
+        }
+
+        /* --- SOBRE INTERACTIVO 3D MEJORADO (ABRE EN CUALQUIER PARTE) --- */
+        #envelope-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #FCFBF9 0%, #EADECB 100%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            perspective: 1500px;
+            cursor: pointer;
+        }
+
+        .envelope-text-top {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 360px;
+            height: 260px;
+            background: #FDFBF7;
+            border-radius: 16px;
+            box-shadow: 0 30px 70px rgba(61, 46, 44, 0.22);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            pointer-events: none;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F5ECE0;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            z-index: 3;
+            transform-origin: top;
+            transition: transform 0.8s ease-in-out, z-index 0.3s 0.4s;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-paper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #EADECB;
+            clip-path: polygon(0 100%, 0 0, 15% 50%, 85% 50%, 100% 0, 100% 100%);
+            z-index: 4;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .envelope-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: #E5D6C0;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 4;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .envelope-letter {
+            position: absolute;
+            bottom: 10px;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background: #FFFFFF;
+            border: 2px solid var(--vivid-pink);
+            border-radius: 12px;
+            z-index: 2;
+            padding: 20px 15px;
+            text-align: center;
+            transition: transform 1.2s 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s 1.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(232, 108, 128, 0.08);
+        }
+
+        .envelope-container.open .envelope-letter {
+            transform: translateY(-170px) scale(1.05);
+            opacity: 0.98;
+        }
+
+        .letter-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.5rem;
+            color: var(--vivid-pink);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .letter-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-dark);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* Sello de Lacre Modificado: Letra B en Cursiva y Paloma */
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            width: 95px;
+            height: 95px;
+            background: linear-gradient(135deg, var(--gold-base), var(--gold-dark));
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(143, 107, 45, 0.45);
+        }
+
+        .wax-seal .seal-b {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.2rem;
+            color: #FFFFFF;
+            line-height: 1;
+            margin-bottom: -5px;
+        }
+
+        .wax-seal i {
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            animation: pulse-heart 2s infinite ease-in-out;
+        }
+
+        .envelope-container.open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -40%) scale(0.5);
+        }
+
+        .envelope-instruction {
+            font-size: 0.9rem;
+            color: var(--vivid-pink);
+            margin-top: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            animation: pulse-heart 2s infinite ease-in-out;
+        }
+
+        /* --- PORTAL DE ESCENAS EXPANSIVAS (PANTALLA COMPLETA GLASSMORPHISM) --- */
+        .cinema-viewport {
+            height: 100%;
+            width: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .scene-frame {
+            height: 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* Tarjetas de Vidrio que cubren el 100% de la pantalla */
+        .cinema-card {
+            position: relative;
+            z-index: 3;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-card-full);
+            background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG7.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 65px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            
+            /* Animación suave de entrada de contenido */
+            opacity: 0;
+            transform: scale(1.02);
+            transition: var(--transition-cinema);
+        }
+
+        .scene-frame.active .cinema-card {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- TIPOGRAFÍA DE LUJO COMBINADA --- */
+        .txt-intro {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 3.8rem;
+            color: var(--vivid-pink); /* Rosado vivo en títulos cursivos */
+            margin-bottom: 2px;
+            line-height: 1.1;
+            display: block;
+        }
+
+        /* Bianca Eilany Ayala Lanchimba - Efecto Oro Metálico Líquido */
+        .txt-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-base) 25%, var(--gold-light) 50%, var(--gold-base) 75%, var(--gold-dark) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: liquidGold 4s linear infinite;
+        }
+
+        /* Bloque de prosa optimizado con máquina de escribir */
+        .prose-container {
+            background: rgba(255, 255, 255, 0.45);
+            padding: 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(232, 108, 128, 0.15);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 440px;
+            min-height: 130px; /* Evita saltos de caja en la máquina de escribir */
+            display: flex;
+            align-items: center;
+        }
+
+        .txt-prose {
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: justify;
+            text-justify: inter-word;
+            width: 100%;
+        }
+
+        /* Puntero de la Máquina de Escribir */
+        .txt-prose::after {
+            content: '|';
+            animation: blinkCursor 0.8s step-end infinite;
+            color: var(--vivid-pink);
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 2px;
+        }
+
+        .scene-frame:not(.active) .txt-prose::after {
+            display: none;
+        }
+
+        /* Indicador de Deslizado Hacia Abajo */
+        .scroll-down-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-top: 15px;
+            color: var(--vivid-pink);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-down-indicator.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-down-indicator i {
+            font-size: 1.1rem;
+            animation: bounceArrow 1.5s infinite ease-in-out;
+        }
+
+        /* Animación en Cascada de elementos */
+        .animate-element {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .scene-frame.active .animate-element {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scene-frame.active .animate-element.delay-1 { transition-delay: 0.2s; }
+        .scene-frame.active .animate-element.delay-2 { transition-delay: 0.4s; }
+        .scene-frame.active .animate-element.delay-3 { transition-delay: 0.6s; }
+
+        /* Estilos específicos para destacar a los Padres y al Padrino */
+        .ceremony-names-block {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+            width: 100%;
+            max-width: 440px;
+            border-top: 1px dashed rgba(232, 108, 128, 0.25);
+            padding-top: 15px;
+        }
+
+        .name-label-normal {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        .name-value-cursive-bold {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.1rem;
+            color: var(--vivid-pink);
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Estilo de Negrita en Ceremonia */
+        .highlight-bold-extreme {
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .highlight-bold {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .highlight-pink {
+            font-weight: 700;
+            color: var(--vivid-pink);
+        }
+
+        /* --- LOGÍSTICA DE PANTALLA COMPLETA ADAPTADA --- */
+        .logistics-container {
+            background: linear-gradient(135deg, #FFFDFB 0%, #FFF5F6 100%);
+            border: 1px solid rgba(232, 108, 128, 0.25);
+            border-radius: 18px;
+            padding: 16px 14px;
+            margin: 12px 0;
+            text-align: center;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .logistics-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logistics-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .logistics-item i {
+            font-size: 1.4rem;
+            color: var(--vivid-pink);
+        }
+
+        .logistics-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        .logistics-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Estilos de Centrado Absoluto para Recepción */
+        .logistics-centered-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            margin: 6px 0;
+        }
+        .logistics-centered-icon {
+            font-size: 1.8rem !important;
+            color: var(--vivid-pink);
+            margin-bottom: 6px;
+        }
+        .logistics-centered-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .logistics-centered-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Botones Premium con Efecto Vibrar/Pulsar constante */
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, var(--vivid-pink) 0%, #D84B61 100%);
+            width: 100%;
+            max-width: 440px;
+            padding: 14px 20px;
+            border-radius: 35px;
+            border: none;
+            box-shadow: 0 6px 18px rgba(232, 108, 128, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            margin-top: 6px;
+            animation: pulsate-btn 2.5s infinite ease-in-out;
+        }
+
+        .action-button:hover, .action-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(143, 107, 45, 0.35);
+            background: linear-gradient(135deg, var(--gold-base) 0%, var(--gold-dark) 100%);
+        }
+
+        /* Cuenta Regresiva Adaptada a Móvil */
+        .clock-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 12px 0;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .clock-tile {
+            background: #FFFFFF;
+            border: 1.5px solid var(--vivid-pink);
+            padding: 8px 6px;
+            border-radius: 12px;
+            min-width: 68px;
+            box-shadow: 0 4px 10px rgba(232, 108, 128, 0.05);
+        }
+
+        .clock-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--vivid-pink);
+            display: block;
+        }
+
+        .clock-tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        /* Selector de Pases RSVP Adaptado para Celular */
+         .rsvp-selector {
+            background: #FFF5F6;
+            border: 1.5px dashed var(--vivid-pink);
+            border-radius: 16px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .rsvp-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .rsvp-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .rsvp-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1.5px solid var(--vivid-pink);
+            background: #FFFFFF;
+            color: var(--vivid-pink);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-btn:hover {
+            background: var(--vivid-pink);
+            color: #FFFFFF;
+        }
+
+        #rsvp-qty {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            min-width: 25px;
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes blinkCursor {
+            from, to { border-color: transparent }
+            50% { border-color: var(--vivid-pink); }
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes floatPetal {
+            0% { transform: translateY(-10%) rotate(0deg) translateX(0); }
+            100% { transform: translateY(110vh) rotate(720deg) translateX(120px); }
+        }
+
+        @keyframes pulseSparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 0.9; transform: scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes spinMusic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes liquidGold {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes pulsate-btn {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 18px rgba(232, 108, 128, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 10px 25px rgba(232, 108, 128, 0.55); }
+        }
+
+        @media (max-width: 480px) {
+            .txt-main-title { font-size: 1.9rem; }
+            .txt-intro { font-size: 3rem; }
+            .cinema-card { padding: 35px 15px 25px; }
+            .logistics-value { font-size: 1.05rem; }
+            .envelope-container { width: 310px; height: 230px; }
+            .letter-title { font-size: 2.2rem; }
+            .prose-container { min-height: 110px; padding: 12px; margin-bottom: 15px; }
+        }
+    </style>
 </head>
 <body>
-<!-- REPRODUCTOR DE AUDIO -->
-<audio id="audio-invitacion" loop>
-<source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mp3">
-</audio>
-<button id="btn-audio" aria-label="Controlar música">
-<svg class="icono-audio" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-</button>
-<!-- SISTEMA DE FONDOS CRUZADOS (NUEVO MOTOR) -->
-<div id="motor-fondos">
-<div class="fondo-fusion activo" id="fondo-1"></div>
-<div class="canvas-magico" id="contenedor-sorpresas"></div>
-<div class="fondo-fusion" id="fondo-2"></div>
-<div class="fondo-fusion" id="fondo-3"></div>
-</div>
-<!-- SISTEMA DE INTERACCIÓN INTEGRAL -->
-<div id="contenedor-sobre" onclick="abrirInvitacion()">
-<p class="texto-sobre-superior">Has recibido una invitación especial</p>
-<div class="sobre" id="elemento-sobre">
-<div class="solapa"></div>
-<div class="tarjeta-interna-sobre">
-<div class="tarjeta-interna-contenido">
-<span class="corona-mini">✨</span>
-<p class="nombre-mini">Bianca Eilany</p>
-<p class="fecha-mini">06 . 06 . 2026</p>
-</div>
-</div>
-<div class="sello-oro"><span>B</span></div>
-<p class="cta-sobre-inferior">Toca la pantalla para abrir</p>
-</div>
-<div class="frase-psicologica-sobre" id="mensaje-emotivo">
-"Diseñamos este día para compartirlo con las personas que guían nuestra vida. Tu lugar en nuestra mesa te espera; confírmanos tu compañía y descubre los detalles de este gran día."
-</div>
-</div>
-<main id="contenido-principal">
-<!-- SECCIÓN 1: PORTADA -->
-<section class="seccion-editorial" id="hero-arco" data-bg="1">
-<div class="contenedor-titulo-hero">
-<p class="sub-tag-hero">Nuestra bendición</p>
-<h1 class="nombre-principal">Bianca Eilany</h1>
-<p class="fecha-hero">Sábado 06 . 06 . 2026</p>
-<p class="prosa-invitacion">Tiene el agrado de invitarte a su santo bautizo y a la celebración de sus dos añitos</p>
-</div>
-</section>
-<!-- SECCIÓN 2: LINAJE -->
-<section class="seccion-editorial" id="linaje-corona" data-bg="2">
-<div class="tarjeta-linaje reveal">
-<div class="bloque-familia">
-<p class="rol-familiar">Con el amor de mis padres</p>
-<p class="nombre-familiar">Blanca Lanchimba</p>
-<p class="nombre-familiar">Álvaro Ayala</p>
-</div>
-<div class="separador-floral">✦ ✨ ✦</div>
-<div class="bloque-familia">
-<p class="rol-familiar">Y mi padrino</p>
-<p class="nombre-familiar">Edwin Ayala</p>
-</div>
-</div>
-</section>
-<!-- SECCIÓN 3: LOGÍSTICA Y RELOJ REESTRUCTURADO -->
-<section class="seccion-editorial" id="logistica-tela" data-bg="3">
-<div class="contenedor-reloj reveal">
-<p class="titulo-reloj-alerta">Faltan pocos días para el gran momento</p>
-<div class="grid-reloj">
-<div class="modulo-tiempo"><div class="numero-reloj" id="dias">00</div><div class="etiqueta-reloj">días</div></div>
-<div class="modulo-tiempo"><div class="numero-reloj" id="horas">00</div><div class="etiqueta-reloj">horas</div></div>
-<div class="modulo-tiempo"><div class="numero-reloj" id="minutos">00</div><div class="etiqueta-reloj">min</div></div>
-<div class="modulo-tiempo"><div class="numero-reloj" id="segundos">00</div><div class="etiqueta-reloj">seg</div></div>
-</div>
-<button class="btn-luxury-animated" onclick="agregarCalendario(event)">
-<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-<line x1="16" y1="2" x2="16" y2="6"></line>
-<line x1="8" y1="2" x2="8" y2="6"></line>
-<line x1="3" y1="10" x2="21" y2="10"></line>
-<circle cx="12" cy="15" r="1.5" fill="currentColor"></circle>
-</svg>
-Agendar Evento
-</button>
-</div>
-<div class="tarjeta-glass reveal">
-<h3>La Ceremonia</h3>
-<p class="detalle-logistica">Acompáñanos a la misa de bautizo que se celebrará solemnemente en la <strong>Iglesia de Imantag</strong> a las <strong>4:00 PM</strong>.</p>
-<a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">
-<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-<circle cx="12" cy="10" r="3"></circle>
-</svg>
-Ver Mapa de la Iglesia
-</a>
-</div>
-<div class="tarjeta-glass reveal">
-<h3>La Recepción</h3>
-<p class="detalle-logistica">Tras la ceremonia, los esperamos para festejar juntos en el salón de eventos <strong>San Luis de la Carbonería</strong> a partir de las <strong>5:30 PM</strong>.</p>
-<a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">
-<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-<circle cx="12" cy="10" r="3"></circle>
-</svg>
-Ver Mapa de Recepción
-</a>
-</div>
-<div class="tarjeta-asistencia-premium reveal">
-<h3>Confirmar Asistencia</h3>
-<p class="detalle-logistica">Tu presencia es nuestro mejor regalo. Por favor, indícanos los pases que necesitas reservar para coordinar tu lugar en la mesa.</p>
-<select id="selector-cupos" class="selector-pases-premium" onclick="event.stopPropagation()">
-<option value="1 Pase Confirmado">1 Persona</option>
-<option value="2 Pases Confirmados">2 Personas</option>
-<option value="3 Pases Confirmados">3 Personas</option>
-<option value="Familia Completa Confirmada">Familia Completa</option>
-</select>
-<button class="btn-luxury-animated btn-cta-primario" onclick="enviarRSVP(event)">
-<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-<polyline points="22 4 12 14.01 9 11.01"></polyline>
-</svg>
-Confirmar Asistencia
-</button>
-</div>
-</section>
-</main>
-<script>
-const audio = document.getElementById('audio-invitacion');
-const btnAudio = document.getElementById('btn-audio');
-const reveal_elements = document.querySelectorAll('.reveal');
-const secciones = document.querySelectorAll('.seccion-editorial');
-const fondos = document.querySelectorAll('.fondo-fusion');
-let sobreAbierto = false;
-function abrirInvitacion() {
-if (sobreAbierto) return;
-sobreAbierto = true;
-const sobreContenedor = document.getElementById('contenedor-sobre');
-const sobreElemento = document.getElementById('elemento-sobre');
-const heroArco = document.getElementById('hero-arco');
-btnAudio.classList.add('visible');
-audio.play().then(() => { btnAudio.classList.add('reproduciendo'); }).catch(err => console.log(err));
-sobreElemento.classList.add('sobre-abierto');
-sobreContenedor.classList.add('sobre-abierto-activo');
-setTimeout(() => {
-sobreContenedor.classList.add('sobre-oculto');
-heroArco.classList.add('cargado');
-generarSorpresas();
-setTimeout(() => {
-sobreContenedor.remove();
-reveal();
-}, 900);
-}, 5500);
-}
-function generarSorpresas() {
-const contenedor = document.getElementById('contenedor-sorpresas');
-if (!contenedor) return;
-for (let i = 0; i < 6; i++) {
-const mariposa = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-mariposa.setAttribute("viewBox", "0 0 24 24"); mariposa.classList.add("mariposa-oro");
-mariposa.innerHTML = <path d="M12,21C12,21 12,15 14,13C16,11 21,11 21,7C21,3 17,2 14,6C13,7 12,9 12,9C12,9 11,7 10,6C7,2 3,3 3,7C3,11 8,11 10,13C12,15 12,21 12,21Z" fill="#dfba4f"/>;
-mariposa.style.left = ${Math.random() * 80 + 10}%; mariposa.style.width = ${Math.random() * 12 + 14}px; mariposa.style.height = mariposa.style.width;
-mariposa.style.animation = aleteoVolador ${Math.random() * 5 + 8}s ease-in-out infinite; mariposa.style.animationDelay = ${Math.random() * 3}s;
-contenedor.appendChild(mariposa);
-}
-for (let i = 0; i < 14; i++) {
-const destello = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-destello.setAttribute("viewBox", "0 0 24 24"); destello.classList.add("destello-oro");
-destello.innerHTML = <path d="M12,2L14.5,9.5L22,12L14.5,14.5L12,22L9.5,14.5L2,12L9.5,9.5Z" fill="#fff3d1"/>;
-destello.style.left = ${Math.random() * 90}%; destello.style.top = ${Math.random() * 80 + 10}%; destello.style.width = ${Math.random() * 9 + 6}px; destello.style.height = destello.style.width;
-destello.style.animation = destelloBrillo ${Math.random() * 3 + 2}s ease-in-out infinite; destello.style.animationDelay = ${Math.random() * 2}s;
-contenedor.appendChild(destello);
-}
-}
-btnAudio.addEventListener('click', (e) => {
-e.stopPropagation();
-if (audio.paused) { audio.play(); btnAudio.classList.add('reproduciendo'); }
-else { audio.pause(); btnAudio.classList.remove('reproduciendo'); }
-});
-// MOTOR DE FUSIÓN CINEMATOGRÁFICA DE FONDOS (ALINEACIÓN FIJA)
-function checkScrollFondos() {
-let indexActual = 0;
-const scrollY = window.scrollY + (window.innerHeight / 2);
-secciones.forEach((sec, index) => {
-const offsetTop = sec.offsetTop;
-const offsetHeight = sec.offsetHeight;
-if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
-indexActual = index;
-}
-});
-fondos.forEach((fondo, i) => {
-if (i === indexActual) {
-fondo.classList.add('activo');
-} else {
-fondo.classList.remove('activo');
-}
-});
-}
-function reveal() {
-const windowHeight = window.innerHeight;
-reveal_elements.forEach((el) => {
-const elementTop = el.getBoundingClientRect().top;
-if (elementTop < windowHeight - 80) el.classList.add('active');
-});
-}
-window.addEventListener('scroll', () => {
-reveal();
-checkScrollFondos();
-});
-const fechaEvento = new Date('June 6, 2026 16:00:00').getTime();
-const cuentaRegresiva = setInterval(() => {
-const ahora = new Date().getTime();
-const diferencia = fechaEvento - ahora;
-if (diferencia <= 0) { clearInterval(cuentaRegresiva); return; }
-document.getElementById('dias').innerHTML = String(Math.floor(diferencia / (1000 * 60 * 60 * 24))).padStart(2, '0');
-document.getElementById('horas').innerHTML = String(Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-document.getElementById('minutos').innerHTML = String(Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-document.getElementById('segundos').innerHTML = String(Math.floor((diferencia % (1000 * 60)) / 1000)).padStart(2, '0');
-}, 1000);
-function agregarCalendario(e) {
-if (e) e.stopPropagation();
-const titulo = encodeURIComponent("Bautizo y 2 Añitos de Bianca Eilany");
-const fechas = "20260606T210000Z/20260607T050000Z";
-const detalles = encodeURIComponent("Acompáñanos a celebrar el santo Bautizo y los dos añitos de Bianca Eilany. ¡Te esperamos!");
-const ubicacion = encodeURIComponent("Iglesia de Imantag / San Luis de la Carbonería, Imbabura, Ecuador");
-window.open(https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${fechas}&details=${detalles}&location=${ubicacion}&reminders=true&sf=true&output=xml, '_blank');
-}
-function enviarRSVP(e) {
-if (e) e.stopPropagation();
-const cupos = document.getElementById('selector-cupos').value;
-const msg = encodeURIComponent(¡Hola! ✨ Confirmamos nuestra asistencia para celebrar el Bautizo y los 2 añitos de Bianca Eilany. Reservaremos: *${cupos}*. ¡Nos vemos el sábado 6 de junio!);
-window.open(https://api.whatsapp.com/send?phone=593959244811&text=${msg}, '_blank');
-}
-</script>
+
+    <!-- SISTEMA DE DEGRADADO FIJO CINEMÁTICO (CROSS-DISSOLVE) -->
+    <div class="viewport-backgrounds">
+        <!-- Escena 1: Portada con IMG7 (Fondo de Rosas Acuarela) -->
+        <div class="bg-layer active" id="bg-layer-1" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG7.webp');"></div>
+        <!-- Escena 2: Misa con IMG8 (La Vela de Bautizo) -->
+        <div class="bg-layer" id="bg-layer-2" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG8.webp');"></div>
+        <!-- Escena 3: Recepción con IMG6 (Número 2 Dorado) de fondo general -->
+        <div class="bg-layer" id="bg-layer-3" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG6.webp');"></div>
+    </div>
+
+    <!-- Audio de Fondo (Carlos Rivera - Te Esperaba) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Capa de Efectos Ambientales (Pétalos de Rosa y Brillos) -->
+    <div class="ambient-effects" id="effectsContainer"></div>
+
+    <!-- Widget de Sonido Premium Flotante Discreto -->
+    <div class="music-widget" id="musicWidget" onclick="toggleAudioState()">
+        <i class="fa-solid fa-music"></i>
+    </div>
+
+    <!-- SISTEMA DEL SOBRE ORIGINAL (UNBOXING INTERACTIVO 3D DINÁMICO TOTAL) -->
+    <div id="envelope-gate" onclick="unlockEnvelope()">
+        <div class="envelope-text-top">Has recibido una invitación especial</div>
+        <div class="envelope-container" id="envContainer">
+            <div class="envelope-flap"></div>
+            <div class="envelope-paper"></div>
+            <div class="envelope-bottom"></div>
+            
+            <!-- Sello de Lacre de Corazón con Paloma y Letra B -->
+            <div class="wax-seal">
+                <span class="seal-b">B</span>
+                <i class="fa-solid fa-dove"></i>
+            </div>
+            
+            <!-- Carta deslizante -->
+            <div class="envelope-letter" id="envLetter">
+                <h2 class="letter-title" style="font-family: 'Pinyon Script', cursive;">Mi Bautizo</h2>
+                <p class="letter-subtitle" style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--text-main);">y Cumpleaños</p>
+                <button class="action-button" style="margin-top: 15px; pointer-events: none;">Abrir invitación</button>
+            </div>
+        </div>
+        <div class="envelope-instruction">Abrir invitación</div>
+    </div>
+
+    <!-- Contenedor Cinemático de Escenas (Snap Scroll) -->
+    <div class="cinema-viewport" id="scrollContainer">
+
+        <!-- ESCENA 1: LA PORTADA -->
+        <section class="scene-frame" id="sceneOne">
+            <div class="cinema-card">
+                <span class="txt-intro animate-element delay-1">Nuestra Bendición</span>
+                <h1 class="txt-main-title animate-element delay-2">Bianca Eilany<br>Ayala Lanchimba</h1>
+                
+                <div class="prose-container animate-element delay-3">
+                    <p class="txt-prose" id="proseText1">
+                        Con el corazón lleno de gratitud y guiada por el amor infinito de Dios y de mis amados padres, doy mi primer paso en la fe y celebro con inmensa alegría mis primeros dos años de vida. Quiero compartir contigo este día tan especial, una celebración llena de luz, gracia y bendiciones eternas que marcará el inicio de mi camino espiritual.
+                    </p>
+                </div>
+                
+                <button onclick="scheduleGoogleCalendar()" class="action-button animate-element delay-3">
+                    <i class="fa-regular fa-calendar-plus"></i> Agendar Evento
+                </button>
+
+                <!-- Flecha de Continuidad de Deslizado -->
+                <div class="scroll-down-indicator" id="scrollIndicator1">
+                    <span>Desliza para continuar</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+        <!-- ESCENA 2: EL BAUTIZO SAGRADO (Fondo IMG8 / La Vela) -->
+        <section class="scene-frame" id="sceneTwo">
+            <div class="cinema-card">
+                <span class="txt-intro animate-element delay-1">El Sacramento</span>
+                <h2 class="txt-main-title animate-element delay-2" style="font-size: 1.80rem; margin-bottom: 12px; background: none; -webkit-text-fill-color: initial; color: var(--text-main);">La Ceremonia</h2>
+                
+                <div class="prose-container animate-element delay-2">
+                    <p class="txt-prose" id="proseText2">
+                        Nuestra bendición recibirá el sagrado bautismo para iniciar su hermoso camino espiritual, guiada de la mano de Dios y rodeada del infinito amor de:
+                    </p>
+                </div>
+                
+                <!-- Nombres separados de la máquina de escribir para destacar e integrarse dinámicamente -->
+                <div class="ceremony-names-block animate-element delay-2">
+                    <div class="name-label-normal">Los Padres:</div>
+                    <div class="name-value-cursive-bold">Blanca Lanchimba & Álvaro Ayala</div>
+                    <div class="name-label-normal" style="margin-top: 4px;">El Padrino:</div>
+                    <div class="name-value-cursive-bold" style="margin-bottom: 0;">Edwin Ayala</div>
+                </div>
+
+                <!-- Bloques de Logística con Contraste Excelente (Optimizado para móvil) -->
+                <div class="logistics-container animate-element delay-3">
+                    <div class="logistics-item">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <div class="logistics-label">Fecha:</div>
+                        <div class="logistics-value">Sábado, 06 de Junio, 2026</div>
+                    </div>
+                    <div class="logistics-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <div class="logistics-label">Hora:</div>
+                        <div class="logistics-value">4:00 de la Tarde</div>
+                    </div>
+                    <div class="logistics-item" style="border-top: 1px solid rgba(232, 108, 128, 0.2); padding-top: 10px; margin-top: 10px;">
+                        <i class="fa-solid fa-church"></i>
+                        <div class="logistics-label">Santuario:</div>
+                        <div class="logistics-value" style="font-size: 1.1rem;">Iglesia de Imantag</div>
+                    </div>
+                </div>
+
+                <a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="action-button animate-element delay-3">
+                    <i class="fa-solid fa-map-location-dot"></i> Ver Iglesia en GPS
+                </a>
+
+                <!-- Flecha de Continuidad de Deslizado -->
+                <div class="scroll-down-indicator" id="scrollIndicator2">
+                    <span>Desliza para continuar</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESCENA 3: RECEPCIÓN Y PASES (Fondo IMG6 / Número 2 Dorado de fondo, limpio y sin ilustraciones estorbo) -->
+        <section class="scene-frame" id="sceneThree">
+            <div class="cinema-card">
+                <span class="txt-intro animate-element delay-1">La Celebración</span>
+                <h2 class="txt-main-title animate-element delay-2" style="font-size: 1.80rem; margin-bottom: 12px; background: none; -webkit-text-fill-color: initial; color: var(--text-main);">Recepción</h2>
+
+                <!-- Datos de Logística de la Recepción más Grandes, Claros y Perfectamente Centrados -->
+                <div class="logistics-container animate-element delay-2" style="margin-top: 5px; margin-bottom: 12px; padding: 18px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <div class="logistics-centered-item">
+                        <i class="fa-solid fa-champagne-glasses logistics-centered-icon"></i>
+                        <div class="logistics-centered-label">Lugar de la Recepción:</div>
+                        <div class="logistics-centered-value">San Luis de la Carbonería</div>
+                    </div>
+                    
+                    <div class="logistics-centered-item" style="border-top: 1px solid rgba(232, 108, 128, 0.2); padding-top: 12px; width: 100%;">
+                        <i class="fa-solid fa-hourglass-start" style="font-size: 1.6rem; color: var(--vivid-pink); margin-bottom: 6px;"></i>
+                        <div class="logistics-centered-label">Hora de la Recepción:</div>
+                        <div class="logistics-centered-value" style="font-size: 1.35rem;">5:30 PM</div>
+                    </div>
+                </div>
+
+                <!-- Reloj de Cuenta Regresiva Adaptado -->
+                <div class="clock-wrapper animate-element delay-3">
+                    <div class="clock-tile"><span class="clock-val" id="days">00</span><span class="clock-tag">Días</span></div>
+                    <div class="clock-tile"><span class="clock-val" id="hours">00</span><span class="clock-tag">Hrs</span></div>
+                    <div class="clock-tile"><span class="clock-val" id="minutes">00</span><span class="clock-tag">Min</span></div>
+                    <div class="clock-tile"><span class="clock-val" id="seconds">00</span><span class="clock-tag">Seg</span></div>
+                </div>
+
+                <a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="action-button animate-element delay-3">
+                    <i class="fa-solid fa-location-arrow"></i> Cómo Llegar al Salón
+                </a>
+
+                <!-- Selector de Asientos RSVP Redimensionado para Celular -->
+                <div class="rsvp-selector animate-element delay-3">
+                    <span class="rsvp-label">Selecciona el número de pases asignados:</span>
+                    <div class="rsvp-counter">
+                        <button class="rsvp-btn" onclick="adjustPases(-1)">-</button>
+                        <span id="rsvp-qty">2</span>
+                        <button class="rsvp-btn" onclick="adjustPases(1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Botón de Confirmación Recuperado y Vinculado a WhatsApp -->
+                <button onclick="dispatchRsvpWhatsApp()" class="action-button animate-element delay-3">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar Asistencia
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const bgAudio = document.getElementById('bgMusic');
+        const widget = document.getElementById('musicWidget');
+        const effectsContainer = document.getElementById('effectsContainer');
+        const envContainer = document.getElementById('envContainer');
+        const envelopeGate = document.getElementById('envelope-gate');
+        const scrollContainer = document.getElementById('scrollContainer');
+        let totalPases = 2;
+
+        // 1. Motor de Máquina de Escribir (Typewriter Engine) con indicador de flecha
+        const textCache = {};
+        function startTypewriter(elementId, indicatorId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            if (!textCache[elementId]) {
+                textCache[elementId] = element.innerHTML.trim();
+            }
+            
+            const rawText = textCache[elementId];
+            element.innerHTML = '';
+            
+            let i = 0;
+            if (element.typewriterInterval) {
+                clearInterval(element.typewriterInterval);
+            }
+
+            const indicator = document.getElementById(indicatorId);
+            if (indicator) indicator.classList.remove('visible');
+            
+            element.typewriterInterval = setInterval(() => {
+                if (i < rawText.length) {
+                    if (rawText[i] === '<') {
+                        const closeTagIndex = rawText.indexOf('>', i);
+                        if (closeTagIndex !== -1) {
+                            element.innerHTML += rawText.substring(i, closeTagIndex + 1);
+                            i = closeTagIndex + 1;
+                            return;
+                        }
+                    }
+                    element.innerHTML += rawText[i];
+                    i++;
+                } else {
+                    clearInterval(element.typewriterInterval);
+                    if (indicator) indicator.classList.add('visible');
+                }
+            }, 25);
+        }
+
+        // 2. Generar Pétalos y Sparkles
+        function initAmbientEffects() {
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('rose-petal');
+                petal.style.width = `${Math.random() * 15 + 10}px`;
+                petal.style.height = `${Math.random() * 15 + 10}px`;
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.animationDelay = `${Math.random() * 12}s`;
+                petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+                effectsContainer.appendChild(petal);
+            }
+
+            for (let j = 0; j < 10; j++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                const size = Math.random() * 6 + 4;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.animationDelay = `${Math.random() * 6}s`;
+                effectsContainer.appendChild(sparkle);
+            }
+        }
+
+        // 3. Apertura del sobre al pulsar cualquier lado de la pantalla (Disparador seguro de audio)
+        function unlockEnvelope() {
+            envelopeGate.onclick = null; // Evitar disparar doble apertura
+            envContainer.classList.add('open');
+            
+            // Forzar reproducción del audio inmediatamente por acción del usuario
+            bgAudio.play().then(() => {
+                widget.classList.add('playing');
+            }).catch(e => {
+                console.log("Intento de autoplay alternativo:", e);
+            });
+
+            setTimeout(() => {
+                envelopeGate.style.opacity = '0';
+                envelopeGate.style.transform = 'translateY(100vh)'; // Efecto deslizamiento hacia abajo
+                
+                setTimeout(() => {
+                    envelopeGate.style.display = 'none';
+                    widget.classList.add('active');
+                    
+                    initAmbientEffects();
+                    
+                    document.getElementById('sceneOne').classList.add('active');
+                    startTypewriter('proseText1', 'scrollIndicator1');
+                }, 1000);
+            }, 1800);
+        }
+
+        // Interruptor del widget de música discreto
+        function toggleAudioState() {
+            if (bgAudio.paused) {
+                bgAudio.play();
+                widget.classList.add('playing');
+            } else {
+                bgAudio.pause();
+                widget.classList.remove('playing');
+            }
+        }
+
+        // 4. Controlador de Scroll Cinemático por Escenas y Transición de Fondos (Cross-Dissolve)
+        const frameElements = document.querySelectorAll('.scene-frame');
+        const bgLayers = {
+            sceneOne: document.getElementById('bg-layer-1'),
+            sceneTwo: document.getElementById('bg-layer-2'),
+            sceneThree: document.getElementById('bg-layer-3')
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const targetId = entry.target.id;
+                
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    if (targetId === 'sceneOne') {
+                        startTypewriter('proseText1', 'scrollIndicator1');
+                    } else if (targetId === 'sceneTwo') {
+                        startTypewriter('proseText2', 'scrollIndicator2');
+                    }
+                    
+                    Object.keys(bgLayers).forEach(key => {
+                        if ((targetId === 'sceneOne' && key === 'sceneOne') ||
+                            (targetId === 'sceneTwo' && key === 'sceneTwo') ||
+                            (targetId === 'sceneThree' && key === 'sceneThree')) {
+                            bgLayers[key].classList.add('active');
+                        } else {
+                            bgLayers[key].classList.remove('active');
+                        }
+                    });
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.45
+        });
+
+        frameElements.forEach(frame => {
+            scrollObserver.observe(frame);
+        });
+
+        // Gestor de Pases RSVP
+        function adjustPases(change) {
+            totalPases = Math.max(1, totalPases + change); // Mínimo 1 pase
+            document.getElementById('rsvp-qty').innerText = totalPases;
+        }
+
+        // WhatsApp de Confirmación Integrado con los Datos Oficiales
+        function dispatchRsvpWhatsApp() {
+            const targetPhone = "593959244811"; // Teléfono oficial
+            const baseMessage = `¡Hola! Confirmo con mucha alegría mi asistencia a la celebración de la pequeña Bianca Eilany Ayala Lanchimba. Confirmamos un total de ${totalPases} pases para el evento. ¡Nos vemos el Sábado 06 de Junio!`;
+            const encodedUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(baseMessage)}`;
+            window.open(encodedUrl, '_blank');
+        }
+
+        // Enlace Integrado a Google Calendar
+        function scheduleGoogleCalendar() {
+            const calendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bautizo+y+2+A%C3%B1itos+Bianca+Eilany&dates=20260606T160000/20260606T233000&details=Acomp%C3%A1nanos+a+celebrar+el+Bautizo+y+segundo+cumplea%C3%B1os+de+Bianca+Eilany.+Misa+en+la+Iglesia+de+Imantag+y+Recepci%C3%B3n+en+San+Luis+de+la+Carboner%C3%ADa.&location=Iglesia+de+Imantag%2C+Ecuador";
+            window.open(calendarUrl, '_blank');
+        }
+
+        // Cuenta Regresiva al Sábado 06 de Junio del 2026 a las 4:00 PM (16:00 Hrs)
+        const eventDeadline = new Date('June 6, 2026 16:00:00').getTime();
+        
+        function refreshTimer() {
+            const currentTime = new Date().getTime();
+            const distance = eventDeadline - currentTime;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+            }
+        }
+        
+        setInterval(refreshTimer, 1000);
+        refreshTimer();
+    </script>
 </body>
 </html>
