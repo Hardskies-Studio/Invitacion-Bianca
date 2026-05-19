@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Bautizo y 2 Añitos - Bianca Eilany</title>
-<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/favicon.ico">
+<!-- FAVICON SVG PERSONALIZADO EN ORO PULIDO Y NEGRO CARBÓN -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23161514' stroke='%23dfba4f' stroke-width='3'/%3E%3Cpath d='M30 65 L35 40 L50 55 L65 40 L70 65 Z' fill='none' stroke='%23fff3d1' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='35' r='4' fill='%23dfba4f'/%3E%3Ccircle cx='35' cy='32' r='3' fill='%23dfba4f'/%3E%3Ccircle cx='65' cy='32' r='3' fill='%23dfba4f'/%3E%3Cpath d='M30 65 L70 65' stroke='%23dfba4f' stroke-width='4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,15 +25,15 @@
 --font-clean: 'Montserrat', sans-serif;
 --cubic-luxury: cubic-bezier(0.25, 1, 0.5, 1);
 }
-{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body, html { background-color: var(--hueso); color: var(--negro-carbon); font-family: var(--font-clean); overflow-x: hidden; scroll-behavior: smooth; }
-/* Textura cinematográfica superior /
+/* Textura cinematográfica superior */
 body::after {
 content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
 opacity: 0.04; pointer-events: none; z-index: 9999;
 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-/ --- MOTOR DE FONDOS CON FUSIÓN CINEMATOGRÁFICA SUTIL (CANVAS FIJO) --- /
+/* --- MOTOR DE FONDOS CON FUSIÓN CINEMATOGRÁFICA SUTIL (CANVAS FIJO) --- */
 #motor-fondos {
 position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; background: var(--hueso);
 }
@@ -42,15 +43,15 @@ opacity: 0; transform: scale(1.08); transition: opacity 2s ease-in-out, transfor
 }
 .fondo-fusion::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .fondo-fusion.activo { opacity: 1; transform: scale(1.01); }
-/ Filtro oscuro EXCLUSIVO para el Hero (Imagen 1) /
+/* Filtro oscuro EXCLUSIVO para el Hero (Imagen 1) */
 #fondo-1 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG1.png'); }
 #fondo-1::after { background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%); }
-/ Filtros claros y nítidos para las Secciones 2 y 3 /
+/* Filtros claros y nítidos para las Secciones 2 y 3 */
 #fondo-2 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG2.jpg'); }
 #fondo-2::after { background: linear-gradient(to bottom, rgba(254, 252, 249, 0.05) 0%, rgba(254, 252, 249, 0.25) 100%); }
 #fondo-3 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.png'); }
 #fondo-3::after { background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%); }
-/ --- UNBOXING: SOBRE INTERACTIVO 3D --- /
+/* --- UNBOXING: SOBRE INTERACTIVO 3D --- */
 #contenedor-sobre {
 position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--hueso); z-index: 2000;
 display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -79,7 +80,7 @@ box-shadow: 0 10px 25px rgba(223,186,79,0.4); animation: pulsoSutil 2s infinite 
 position: absolute; bottom: 30px; width: 100%; text-align: center; font-family: var(--font-clean); font-size: 10px; color: var(--oro-medio);
 letter-spacing: 3px; text-transform: uppercase; font-weight: 600; animation: parpadeoSuave 1.5s infinite ease-in-out; z-index: 5; transition: transform 0.6s ease, opacity 0.6s ease;
 }
-/ Tarjeta interna que se extrae físicamente /
+/* Tarjeta interna que se extrae físicamente */
 .tarjeta-interna-sobre {
 position: absolute; top: 15px; left: 5%; width: 90%; height: 230px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-top: 3.5px solid var(--oro-medio);
 border-radius: 6px; z-index: 2; opacity: 0; transform: translateY(20px) scale(0.95); transition: transform 1.2s var(--cubic-luxury), opacity 0.8s ease, box-shadow 1.2s var(--cubic-luxury);
@@ -89,14 +90,14 @@ display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 
 .corona-mini { font-size: 22px; display: block; margin-bottom: 8px; animation: flotarTexto 3s infinite ease-in-out; }
 .nombre-mini { font-size: 19px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--negro-carbon); margin-bottom: 6px; }
 .fecha-mini { font-family: var(--font-clean); font-size: 10px; letter-spacing: 3px; color: var(--oro-oscuro); font-weight: 700; }
-/ Frase emotiva con centrado cinematográfico /
+/* Frase emotiva con centrado cinematográfico */
 .frase-psicologica-sobre {
 position: absolute; top: 50%; left: 50%; transform: translate(-50%, -30%) scale(0.9); width: 85%; max-width: 380px; text-align: center;
 font-family: var(--font-clean); font-size: 11px; line-height: 1.8; color: var(--negro-carbon); letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
 opacity: 0; transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); z-index: 100; pointer-events: none;
 padding: 24px 20px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.12);
 }
-/ Comportamientos dinámicos del sobre /
+/* Comportamientos dinámicos del sobre */
 .sobre-abierto .solapa { transform: rotateX(180deg) translateY(-2px); z-index: 1; filter: drop-shadow(0 -15px 15px rgba(0,0,0,0.03)); }
 .sobre-abierto .sello-oro { transform: translateY(110px) scale(0.9); opacity: 0; pointer-events: none; }
 .sobre-abierto .cta-sobre-inferior { opacity: 0; transform: translateY(10px); }
@@ -105,7 +106,7 @@ padding: 24px 20px; background: var(--glass-claro); border: 1.5px solid var(--gl
 .sobre-abierto-activo .sobre { transform: scale(0.9) translateY(40px); opacity: 0.15; filter: blur(4px); }
 .sobre-abierto-activo .texto-sobre-superior { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(8px); }
 .sobre-oculto { opacity: 0; transform: scale(1.1) translateY(-30px); filter: blur(15px); pointer-events: none; }
-/ --- BOTÓN AUDIO --- /
+/* --- BOTÓN AUDIO --- */
 #btn-audio {
 position: fixed; top: 20px; right: 20px; z-index: 1500; background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transition: 0.5s;
@@ -113,14 +114,14 @@ width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: c
 #btn-audio.visible { opacity: 1; visibility: visible; }
 .icono-audio { width: 18px; height: 18px; fill: var(--negro-carbon); transition: fill 0.3s; }
 #btn-audio.reproduciendo .icono-audio { fill: var(--oro-medio); animation: rotarIcono 4s linear infinite; }
-/ --- SECCIONES EDITORIALES --- /
+/* --- SECCIONES EDITORIALES --- */
 main { position: relative; z-index: 10; }
 .seccion-editorial { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 20px; overflow: hidden; background: transparent; }
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); }
 .reveal.active { opacity: 1; transform: translateY(0); }
-/ --- TEXTOS HERO --- /
+/* --- TEXTOS HERO --- */
 .contenedor-titulo-hero { position: relative; max-width: 90%; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-/ Nuestra bendición: Animación de Brillo de Oro Líquido Fluyendo /
+/* Nuestra bendición: Animación de Brillo de Oro Líquido Fluyendo */
 .sub-tag-hero {
 font-family: var(--font-editorial); text-transform: uppercase; letter-spacing: 11px; font-size: 26px; font-weight: 600; margin-bottom: 24px;
 background: linear-gradient(to right, var(--oro-oscuro), var(--oro-brillante), var(--oro-oscuro)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -128,22 +129,33 @@ animation: textShine 3s linear infinite, heroFloat 4s ease-in-out infinite; filt
 }
 @keyframes textShine { to { background-position: 200% center; } }
 @keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-/ Bianca Eilany /
+/* Bianca Eilany /
 .nombre-principal {
 font-family: var(--font-editorial); font-size: 84px; line-height: 1.05; font-weight: 900; margin-bottom: 30px; letter-spacing: 3px;
 background: linear-gradient(135deg, var(--oro-brillante) 0%, var(--oro-medio) 30%, #ffffff 50%, var(--oro-oscuro) 75%, var(--oro-medio) 100%);
 background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.95)); animation: brilloMetalico 6s ease-in-out infinite;
 }
-/ Fecha compacta de una línea /
+/ Fecha compacta de una línea */
 .fecha-hero {
 font-family: var(--font-editorial); font-size: 13px; color: #ffffff; letter-spacing: 5px; font-weight: 700; text-transform: uppercase;
 border-top: 1px solid rgba(223, 186, 79, 0.60); border-bottom: 1px solid rgba(223, 186, 79, 0.60); padding: 8px 24px; display: inline-block;
 margin-top: 5px; margin-bottom: 28px; white-space: nowrap; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
 }
+/* PROSA EDITORIAL DE INVITACIÓN: CURSIVA/ITALIC LUXURY PERSONAL /
 .prosa-invitacion {
-font-family: var(--font-clean); font-size: 15px; color: #ffffff; letter-spacing: 2px; font-weight: 400; line-height: 1.8; max-width: 480px; margin: 0 auto; text-transform: uppercase; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+font-family: var(--font-clean);
+font-size: 16px;
+color: #ffffff;
+letter-spacing: 1.5px;
+font-weight: 300;
+line-height: 1.8;
+max-width: 480px;
+margin: 0 auto;
+font-style: italic; / Aplicado efecto cursiva */
+text-transform: none;
+filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
 }
-/ --- TARJETA LINAJE CON FUSIÓN BLUR --- /
+/* --- TARJETA LINAJE CON FUSIÓN BLUR --- */
 .tarjeta-linaje {
 position: relative; z-index: 3; background: rgba(254, 252, 249, 0.9); border: 1px solid var(--glass-border); border-top: 4px solid var(--oro-medio);
 padding: 50px 30px; width: 90%; max-width: 380px; border-radius: 8px; box-shadow: 0 40px 80px rgba(0,0,0,0.15); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -151,7 +163,7 @@ padding: 50px 30px; width: 90%; max-width: 380px; border-radius: 8px; box-shadow
 .separador-floral { font-size: 18px; color: var(--oro-medio); margin: 20px 0; letter-spacing: 2px; }
 .rol-familiar { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--oro-oscuro); margin-bottom: 10px; font-weight: 700; }
 .nombre-familiar { font-family: var(--font-editorial); font-size: 25px; color: var(--negro-carbon); font-weight: 700; letter-spacing: 0.5px; line-height: 1.4; }
-/ --- SECCIÓN RECOLECTORA / LOGÍSTICA --- /
+/* --- SECCIÓN RECOLECTORA / LOGÍSTICA --- */
 .contenedor-reloj { position: relative; z-index: 3; width: 100%; max-width: 380px; margin-bottom: 60px; margin-top: 20px; text-align: center; }
 .titulo-reloj-alerta {
 font-family: var(--font-clean); font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; margin-bottom: 25px;
@@ -167,7 +179,7 @@ width: 100%; max-width: 380px; padding: 40px 30px; margin-bottom: 30px; box-shad
 }
 .tarjeta-glass h3 { font-family: var(--font-editorial); font-size: 24px; margin-bottom: 15px; color: var(--negro-carbon); letter-spacing: 1.5px; font-weight: 700; border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 8px; }
 .detalle-logistica { font-size: 14px; color: var(--negro-carbon); line-height: 1.7; margin-bottom: 25px; }
-/ --- BLOQUE DE ASISTENCIA --- /
+/* --- BLOQUE DE ASISTENCIA --- */
 .tarjeta-asistencia-premium {
 position: relative; z-index: 3; background: var(--glass-oscuro); border: 2.5px solid var(--oro-medio); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
 width: 100%; max-width: 380px; padding: 45px 30px; margin-bottom: 60px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); border-radius: 12px; text-align: center;
@@ -178,10 +190,10 @@ width: 100%; max-width: 380px; padding: 45px 30px; margin-bottom: 60px; box-shad
 width: 100%; padding: 16px; background: #262524; border: 1.5px solid var(--oro-medio); font-family: var(--font-clean); font-size: 14px; color: #ffffff; margin-bottom: 30px; outline: none; border-radius: 6px; font-weight: 600; text-align: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 .selector-pases-premium option { background: var(--negro-carbon); color: #fff; }
-/ --- ICONOS PREMIUM PARA BOTONES --- /
+/* --- ICONOS PREMIUM PARA BOTONES --- */
 .icono-btn { width: 18px; height: 18px; margin-right: 10px; stroke: currentColor; transition: transform 0.4s var(--cubic-luxury); }
 .btn-luxury-animated:hover .icono-btn { transform: scale(1.15) translateY(-2px); }
-/ --- BOTONES PREMIUM ULTRA-DINÁMICOS --- /
+/* --- BOTONES PREMIUM ULTRA-DINÁMICOS --- */
 .btn-luxury-animated {
 position: relative; display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 18px 20px;
 background: linear-gradient(135deg, var(--oro-oscuro) 0%, var(--oro-medio) 45%, var(--oro-brillante) 70%, var(--oro-medio) 100%); background-size: 300% 300%;
@@ -194,9 +206,9 @@ background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0
 transform: skewX(-25deg); animation: sweepLight 3.5s infinite;
 }
 .btn-luxury-animated:active { transform: scale(0.95); }
-/ Pulso de asistencia expansivo /
+/* Pulso de asistencia expansivo */
 .btn-cta-primario { font-size: 13px; padding: 20px 20px; animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bezier(0.16, 1, 0.3, 1); }
-/ KEYFRAMES */
+/* KEYFRAMES */
 .mariposa-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
 .destello-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
 @keyframes pulsoSutil { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
