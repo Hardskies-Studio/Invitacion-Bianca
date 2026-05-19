@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Bautizo y 2 Añitos - Bianca Eilany</title>
+<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,295 +17,176 @@
 --negro-carbon: #161514;
 --hueso: #fefcf9;
 --arena: #f7f3ec;
---glass-claro: rgba(254, 252, 249, 0.94);
+--glass-claro: rgba(254, 252, 249, 0.92);
 --glass-oscuro: rgba(22, 21, 20, 0.96);
 --glass-border: rgba(223, 186, 79, 0.5);
 --font-editorial: 'Cinzel', serif;
 --font-clean: 'Montserrat', sans-serif;
 --cubic-luxury: cubic-bezier(0.25, 1, 0.5, 1);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body, html { background-color: var(--hueso); color: var(--negro-carbon); font-family: var(--font-clean); overflow-x: hidden; scroll-behavior: smooth; }
-/* Textura cinematográfica */
+/* Textura cinematográfica superior /
 body::after {
 content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
 opacity: 0.04; pointer-events: none; z-index: 9999;
 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-/* --- UNBOXING: SOBRE INTERACTIVO --- */
+/ --- MOTOR DE FONDOS CON FUSIÓN CINEMATOGRÁFICA SUTIL (CANVAS FIJO) --- /
+#motor-fondos {
+position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; background: var(--hueso);
+}
+.fondo-fusion {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;
+opacity: 0; transform: scale(1.08); transition: opacity 2s ease-in-out, transform 12s var(--cubic-luxury);
+}
+.fondo-fusion::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.fondo-fusion.activo { opacity: 1; transform: scale(1.01); }
+/ Filtro oscuro EXCLUSIVO para el Hero (Imagen 1) /
+#fondo-1 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG1.png'); }
+#fondo-1::after { background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%); }
+/ Filtros claros y nítidos para las Secciones 2 y 3 /
+#fondo-2 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG2.jpg'); }
+#fondo-2::after { background: linear-gradient(to bottom, rgba(254, 252, 249, 0.05) 0%, rgba(254, 252, 249, 0.25) 100%); }
+#fondo-3 { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.png'); }
+#fondo-3::after { background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%); }
+/ --- UNBOXING: SOBRE INTERACTIVO 3D --- /
 #contenedor-sobre {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-background-color: var(--hueso); z-index: 2000;
+position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--hueso); z-index: 2000;
 display: flex; flex-direction: column; justify-content: center; align-items: center;
-perspective: 1500px; transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
-cursor: pointer;
+perspective: 1500px; transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease; cursor: pointer;
 }
 .texto-sobre-superior {
-font-family: var(--font-editorial); font-size: 13px; color: var(--oro-oscuro);
-letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; text-align: center;
-animation: flotarTexto 2.5s infinite ease-in-out; font-weight: 600;
-transition: transform 1s var(--cubic-luxury), filter 1s ease, opacity 0.8s ease;
+font-family: var(--font-editorial); font-size: 13px; color: var(--oro-oscuro); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; text-align: center;
+animation: flotarTexto 2.5s infinite ease-in-out; font-weight: 600; transition: transform 1s var(--cubic-luxury), filter 1s ease, opacity 0.8s ease;
 }
 .sobre {
-position: relative; width: 90%; max-width: 400px; height: 260px;
-background-color: var(--arena); box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 4px;
+position: relative; width: 90%; max-width: 400px; height: 260px; background-color: var(--arena); box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 4px;
 transition: transform 1.2s var(--cubic-luxury), opacity 1.2s ease, filter 1.2s ease;
 }
 .solapa {
-position: absolute; top: 0; left: 0; width: 0; height: 0;
-border-left: 200px solid transparent; border-right: 200px solid transparent;
-border-top: 130px solid #ece6dc; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.08));
+position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 200px solid transparent; border-right: 200px solid transparent; border-top: 130px solid #ece6dc; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.08));
 transform-origin: top center; transition: transform 0.8s var(--cubic-luxury), filter 0.8s var(--cubic-luxury); z-index: 3;
 }
 @media(max-width: 450px) { .solapa { border-left-width: calc(90vw / 2); border-right-width: calc(90vw / 2); } }
 .sello-oro {
-position: absolute; top: 100px; left: calc(50% - 35px);
-width: 70px; height: 70px; background: radial-gradient(circle, #fceebd 0%, var(--oro-medio) 100%);
+position: absolute; top: 100px; left: calc(50% - 35px); width: 70px; height: 70px; background: radial-gradient(circle, #fceebd 0%, var(--oro-medio) 100%);
 border-radius: 50%; border: 2.5px solid #fff; display: flex; justify-content: center; align-items: center;
-box-shadow: 0 10px 25px rgba(223,186,79,0.4); animation: pulsoSutil 2s infinite ease-in-out; z-index: 5;
-transition: transform 0.8s var(--cubic-luxury), opacity 0.5s ease;
+box-shadow: 0 10px 25px rgba(223,186,79,0.4); animation: pulsoSutil 2s infinite ease-in-out; z-index: 5; transition: transform 0.8s var(--cubic-luxury), opacity 0.5s ease;
 }
 .sello-oro span { font-family: var(--font-editorial); color: #fff; font-size: 24px; font-weight: 700; }
 .cta-sobre-inferior {
-position: absolute; bottom: 30px; width: 100%; text-align: center;
-font-family: var(--font-clean); font-size: 10px; color: var(--oro-medio);
-letter-spacing: 3px; text-transform: uppercase; font-weight: 600; animation: parpadeoSuave 1.5s infinite ease-in-out; z-index: 5;
-transition: transform 0.6s ease, opacity 0.6s ease;
+position: absolute; bottom: 30px; width: 100%; text-align: center; font-family: var(--font-clean); font-size: 10px; color: var(--oro-medio);
+letter-spacing: 3px; text-transform: uppercase; font-weight: 600; animation: parpadeoSuave 1.5s infinite ease-in-out; z-index: 5; transition: transform 0.6s ease, opacity 0.6s ease;
 }
-
-/* --- ADICIÓN: TARJETA INTERNA QUE SE EXTRAE FÍSICAMENTE --- */
+/ Tarjeta interna que se extrae físicamente /
 .tarjeta-interna-sobre {
-position: absolute; top: 15px; left: 5%; width: 90%; height: 230px;
-background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-top: 3.5px solid var(--oro-medio);
-border-radius: 6px; z-index: 2; opacity: 0;
-transform: translateY(20px) scale(0.95);
-transition: transform 1.2s var(--cubic-luxury), opacity 0.8s ease, box-shadow 1.2s var(--cubic-luxury);
-display: flex; justify-content: center; align-items: center;
-box-shadow: 0 10px 30px rgba(0,0,0,0.05); pointer-events: none;
+position: absolute; top: 15px; left: 5%; width: 90%; height: 230px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-top: 3.5px solid var(--oro-medio);
+border-radius: 6px; z-index: 2; opacity: 0; transform: translateY(20px) scale(0.95); transition: transform 1.2s var(--cubic-luxury), opacity 0.8s ease, box-shadow 1.2s var(--cubic-luxury);
+display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); pointer-events: none;
 }
 .tarjeta-interna-contenido { text-align: center; font-family: var(--font-editorial); color: var(--negro-carbon); padding: 20px; }
 .corona-mini { font-size: 22px; display: block; margin-bottom: 8px; animation: flotarTexto 3s infinite ease-in-out; }
 .nombre-mini { font-size: 19px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--negro-carbon); margin-bottom: 6px; }
 .fecha-mini { font-family: var(--font-clean); font-size: 10px; letter-spacing: 3px; color: var(--oro-oscuro); font-weight: 700; }
-
-/* --- ADICIÓN: FRASE EMOTIVA CON CENTRADO INTEGRAL DE ALTA GALA --- */
+/ Frase emotiva con centrado cinematográfico /
 .frase-psicologica-sobre {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -30%) scale(0.9);
-width: 85%;
-max-width: 380px;
-text-align: center;
-font-family: var(--font-clean);
-font-size: 11px;
-line-height: 1.8;
-color: var(--negro-carbon);
-letter-spacing: 2px;
-text-transform: uppercase;
-font-weight: 600;
-opacity: 0;
-transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury);
-z-index: 100;
-pointer-events: none;
-padding: 24px 20px;
-background: var(--glass-claro);
-border: 1.5px solid var(--glass-border);
-border-radius: 12px;
-box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+position: absolute; top: 50%; left: 50%; transform: translate(-50%, -30%) scale(0.9); width: 85%; max-width: 380px; text-align: center;
+font-family: var(--font-clean); font-size: 11px; line-height: 1.8; color: var(--negro-carbon); letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+opacity: 0; transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); z-index: 100; pointer-events: none;
+padding: 24px 20px; background: var(--glass-claro); border: 1.5px solid var(--glass-border); border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.12);
 }
-
-/* --- COMPORTAMIENTOS DINÁMICOS AL ABRIR --- */
+/ Comportamientos dinámicos del sobre /
 .sobre-abierto .solapa { transform: rotateX(180deg) translateY(-2px); z-index: 1; filter: drop-shadow(0 -15px 15px rgba(0,0,0,0.03)); }
 .sobre-abierto .sello-oro { transform: translateY(110px) scale(0.9); opacity: 0; pointer-events: none; }
 .sobre-abierto .cta-sobre-inferior { opacity: 0; transform: translateY(10px); }
 .sobre-abierto .tarjeta-interna-sobre { opacity: 1; transform: translateY(-135px) scale(1.02) rotate(-0.5deg); z-index: 4; box-shadow: 0 30px 60px rgba(96,70,30,0.18); }
-
-/* Activación progresiva de la frase emotiva seleccionada (Opción 2) */
-.sobre-abierto-activo .frase-psicologica-sobre { 
-opacity: 1; 
-transform: translate(-50%, -50%) scale(1); 
-transition-delay: 1.2s; 
-}
-
-/* Enfoque cinemático: El sobre posterior se difumina suavemente para dar protagonismo al mensaje */
-.sobre-abierto-activo .sobre {
-transform: scale(0.9) translateY(40px);
-opacity: 0.15;
-filter: blur(4px);
-}
-.sobre-abierto-activo .texto-sobre-superior { 
-opacity: 0; 
-transform: scale(0.9) translateY(-20px); 
-filter: blur(8px); 
-}
-
+.sobre-abierto-activo .frase-psicologica-sobre { opacity: 1; transform: translate(-50%, -50%) scale(1); transition-delay: 1.2s; }
+.sobre-abierto-activo .sobre { transform: scale(0.9) translateY(40px); opacity: 0.15; filter: blur(4px); }
+.sobre-abierto-activo .texto-sobre-superior { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(8px); }
 .sobre-oculto { opacity: 0; transform: scale(1.1) translateY(-30px); filter: blur(15px); pointer-events: none; }
-
-/* --- BOTÓN CONTROL AUDIO --- */
+/ --- BOTÓN AUDIO --- /
 #btn-audio {
-position: fixed; top: 20px; right: 20px; z-index: 1500;
-background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transition: 0.5s;
+position: fixed; top: 20px; right: 20px; z-index: 1500; background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transition: 0.5s;
 }
 #btn-audio.visible { opacity: 1; visibility: visible; }
 .icono-audio { width: 18px; height: 18px; fill: var(--negro-carbon); transition: fill 0.3s; }
 #btn-audio.reproduciendo .icono-audio { fill: var(--oro-medio); animation: rotarIcono 4s linear infinite; }
-@keyframes pulsoSutil { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-@keyframes parpadeoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
-@keyframes flotarTexto { 0%, 100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(-3px); opacity: 1; } }
-@keyframes rotarIcono { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-/* --- SECCIONES EDITORIALES --- */
-.seccion-editorial {
-position: relative; width: 100%; min-height: 100vh;
-display: flex; flex-direction: column; justify-content: center; align-items: center;
-padding: 60px 20px; overflow: hidden;
-}
+/ --- SECCIONES EDITORIALES --- /
+main { position: relative; z-index: 10; }
+.seccion-editorial { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 20px; overflow: hidden; background: transparent; }
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury); }
 .reveal.active { opacity: 1; transform: translateY(0); }
-/* --- ESTRUCTURA DE FONDOS CONTINUOS Y FUSIONES CINEMATOGRÁFICAS --- */
-.bg-zoom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; }
-.bg-zoom { width: 100%; height: 100%; background-size: cover; background-position: center; transform: scale(1.02); transition: transform 10s var(--cubic-luxury); }
-/* SECCIÓN 1: PORTADA HERO (ÚNICA CON FILTRO OSCURO) */
-#hero-arco { background: #000; }
-#hero-arco .bg-zoom { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG1.png'); }
-#hero-arco .overlay-contraste { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%); z-index: 2; }
-/* SECCIÓN 2: LINAJE (EFECTO FUSIÓN DE IMAGEN 1 A 2 SIN FILTRO) */
-#linaje-corona { background: var(--hueso); }
-#linaje-corona .bg-fade-layer {
-position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG1.png');
-background-size: cover; background-position: center; opacity: 1;
-transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-#linaje-corona .bg-zoom {
-background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG2.jpg');
-opacity: 0; transform: scale(1.08);
-transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 2.5s var(--cubic-luxury);
-}
-/* Activación de fusion cruzada al hacer scroll */
-#linaje-corona.active .bg-fade-layer { opacity: 0; }
-#linaje-corona.active .bg-zoom { opacity: 1; transform: scale(1.02); }
-/* SECCIÓN 3: LOGÍSTICA (FOTO CLARA SIN FILTRO OSCURO) */
-#logistica-tela { background: var(--arena); }
-#logistica-tela .bg-zoom { background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.png'); background-attachment: fixed; transform: scale(1); opacity: 1; }
-/* --- TEXTOS HERO --- */
+/ --- TEXTOS HERO --- /
 .contenedor-titulo-hero { position: relative; max-width: 90%; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-/* NUESTRA BENDICIÓN: AHORA TOTALMENTE ANIMADO Y DINÁMICO */
+/ Nuestra bendición: Animación de Brillo de Oro Líquido Fluyendo /
 .sub-tag-hero {
 font-family: var(--font-editorial); text-transform: uppercase; letter-spacing: 11px; font-size: 26px; font-weight: 600; margin-bottom: 24px;
-/* Efecto de Oro Líquido Fluyendo en el Texto */
-background: linear-gradient(to right, var(--oro-oscuro), var(--oro-brillante), var(--oro-oscuro));
-background-size: 200% auto;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-/* Animación compuesta: Brillo pasando + Flotación */
-animation: textShine 3s linear infinite, heroFloat 4s ease-in-out infinite;
-filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+background: linear-gradient(to right, var(--oro-oscuro), var(--oro-brillante), var(--oro-oscuro)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+animation: textShine 3s linear infinite, heroFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
 }
-@keyframes textShine {
-to { background-position: 200% center; }
-}
-@keyframes heroFloat {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-6px); }
-}
-/* NOMBRE BIANCA EILANY */
+@keyframes textShine { to { background-position: 200% center; } }
+@keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+/ Bianca Eilany /
 .nombre-principal {
 font-family: var(--font-editorial); font-size: 84px; line-height: 1.05; font-weight: 900; margin-bottom: 30px; letter-spacing: 3px;
 background: linear-gradient(135deg, var(--oro-brillante) 0%, var(--oro-medio) 30%, #ffffff 50%, var(--oro-oscuro) 75%, var(--oro-medio) 100%);
-background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-filter: drop-shadow(0 12px 24px rgba(0,0,0,0.95)); animation: brilloMetalico 6s ease-in-out infinite;
+background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.95)); animation: brilloMetalico 6s ease-in-out infinite;
 }
-@keyframes brilloMetalico { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-/* FECHA CENTRADA */
+/ Fecha compacta de una línea /
 .fecha-hero {
 font-family: var(--font-editorial); font-size: 13px; color: #ffffff; letter-spacing: 5px; font-weight: 700; text-transform: uppercase;
 border-top: 1px solid rgba(223, 186, 79, 0.60); border-bottom: 1px solid rgba(223, 186, 79, 0.60); padding: 8px 24px; display: inline-block;
 margin-top: 5px; margin-bottom: 28px; white-space: nowrap; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
 }
-/* PROSA EDITORIAL DE INVITACIÓN CORREGIDA */
 .prosa-invitacion {
-font-family: var(--font-clean); font-size: 15px; color: #ffffff; letter-spacing: 2px; font-weight: 400; line-height: 1.8; max-width: 480px; margin: 0 auto; text-transform: uppercase;
-filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+font-family: var(--font-clean); font-size: 15px; color: #ffffff; letter-spacing: 2px; font-weight: 400; line-height: 1.8; max-width: 480px; margin: 0 auto; text-transform: uppercase; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
 }
-/* --- PARTÍCULAS --- */
-.canvas-magico { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: hidden; }
-.mariposa-oro, .destello-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
-@keyframes aleteoVolador {
-0% { transform: translateY(110vh) translateX(0) scale(0.5) rotate(0deg); opacity: 0; }
-10% { opacity: 0.7; }
-90% { opacity: 0.7; }
-100% { transform: translateY(-10vh) translateX(100px) scale(0.8) rotate(360deg); opacity: 0; }
-}
-@keyframes destelloBrillo { 0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; } 50% { transform: scale(1) rotate(180deg); opacity: 0.85; } }
-/* --- TARJETA LINAJE CON FUSIÓN BLUR --- */
+/ --- TARJETA LINAJE CON FUSIÓN BLUR --- /
 .tarjeta-linaje {
 position: relative; z-index: 3; background: rgba(254, 252, 249, 0.9); border: 1px solid var(--glass-border); border-top: 4px solid var(--oro-medio);
 padding: 50px 30px; width: 90%; max-width: 380px; border-radius: 8px; box-shadow: 0 40px 80px rgba(0,0,0,0.15); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-opacity: 0; transform: translateY(40px) scale(0.95); transition: opacity 1.2s var(--cubic-luxury), transform 1.2s var(--cubic-luxury);
 }
-#linaje-corona.active .tarjeta-linaje { opacity: 1; transform: translateY(0) scale(1); }
 .separador-floral { font-size: 18px; color: var(--oro-medio); margin: 20px 0; letter-spacing: 2px; }
 .rol-familiar { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--oro-oscuro); margin-bottom: 10px; font-weight: 700; }
 .nombre-familiar { font-family: var(--font-editorial); font-size: 25px; color: var(--negro-carbon); font-weight: 700; letter-spacing: 0.5px; line-height: 1.4; }
-/* --- SECCIÓN RECOLECTORA / LOGÍSTICA --- */
-.contenedor-reloj { position: relative; z-index: 3; width: 100%; max-width: 380px; margin-bottom: 40px; text-align: center; }
+/ --- SECCIÓN RECOLECTORA / LOGÍSTICA --- /
+.contenedor-reloj { position: relative; z-index: 3; width: 100%; max-width: 380px; margin-bottom: 60px; margin-top: 20px; text-align: center; }
 .titulo-reloj-alerta {
 font-family: var(--font-clean); font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #ffffff; margin-bottom: 25px;
 display: inline-block; background: rgba(16, 15, 14, 0.95); padding: 12px 24px; border-radius: 6px; border: 1.5px solid var(--oro-medio); box-shadow: 0 8px 25px rgba(0,0,0,0.45);
 }
-.grid-reloj { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.grid-reloj { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 30px; }
 .modulo-tiempo { background: var(--glass-claro); border: 1.5px solid var(--oro-medio); padding: 22px 5px; border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
 .numero-reloj { font-family: var(--font-editorial); font-size: 32px; color: var(--negro-carbon); font-weight: 900; }
 .etiqueta-reloj { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--negro-carbon); margin-top: 6px; font-weight: 800; }
 .tarjeta-glass {
 position: relative; z-index: 3; background: var(--glass-claro); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-width: 100%; max-width: 380px; padding: 40px 30px; margin-bottom: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 8px;
+width: 100%; max-width: 380px; padding: 40px 30px; margin-bottom: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 8px; text-align: center;
 }
 .tarjeta-glass h3 { font-family: var(--font-editorial); font-size: 24px; margin-bottom: 15px; color: var(--negro-carbon); letter-spacing: 1.5px; font-weight: 700; border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 8px; }
 .detalle-logistica { font-size: 14px; color: var(--negro-carbon); line-height: 1.7; margin-bottom: 25px; }
-/* --- BLOQUE DE ASISTENCIA --- */
+/ --- BLOQUE DE ASISTENCIA --- /
 .tarjeta-asistencia-premium {
-position: relative; z-index: 3;
-background: var(--glass-oscuro);
-border: 2.5px solid var(--oro-medio);
-backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-width: 100%; max-width: 380px; padding: 45px 30px; margin-bottom: 60px;
-box-shadow: 0 40px 80px rgba(0,0,0,0.6); border-radius: 12px;
-text-align: center;
+position: relative; z-index: 3; background: var(--glass-oscuro); border: 2.5px solid var(--oro-medio); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+width: 100%; max-width: 380px; padding: 45px 30px; margin-bottom: 60px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); border-radius: 12px; text-align: center;
 }
-.tarjeta-asistencia-premium h3 {
-font-family: var(--font-editorial); font-size: 26px; margin-bottom: 15px;
-color: var(--oro-brillante); letter-spacing: 2px; font-weight: 700;
-border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 10px;
-}
-.tarjeta-asistencia-premium .detalle-logistica {
-color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 400; line-height: 1.7; margin-bottom: 30px;
-}
+.tarjeta-asistencia-premium h3 { font-family: var(--font-editorial); font-size: 26px; margin-bottom: 15px; color: var(--oro-brillante); letter-spacing: 2px; font-weight: 700; border-bottom: 1.5px solid var(--oro-medio); padding-bottom: 10px; }
+.tarjeta-asistencia-premium .detalle-logistica { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 400; line-height: 1.7; margin-bottom: 30px; }
 .selector-pases-premium {
-width: 100%; padding: 16px; background: #262524;
-border: 1.5px solid var(--oro-medio); font-family: var(--font-clean);
-font-size: 14px; color: #ffffff; margin-bottom: 30px; outline: none;
-border-radius: 6px; font-weight: 600; text-align: center;
-box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+width: 100%; padding: 16px; background: #262524; border: 1.5px solid var(--oro-medio); font-family: var(--font-clean); font-size: 14px; color: #ffffff; margin-bottom: 30px; outline: none; border-radius: 6px; font-weight: 600; text-align: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 .selector-pases-premium option { background: var(--negro-carbon); color: #fff; }
-/* --- BOTONES PREMIUM ULTRA-DINÁMICOS (MÁXIMA CONVERSIÓN) --- */
+/ --- ICONOS PREMIUM PARA BOTONES --- /
+.icono-btn { width: 18px; height: 18px; margin-right: 10px; stroke: currentColor; transition: transform 0.4s var(--cubic-luxury); }
+.btn-luxury-animated:hover .icono-btn { transform: scale(1.15) translateY(-2px); }
+/ --- BOTONES PREMIUM ULTRA-DINÁMICOS --- /
 .btn-luxury-animated {
-position: relative;
-display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 18px 20px;
-background: linear-gradient(135deg, var(--oro-oscuro) 0%, var(--oro-medio) 45%, var(--oro-brillante) 70%, var(--oro-medio) 100%);
-background-size: 300% 300%;
-color: #161514;
-text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; font-weight: 800;
-border: 1px solid var(--oro-brillante); cursor: pointer;
-border-radius: 6px;
-overflow: hidden;
-animation: bgShift 4s ease-in-out infinite, pulseBtnBase 2.5s infinite ease-in-out;
-box-shadow: 0 10px 25px rgba(223,186,79,0.4);
-transition: transform 0.2s ease, filter 0.2s ease;
+position: relative; display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 18px 20px;
+background: linear-gradient(135deg, var(--oro-oscuro) 0%, var(--oro-medio) 45%, var(--oro-brillante) 70%, var(--oro-medio) 100%); background-size: 300% 300%;
+color: #161514; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; border: 1px solid var(--oro-brillante); cursor: pointer; border-radius: 6px; overflow: hidden;
+animation: bgShift 4s ease-in-out infinite, pulseBtnBase 2.5s infinite ease-in-out; box-shadow: 0 10px 25px rgba(223,186,79,0.4); transition: transform 0.2s ease, filter 0.2s ease;
 }
 .btn-luxury-animated::before {
 content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
@@ -312,11 +194,17 @@ background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0
 transform: skewX(-25deg); animation: sweepLight 3.5s infinite;
 }
 .btn-luxury-animated:active { transform: scale(0.95); }
-/* PULSO ESPECIAL PARA CONFIRMAR ASISTENCIA */
-.btn-cta-primario {
-font-size: 13px; padding: 20px 20px;
-animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
-}
+/ Pulso de asistencia expansivo /
+.btn-cta-primario { font-size: 13px; padding: 20px 20px; animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bezier(0.16, 1, 0.3, 1); }
+/ KEYFRAMES */
+.mariposa-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
+.destello-oro { position: absolute; color: var(--oro-medio); fill: currentColor; pointer-events: none; filter: drop-shadow(0 2px 5px rgba(223,186,79,0.5)); opacity: 0; }
+@keyframes pulsoSutil { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes parpadeoSuave { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+@keyframes flotarTexto { 0%, 100% { transform: translateY(0); opacity: 0.8; } 50% { transform: translateY(-3px); opacity: 1; } }
+@keyframes rotarIcono { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes aleteoVolador { 0% { transform: translateY(110vh) translateX(0) scale(0.5) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-10vh) translateX(100px) scale(0.8) rotate(360deg); opacity: 0; } }
+@keyframes destelloBrillo { 0%, 100% { transform: scale(0.2) rotate(0deg); opacity: 0; } 50% { transform: scale(1) rotate(180deg); opacity: 0.85; } }
 @keyframes bgShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 @keyframes sweepLight { 0% { left: -150%; } 50% { left: 150%; } 100% { left: 150%; } }
 @keyframes pulseBtnBase { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
@@ -332,21 +220,25 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 </style>
 </head>
 <body>
+<!-- REPRODUCTOR DE AUDIO -->
 <audio id="audio-invitacion" loop>
 <source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mp3">
 </audio>
 <button id="btn-audio" aria-label="Controlar música">
-<svg class="icono-audio" viewBox="0 0 24 24">
-<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-</svg>
+<svg class="icono-audio" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
 </button>
-
-<!-- SISTEMA DE INTERACCIÓN INTEGRAL: ABRE AL TOCAR CUALQUIER PARTE -->
+<!-- SISTEMA DE FONDOS CRUZADOS (NUEVO MOTOR) -->
+<div id="motor-fondos">
+<div class="fondo-fusion activo" id="fondo-1"></div>
+<div class="canvas-magico" id="contenedor-sorpresas"></div>
+<div class="fondo-fusion" id="fondo-2"></div>
+<div class="fondo-fusion" id="fondo-3"></div>
+</div>
+<!-- SISTEMA DE INTERACCIÓN INTEGRAL -->
 <div id="contenedor-sobre" onclick="abrirInvitacion()">
 <p class="texto-sobre-superior">Has recibido una invitación especial</p>
 <div class="sobre" id="elemento-sobre">
 <div class="solapa"></div>
-<!-- TARJETA INTERNA DE SOPORTE FÍSICO -->
 <div class="tarjeta-interna-sobre">
 <div class="tarjeta-interna-contenido">
 <span class="corona-mini">✨</span>
@@ -354,24 +246,16 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 <p class="fecha-mini">06 . 06 . 2026</p>
 </div>
 </div>
-<div class="sello-oro">
-<span>B</span>
-</div>
+<div class="sello-oro"><span>B</span></div>
 <p class="cta-sobre-inferior">Toca la pantalla para abrir</p>
 </div>
-
-<!-- FRASE EMOTIVA MEJORADA CON CENTRADO CINEMÁTICO DE GALA -->
 <div class="frase-psicologica-sobre" id="mensaje-emotivo">
 "Diseñamos este día para compartirlo con las personas que guían nuestra vida. Tu lugar en nuestra mesa te espera; confírmanos tu compañía y descubre los detalles de este gran día."
 </div>
 </div>
-
 <main id="contenido-principal">
 <!-- SECCIÓN 1: PORTADA -->
-<section class="seccion-editorial" id="hero-arco">
-<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
-<div class="overlay-contraste"></div>
-<div class="canvas-magico" id="contenedor-sorpresas"></div>
+<section class="seccion-editorial" id="hero-arco" data-bg="1">
 <div class="contenedor-titulo-hero">
 <p class="sub-tag-hero">Nuestra bendición</p>
 <h1 class="nombre-principal">Bianca Eilany</h1>
@@ -379,11 +263,9 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 <p class="prosa-invitacion">Tiene el agrado de invitarte a su santo bautizo y a la celebración de sus dos añitos</p>
 </div>
 </section>
-<!-- SECCIÓN 2: LINAJE (EFECTO FUSIÓN DE IMAGEN) -->
-<section class="seccion-editorial" id="linaje-corona">
-<div class="bg-fade-layer"></div>
-<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
-<div class="tarjeta-linaje">
+<!-- SECCIÓN 2: LINAJE -->
+<section class="seccion-editorial" id="linaje-corona" data-bg="2">
+<div class="tarjeta-linaje reveal">
 <div class="bloque-familia">
 <p class="rol-familiar">Con el amor de mis padres</p>
 <p class="nombre-familiar">Blanca Lanchimba</p>
@@ -396,42 +278,48 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 </div>
 </div>
 </section>
-<!-- SECCIÓN 3: LOGÍSTICA -->
-<section class="seccion-editorial" id="logistica-tela">
-<div class="bg-zoom-container"><div class="bg-zoom"></div></div>
+<!-- SECCIÓN 3: LOGÍSTICA Y RELOJ REESTRUCTURADO -->
+<section class="seccion-editorial" id="logistica-tela" data-bg="3">
 <div class="contenedor-reloj reveal">
 <p class="titulo-reloj-alerta">Faltan pocos días para el gran momento</p>
 <div class="grid-reloj">
-<div class="modulo-tiempo">
-<div class="numero-reloj" id="dias">00</div>
-<div class="etiqueta-reloj">días</div>
+<div class="modulo-tiempo"><div class="numero-reloj" id="dias">00</div><div class="etiqueta-reloj">días</div></div>
+<div class="modulo-tiempo"><div class="numero-reloj" id="horas">00</div><div class="etiqueta-reloj">horas</div></div>
+<div class="modulo-tiempo"><div class="numero-reloj" id="minutos">00</div><div class="etiqueta-reloj">min</div></div>
+<div class="modulo-tiempo"><div class="numero-reloj" id="segundos">00</div><div class="etiqueta-reloj">seg</div></div>
 </div>
-<div class="modulo-tiempo">
-<div class="numero-reloj" id="horas">00</div>
-<div class="etiqueta-reloj">horas</div>
-</div>
-<div class="modulo-tiempo">
-<div class="numero-reloj" id="minutos">00</div>
-<div class="etiqueta-reloj">min</div>
-</div>
-<div class="modulo-tiempo">
-<div class="numero-reloj" id="segundos">00</div>
-<div class="etiqueta-reloj">seg</div>
-</div>
-</div>
-
-
-<button class="btn-luxury-animated" onclick="agregarCalendario(event)">Agendar Evento</button>
+<button class="btn-luxury-animated" onclick="agregarCalendario(event)">
+<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+<line x1="16" y1="2" x2="16" y2="6"></line>
+<line x1="8" y1="2" x2="8" y2="6"></line>
+<line x1="3" y1="10" x2="21" y2="10"></line>
+<circle cx="12" cy="15" r="1.5" fill="currentColor"></circle>
+</svg>
+Agendar Evento
+</button>
 </div>
 <div class="tarjeta-glass reveal">
 <h3>La Ceremonia</h3>
 <p class="detalle-logistica">Acompáñanos a la misa de bautizo que se celebrará solemnemente en la <strong>Iglesia de Imantag</strong> a las <strong>4:00 PM</strong>.</p>
-<a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">Ver Mapa de la Iglesia</a>
+<a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">
+<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+Ver Mapa de la Iglesia
+</a>
 </div>
 <div class="tarjeta-glass reveal">
 <h3>La Recepción</h3>
 <p class="detalle-logistica">Tras la ceremonia, los esperamos para festejar juntos en el salón de eventos <strong>San Luis de la Carbonería</strong> a partir de las <strong>5:30 PM</strong>.</p>
-<a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">Ver Mapa de Recepción</a>
+<a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="btn-luxury-animated" onclick="event.stopPropagation()">
+<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+<circle cx="12" cy="10" r="3"></circle>
+</svg>
+Ver Mapa de Recepción
+</a>
 </div>
 <div class="tarjeta-asistencia-premium reveal">
 <h3>Confirmar Asistencia</h3>
@@ -442,7 +330,13 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 <option value="3 Pases Confirmados">3 Personas</option>
 <option value="Familia Completa Confirmada">Familia Completa</option>
 </select>
-<button class="btn-luxury-animated btn-cta-primario" onclick="enviarRSVP(event)">Confirmar Asistencia</button>
+<button class="btn-luxury-animated btn-cta-primario" onclick="enviarRSVP(event)">
+<svg class="icono-btn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+Confirmar Asistencia
+</button>
 </div>
 </section>
 </main>
@@ -450,29 +344,19 @@ animation: bgShift 4s ease-in-out infinite, pulseOuterRing 2s infinite cubic-bez
 const audio = document.getElementById('audio-invitacion');
 const btnAudio = document.getElementById('btn-audio');
 const reveal_elements = document.querySelectorAll('.reveal');
+const secciones = document.querySelectorAll('.seccion-editorial');
+const fondos = document.querySelectorAll('.fondo-fusion');
 let sobreAbierto = false;
-
 function abrirInvitacion() {
 if (sobreAbierto) return;
 sobreAbierto = true;
-
 const sobreContenedor = document.getElementById('contenedor-sobre');
 const sobreElemento = document.getElementById('elemento-sobre');
 const heroArco = document.getElementById('hero-arco');
-
-// 1. Iniciar reproducción de la música al instante de la interacción del toque
 btnAudio.classList.add('visible');
-audio.play().then(() => {
-btnAudio.classList.add('reproduciendo');
-}).catch(err => {
-console.log("Audio bloqueado o requiere interacción directa:", err);
-});
-
-// 2. Iniciar transiciones visuales de apertura física y despliegue del mensaje emotivo
+audio.play().then(() => { btnAudio.classList.add('reproduciendo'); }).catch(err => console.log(err));
 sobreElemento.classList.add('sobre-abierto');
 sobreContenedor.classList.add('sobre-abierto-activo');
-
-// 3. Esperar 5.5s exactos para leer con calma antes del fade-out del contenedor
 setTimeout(() => {
 sobreContenedor.classList.add('sobre-oculto');
 heroArco.classList.add('cargado');
@@ -481,104 +365,86 @@ setTimeout(() => {
 sobreContenedor.remove();
 reveal();
 }, 900);
-}, 5500); 
+}, 5500);
 }
-
 function generarSorpresas() {
 const contenedor = document.getElementById('contenedor-sorpresas');
 if (!contenedor) return;
 for (let i = 0; i < 6; i++) {
 const mariposa = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-mariposa.setAttribute("viewBox", "0 0 24 24");
-mariposa.classList.add("mariposa-oro");
-mariposa.innerHTML = `<path d="M12,21C12,21 12,15 14,13C16,11 21,11 21,7C21,3 17,2 14,6C13,7 12,9 12,9C12,9 11,7 10,6C7,2 3,3 3,7C3,11 8,11 10,13C12,15 12,21 12,21Z" fill="#dfba4f"/>`;
-mariposa.style.left = `${Math.random() * 80 + 10}%`;
-mariposa.style.width = `${Math.random() * 12 + 14}px`;
-mariposa.style.height = mariposa.style.width;
-mariposa.style.animation = `aleteoVolador ${Math.random() * 5 + 8}s ease-in-out infinite`;
-mariposa.style.animationDelay = `${Math.random() * 3}s`;
+mariposa.setAttribute("viewBox", "0 0 24 24"); mariposa.classList.add("mariposa-oro");
+mariposa.innerHTML = <path d="M12,21C12,21 12,15 14,13C16,11 21,11 21,7C21,3 17,2 14,6C13,7 12,9 12,9C12,9 11,7 10,6C7,2 3,3 3,7C3,11 8,11 10,13C12,15 12,21 12,21Z" fill="#dfba4f"/>;
+mariposa.style.left = ${Math.random() * 80 + 10}%; mariposa.style.width = ${Math.random() * 12 + 14}px; mariposa.style.height = mariposa.style.width;
+mariposa.style.animation = aleteoVolador ${Math.random() * 5 + 8}s ease-in-out infinite; mariposa.style.animationDelay = ${Math.random() * 3}s;
 contenedor.appendChild(mariposa);
 }
 for (let i = 0; i < 14; i++) {
 const destello = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-destello.setAttribute("viewBox", "0 0 24 24");
-destello.classList.add("destello-oro");
-destello.innerHTML = `<path d="M12,2L14.5,9.5L22,12L14.5,14.5L12,22L9.5,14.5L2,12L9.5,9.5Z" fill="#fff3d1"/>`;
-destello.style.left = `${Math.random() * 90}%`;
-destello.style.top = `${Math.random() * 80 + 10}%`;
-destello.style.width = `${Math.random() * 9 + 6}px`;
-destello.style.height = destello.style.width;
-destello.style.animation = `destelloBrillo ${Math.random() * 3 + 2}s ease-in-out infinite`;
-destello.style.animationDelay = `${Math.random() * 2}s`;
+destello.setAttribute("viewBox", "0 0 24 24"); destello.classList.add("destello-oro");
+destello.innerHTML = <path d="M12,2L14.5,9.5L22,12L14.5,14.5L12,22L9.5,14.5L2,12L9.5,9.5Z" fill="#fff3d1"/>;
+destello.style.left = ${Math.random() * 90}%; destello.style.top = ${Math.random() * 80 + 10}%; destello.style.width = ${Math.random() * 9 + 6}px; destello.style.height = destello.style.width;
+destello.style.animation = destelloBrillo ${Math.random() * 3 + 2}s ease-in-out infinite; destello.style.animationDelay = ${Math.random() * 2}s;
 contenedor.appendChild(destello);
 }
 }
-
 btnAudio.addEventListener('click', (e) => {
-e.stopPropagation(); // Evitar colisiones del botón con el click general del sobre
-if (audio.paused) {
-audio.play().catch(e => console.log("Error"));
-btnAudio.classList.add('reproduciendo');
-} else {
-audio.pause();
-btnAudio.classList.remove('reproduciendo');
+e.stopPropagation();
+if (audio.paused) { audio.play(); btnAudio.classList.add('reproduciendo'); }
+else { audio.pause(); btnAudio.classList.remove('reproduciendo'); }
+});
+// MOTOR DE FUSIÓN CINEMATOGRÁFICA DE FONDOS (ALINEACIÓN FIJA)
+function checkScrollFondos() {
+let indexActual = 0;
+const scrollY = window.scrollY + (window.innerHeight / 2);
+secciones.forEach((sec, index) => {
+const offsetTop = sec.offsetTop;
+const offsetHeight = sec.offsetHeight;
+if (scrollY >= offsetTop && scrollY < offsetTop + offsetHeight) {
+indexActual = index;
 }
 });
-
+fondos.forEach((fondo, i) => {
+if (i === indexActual) {
+fondo.classList.add('activo');
+} else {
+fondo.classList.remove('activo');
+}
+});
+}
 function reveal() {
 const windowHeight = window.innerHeight;
-for (let i = 0; i < reveal_elements.length; i++) {
-const elementTop = reveal_elements[i].getBoundingClientRect().top;
-if (elementTop < windowHeight - 80) {
-reveal_elements[i].classList.add('active');
+reveal_elements.forEach((el) => {
+const elementTop = el.getBoundingClientRect().top;
+if (elementTop < windowHeight - 80) el.classList.add('active');
+});
 }
-}
-const linajeCorona = document.getElementById('linaje-corona');
-if (linajeCorona) {
-const linajeTop = linajeCorona.getBoundingClientRect().top;
-if (linajeTop < windowHeight * 0.7) {
-linajeCorona.classList.add('active');
-}
-}
-}
-
-window.addEventListener('scroll', reveal);
-
+window.addEventListener('scroll', () => {
+reveal();
+checkScrollFondos();
+});
 const fechaEvento = new Date('June 6, 2026 16:00:00').getTime();
 const cuentaRegresiva = setInterval(() => {
 const ahora = new Date().getTime();
 const diferencia = fechaEvento - ahora;
-if (diferencia <= 0) {
-clearInterval(cuentaRegresiva);
-return;
-}
-const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-const s = Math.floor((diferencia % (1000 * 60)) / 1000);
-document.getElementById('dias').innerHTML = d < 10 ? '0' + d : d;
-document.getElementById('horas').innerHTML = h < 10 ? '0' + h : h;
-document.getElementById('minutos').innerHTML = m < 10 ? '0' + m : m;
-document.getElementById('segundos').innerHTML = s < 10 ? '0' + s : s;
+if (diferencia <= 0) { clearInterval(cuentaRegresiva); return; }
+document.getElementById('dias').innerHTML = String(Math.floor(diferencia / (1000 * 60 * 60 * 24))).padStart(2, '0');
+document.getElementById('horas').innerHTML = String(Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+document.getElementById('minutos').innerHTML = String(Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+document.getElementById('segundos').innerHTML = String(Math.floor((diferencia % (1000 * 60)) / 1000)).padStart(2, '0');
 }, 1000);
-
 function agregarCalendario(e) {
 if (e) e.stopPropagation();
 const titulo = encodeURIComponent("Bautizo y 2 Añitos de Bianca Eilany");
 const fechas = "20260606T210000Z/20260607T050000Z";
 const detalles = encodeURIComponent("Acompáñanos a celebrar el santo Bautizo y los dos añitos de Bianca Eilany. ¡Te esperamos!");
 const ubicacion = encodeURIComponent("Iglesia de Imantag / San Luis de la Carbonería, Imbabura, Ecuador");
-const urlCalendar = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${fechas}&details=${detalles}&location=${ubicacion}&reminders=true&sf=true&output=xml`;
-window.open(urlCalendar, '_blank');
+window.open(https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${fechas}&details=${detalles}&location=${ubicacion}&reminders=true&sf=true&output=xml, '_blank');
 }
-
 function enviarRSVP(e) {
 if (e) e.stopPropagation();
-const telefono = "593959244811";
-const cuposSeleccionados = document.getElementById('selector-cupos').value;
-const mensajeOriginal = `¡Hola! ✨ Confirmamos nuestra asistencia para celebrar el Bautizo y los 2 añitos de Bianca Eilany. Reservaremos: *${cuposSeleccionados}*. ¡Nos vemos el sábado 6 de junio!`;
-const urlWhatsapp = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensajeOriginal)}`;
-window.open(urlWhatsapp, '_blank');
+const cupos = document.getElementById('selector-cupos').value;
+const msg = encodeURIComponent(¡Hola! ✨ Confirmamos nuestra asistencia para celebrar el Bautizo y los 2 añitos de Bianca Eilany. Reservaremos: *${cupos}*. ¡Nos vemos el sábado 6 de junio!);
+window.open(https://api.whatsapp.com/send?phone=593959244811&text=${msg}, '_blank');
 }
 </script>
 </body>
