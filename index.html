@@ -1,1427 +1,1258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bautizo y 2 Añitos - Bianca Eilany</title>
-    
-    <!-- Favicon SVG Dinámico (Paloma con degradado Rosa-Dorado) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23E84393' /%3E%3Cstop offset='100%25' stop-color='%23E5C060' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M474.9 146.5c-48.4-13.8-100-2-132.8 30.8L281.9 237.5c-15.4 15.4-38.3 19.3-58 9.9L106.8 191.7c-40.4-19.4-86.3-21.4-128.2-5.7C-48.2 195.9 44.9 316.3 118 348.6l103.5 45.8c21.8 9.6 47 6.4 66.2-8.5l98.3-76.8c34.9-27.2 46.1-75.9 26.5-115.6l-6.2-12.7c-2.4-4.9-1.9-10.7 1.3-15l32.1-42.8c20.3-27.1 53.6-40.2 86.8-35.4 7.6 1.1 13.5-5.9 11-13.1-4.7-13.5-14.7-23.7-29.3-27.5zM22.5 281.8c-1.8 4.2-7.5 4.9-10.4 1.3C5.9 275.4 2.8 266.3 1 256c-2.2-12.4 1.4-25.1 9.8-34.4 2.8-3.1 7.8-1.5 8.3 2.6.4 3 .8 6 1.5 9 1.6 7.6 4.6 14.8 9 21.2 4.1 5.9 6.7 13.1 7.2 20.6.3 4.2-3.6 8-7.5 7.4-4.8-.7-9.3-2-13.6-4-1.1-.5-2.2-1.1-3.2-1.6z'/%3E%3C/svg%3E">
-    
-    <!-- Fuentes de Alta Gama -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome para Iconografía Premium -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        :root {
-            /* PALETA DE ORO CÁLIDO E INTENSO */
-            --gold-base: #E5C060;   /* Oro amarillo brillante */
-            --gold-light: #FFF0CA;  /* Oro blanco brillante con destello */
-            --gold-dark: #A67C1E;   /* Sombra de oro profundo para contraste */
-            --gold-bright: #F9D976; /* Oro sol vívido */
-            
-            --vivid-pink: #E84393; 
-            --blush-pink: #FF7597;
-            --text-main: #1F1514; 
-            --text-muted: #4A3A38;
-            --transition-cinema: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body, html {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #FAF6F0;
-            color: var(--text-main);
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
-        }
-
-        /* --- SISTEMA DE FONDOS CRUZADOS --- */
-        .viewport-backgrounds {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            background-color: #000;
-        }
-
-        .bg-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 20s alternate infinite ease-in-out;
-            transform: scale(1.05);
-            filter: brightness(1.1) contrast(1.05);
-        }
-
-        .bg-layer.active {
-            opacity: 1;
-            transform: scale(1.12);
-        }
-
-        /* Filtro oscuro unificado para asegurar que el Glassmorphism funcione sobre cualquier imagen */
-        .bg-filter-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                rgba(250, 246, 240, 0.25) 0%, 
-                rgba(31, 21, 20, 0.25) 50%, 
-                rgba(250, 246, 240, 0.25) 100%);
-            z-index: 3;
-            transition: opacity 1s ease;
-        }
-
-        /* Ocultar los filtros globales cuando estemos en la escena final limpia */
-        .hide-filters .bg-filter-overlay {
-            opacity: 0;
-        }
-
-        /* --- EFECTOS AMBIENTALES DE PÉTALOS Y DESTELLOS --- */
-        .ambient-effects {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-            overflow: hidden;
-            perspective: 1000px;
-        }
-
-        .rose-petal {
-            position: absolute;
-            background: radial-gradient(circle, var(--blush-pink) 30%, var(--vivid-pink) 100%);
-            border-radius: 50% 0 50% 50%;
-            opacity: 0.85;
-            pointer-events: none;
-            animation: floatPetal 14s linear infinite;
-        }
-
-        .sparkle {
-            position: absolute;
-            background: radial-gradient(circle, #FFF 20%, var(--gold-light) 60%, transparent 100%);
-            border-radius: 50%;
-            opacity: 0;
-            animation: pulseSparkle 5s ease-in-out infinite;
-        }
-
-        /* --- CONTROL DE MÚSICA ULTRA DISCRETO --- */
-        .music-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1.5px solid var(--vivid-pink);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(232, 108, 128, 0.15);
-            opacity: 0;
-            transform: scale(0.8) translateY(-10px);
-            transition: var(--transition-cinema);
-            pointer-events: none;
-        }
-
-        .music-widget.active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
-
-        .music-widget i {
-            color: var(--vivid-pink);
-            font-size: 1.1rem;
-        }
-
-        .music-widget.playing i {
-            animation: spinMusic 4s linear infinite;
-        }
-
-        /* --- SOBRE INTERACTIVO 3D --- */
-        #envelope-gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG4.webp') center/cover no-repeat;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-            perspective: 1500px;
-            cursor: pointer;
-        }
-
-        #envelope-gate::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.45); 
-            backdrop-filter: blur(5px);
-            z-index: 1;
-        }
-
-        .envelope-text-top, .envelope-container, .envelope-instruction {
-            position: relative;
-            z-index: 2;
-        }
-
-        .envelope-text-top {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.3rem;
-            color: #000000;
-            font-weight: 800;
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
-            text-align: center;
-            padding: 0 20px;
-            pointer-events: none;
-            text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.8);
-        }
-
-        .envelope-container {
-            width: 360px;
-            height: 260px;
-            background: #FDFBF7;
-            border-radius: 16px;
-            box-shadow: 0 30px 70px rgba(61, 46, 44, 0.22);
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            pointer-events: none;
-        }
-
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #F5ECE0;
-            clip-path: polygon(0 0, 50% 50%, 100% 0);
-            z-index: 3;
-            transform-origin: top;
-            transition: transform 0.8s ease-in-out, z-index 0.3s 0.4s;
-            border-radius: 16px 16px 0 0;
-        }
-
-        .envelope-container.open .envelope-flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .envelope-paper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #EADECB;
-            clip-path: polygon(0 100%, 0 0, 15% 50%, 85% 50%, 100% 0, 100% 100%);
-            z-index: 4;
-            border-radius: 0 0 16px 16px;
-        }
-
-        .envelope-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 55%;
-            background: #E5D6C0;
-            clip-path: polygon(0 100%, 50% 0, 100% 100%);
-            z-index: 4;
-            border-radius: 0 0 16px 16px;
-        }
-
-        .envelope-letter {
-            position: absolute;
-            bottom: 10px;
-            left: 5%;
-            width: 90%;
-            height: 90%;
-            background: #FFFFFF;
-            border: 2px solid var(--vivid-pink);
-            border-radius: 12px;
-            z-index: 2;
-            padding: 20px 15px;
-            text-align: center;
-            transition: transform 1.2s 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s 1.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: inset 0 0 20px rgba(232, 108, 128, 0.08);
-        }
-
-        .envelope-container.open .envelope-letter {
-            transform: translateY(-170px) scale(1.05);
-            opacity: 0.98;
-        }
-
-        .letter-title {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.5rem;
-            color: var(--vivid-pink);
-            margin-bottom: 2px;
-            font-weight: 500;
-        }
-
-        .letter-subtitle {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold-dark);
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .wax-seal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -40%);
-            width: 95px;
-            height: 95px;
-            background: linear-gradient(135deg, var(--gold-base), var(--gold-dark));
-            border-radius: 50%;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(143, 107, 45, 0.45);
-        }
-
-        .wax-seal .seal-b {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.2rem;
-            color: #FFFFFF;
-            line-height: 1;
-            margin-bottom: -5px;
-        }
-
-        .wax-seal i {
-            color: var(--gold-light);
-            font-size: 1.2rem;
-            animation: pulse-heart 2s infinite ease-in-out;
-        }
-
-        .envelope-container.open .wax-seal {
-            opacity: 0;
-            transform: translate(-50%, -40%) scale(0.5);
-        }
-
-        .envelope-instruction {
-            font-size: 0.9rem;
-            color: var(--vivid-pink);
-            margin-top: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            pointer-events: none;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            animation: pulse-heart 2s infinite ease-in-out;
-        }
-
-        /* --- PORTAL DE ESCENAS EXPANSIVAS --- */
-        .cinema-viewport {
-            height: 100%;
-            width: 100%;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-        }
-
-        .scene-frame {
-            height: 100%;
-            width: 100%;
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        /* Glassmorphism optimizado para lucir bien sobre distintas imágenes */
-        .cinema-card {
-            position: relative;
-            z-index: 3;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(255, 255, 255, 0.35); 
-            padding: 50px 20px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            
-            opacity: 0;
-            transform: scale(1.02);
-            transition: var(--transition-cinema);
-        }
-
-        .scene-frame.active .cinema-card {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .txt-intro {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 3.2rem;
-            color: var(--vivid-pink);
-            margin-bottom: 2px;
-            line-height: 1;
-            display: block;
-            text-shadow: 0 2px 5px rgba(255,255,255,1);
-        }
-
-        /* --- EFECTO ATENCIÓN "Te esperamos" LIGERO Y EXTREMADAMENTE LIMPIO --- */
-        .animate-attention {
-            font-family: 'Pinyon Script', cursive; 
-            font-weight: 700;
-            color: var(--vivid-pink); 
-            animation: pulseClean 3s ease-in-out infinite;
-            display: inline-block;
-            text-shadow: none; 
-        }
-
-        /* --- CONTENEDOR PLACA OSCURA DE LUJO RSVP --- */
-        .gold-plate-container {
-            background: linear-gradient(135deg, rgba(31, 21, 20, 0.92) 0%, rgba(45, 30, 28, 0.95) 100%);
-            padding: 18px 22px;
-            border-radius: 16px;
-            border: 2px solid var(--gold-base);
-            box-shadow: inset 0 1px 12px rgba(229, 192, 96, 0.35), 0 8px 25px rgba(0,0,0,0.5);
-            margin-bottom: 12px;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* --- EFECTO ORO METALIZADO EN MÁXIMA NITIDEZ (MIXTO) --- */
-        .gold-text-effect {
-            font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            font-size: 1.85rem;
-            text-align: center;
-            background: linear-gradient(135deg, 
-                var(--gold-dark) 0%, 
-                var(--gold-base) 20%, 
-                var(--gold-bright) 40%, 
-                var(--gold-light) 60%, 
-                var(--gold-bright) 80%, 
-                var(--gold-dark) 100%
-            );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: liquidGold 3s linear infinite;
-            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.8));
-            line-height: 1.25;
-            margin-bottom: 2px;
-        }
-
-        /* --- MARCO PREMIUM RETRATO EN EL HERO --- */
-        .hero-image-container {
-            margin: 10px auto 8px;
-            width: 135px;
-            height: 135px;
-            border-radius: 35px;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-base), var(--vivid-pink));
-            box-shadow: 0 12px 28px rgba(61, 46, 44, 0.3);
-            position: relative;
-            z-index: 5;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 31px; 
-            border: 2px solid #FFF;
-        }
-
-        /* --- NOMBRE PRINCIPAL EN PORTADA: ALTO CONTRASTE --- */
-        .txt-main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.1rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-base) 25%, var(--gold-bright) 50%, var(--gold-base) 75%, var(--gold-dark) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: liquidGold 4s linear infinite;
-            filter: drop-shadow(1px 1px 0px #1f1514) 
-                    drop-shadow(-1px -1px 0px #1f1514) 
-                    drop-shadow(1px -1px 0px #1f1514) 
-                    drop-shadow(-1px 1px 0px #1f1514)
-                    drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
-        }
-
-        .invite-text-block {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .invite-normal {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-        }
-        .invite-cursive {
-            font-family: 'Pinyon Script', cursive;
-            font-weight: 700;
-            font-size: 2.2rem;
-            color: var(--text-main);
-            display: block;
-            margin-top: -4px;
-            line-height: 1;
-            text-shadow: 0 1px 4px rgba(255,255,255,1);
-        }
-
-        .prose-container {
-            background: rgba(255, 255, 255, 0.75);
-            padding: 14px 16px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(232, 108, 128, 0.2);
-            margin-bottom: 12px;
-            width: 100%;
-            max-width: 410px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        /* --- RECUADRO RSVP CON MARCO GLASSMORPHISM BLANCO NÁCAR --- */
-        .rsvp-box-container {
-            background: rgba(255, 255, 255, 0.82);
-            border: 1.5px solid rgba(229, 192, 96, 0.3);
-            border-radius: 20px;
-            padding: 16px;
-            width: 100%;
-            max-width: 410px;
-            box-shadow: 0 10px 30px rgba(61, 46, 44, 0.12);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .txt-prose {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: var(--text-muted);
-            font-weight: 700;
-            text-align: center;
-            text-justify: auto;
-            width: 100%;
-            word-wrap: break-word;
-        }
-
-        .txt-prose::after {
-            content: '|';
-            animation: blinkCursor 0.8s step-end infinite;
-            color: var(--vivid-pink);
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 2px;
-        }
-
-        .scene-frame:not(.active) .txt-prose::after,
-        .typewriter-finished .txt-prose::after {
-            display: none !important;
-        }
-
-        .scroll-down-indicator {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            margin-top: 10px;
-            color: var(--vivid-pink);
-            font-weight: 800;
-            font-size: 0.75rem;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            text-shadow: 0 1px 4px rgba(255,255,255,1);
-        }
-
-        .scroll-down-indicator.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-down-indicator i {
-            font-size: 1.1rem;
-            animation: bounceArrow 1.5s infinite ease-in-out;
-        }
-
-        .animate-element {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .scene-frame.active .animate-element {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scene-frame.active .animate-element.delay-1 { transition-delay: 0.15s; }
-        .scene-frame.active .animate-element.delay-2 { transition-delay: 0.3s; }
-        .scene-frame.active .animate-element.delay-3 { transition-delay: 0.45s; }
-
-        .ceremony-names-block {
-            margin-top: 10px;
-            text-align: center;
-            width: 100%;
-            border-top: 1px dashed rgba(232, 108, 128, 0.4);
-            padding-top: 10px;
-        }
-        
-        .name-label-normal {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-main);
-            font-weight: 800;
-            margin-bottom: 2px;
-        }
-
-        .name-value-cursive {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.1rem;
-            color: var(--vivid-pink);
-            font-weight: bold; 
-            line-height: 1.1;
-            margin-bottom: 8px;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-        }
-
-        .logistics-container {
-            background: linear-gradient(135deg, rgba(255, 253, 251, 0.88) 0%, rgba(255, 245, 246, 0.88) 100%);
-            border: 1px solid rgba(232, 108, 128, 0.3);
-            border-radius: 16px;
-            padding: 14px 16px;
-            margin: 8px 0;
-            text-align: center;
-            width: 100%;
-            max-width: 410px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .logistics-item {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .logistics-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .logistics-item i {
-            font-size: 1.2rem;
-            color: var(--vivid-pink);
-        }
-
-        .logistics-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--gold-dark);
-            font-weight: 800;
-            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.95), 0px 1px 2px rgba(31, 21, 20, 0.2);
-        }
-
-        .logistics-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .logistics-centered-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 100%;
-        }
-
-        .action-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            background: linear-gradient(135deg, var(--vivid-pink) 0%, #D84B61 100%);
-            width: 100%;
-            max-width: 410px;
-            padding: 14px 18px;
-            border-radius: 30px;
-            border: none;
-            box-shadow: 0 5px 15px rgba(232, 108, 128, 0.4);
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
-            margin-top: 4px;
-            animation: pulsate-btn-strong 2.5s infinite;
-        }
-
-        .action-button:hover, .action-button:active {
-            transform: scale(1.02);
-            background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-dark) 100%);
-            animation: none; 
-        }
-
-        .persuasive-text {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.2rem;
-            color: var(--vivid-pink);
-            margin-top: 15px;
-            margin-bottom: 5px;
-            line-height: 1;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
-            text-align: center;
-        }
-
-        .clock-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin: 8px 0 15px 0;
-            width: 100%;
-            max-width: 410px;
-        }
-
-        .clock-tile {
-            background: rgba(255, 255, 255, 0.90);
-            border: 1.5px solid var(--vivid-pink);
-            padding: 8px 6px;
-            border-radius: 12px;
-            min-width: 65px;
-            box-shadow: 0 4px 10px rgba(232, 108, 128, 0.15);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .clock-val {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--vivid-pink);
-            display: block;
-        }
-
-        .clock-tag {
-            font-size: 0.60rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            font-weight: 800;
-            margin-top: 2px;
-        }
-
-         .rsvp-selector {
-            background: rgba(255, 245, 246, 0.95);
-            border: 1.5px dashed var(--vivid-pink);
-            border-radius: 14px;
-            padding: 12px;
-            margin: 5px 0 0 0;
-            width: 100%;
-            max-width: 380px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .rsvp-label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .rsvp-counter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .rsvp-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1.5px solid var(--vivid-pink);
-            background: #FFFFFF;
-            color: var(--vivid-pink);
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 8px rgba(232, 108, 128, 0.2);
-        }
-
-        .rsvp-btn:hover {
-            background: var(--vivid-pink);
-            color: #FFFFFF;
-        }
-
-        #rsvp-qty {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text-main);
-            min-width: 85px; 
-            text-align: center;
-            transition: font-size 0.3s ease;
-        }
-
-        /* --- ESCENA FINAL: PANTALLA COMPLETA LIMPIA --- */
-        #sceneFive {
-            background: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp') center/cover no-repeat;
-            z-index: 10;
-        }
-
-        .closing-overlay {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; 
-            align-items: center;
-            padding: 100px 20px 40px; 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
-            text-align: center;
-        }
-
-        .txt-closing-cursive {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 3.8rem;
-            color: #FFFFFF;
-            line-height: 1;
-            margin-bottom: 5px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
-            opacity: 0;
-            transform: translateY(-30px); 
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
-        }
-
-        .txt-closing-sans {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
-            opacity: 0;
-            transform: translateY(-30px); 
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
-        }
-
-        #sceneFive.active .txt-closing-cursive,
-        #sceneFive.active .txt-closing-sans {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- ANIMACIONES --- */
-        @keyframes pulseClean {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.06); } 
-        }
-
-        @keyframes blinkCursor {
-            from, to { border-color: transparent }
-            50% { border-color: var(--vivid-pink); }
-        }
-
-        @keyframes bounceArrow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
-
-        @keyframes pulse-heart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-        }
-
-        @keyframes floatPetal {
-            0% { transform: translateY(-10%) rotate(0deg) translateX(0); }
-            100% { transform: translateY(110vh) rotate(720deg) translateX(120px); }
-        }
-
-        @keyframes pulseSparkle {
-            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
-            50% { opacity: 0.85; transform: scale(1.2) rotate(180deg); }
-        }
-
-        @keyframes spinMusic {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes liquidGold {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        @keyframes pulsate-btn-strong {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 108, 128, 0.6); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(232, 108, 128, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 108, 128, 0); }
-        }
-
-        @media (max-width: 480px) {
-            .txt-main-title { font-size: 1.85rem; }
-            .txt-intro { font-size: 2.8rem; }
-            .cinema-card { padding: 40px 14px 20px; }
-            .logistics-value { font-size: 0.95rem; }
-            .envelope-container { width: 310px; height: 230px; }
-            .letter-title { font-size: 2.2rem; }
-            .prose-container { min-height: 90px; padding: 12px 14px; margin-bottom: 10px; }
-            .hero-image-container { width: 120px; height: 120px; border-radius: 30px; }
-            .hero-image { border-radius: 26px; }
-            .persuasive-text { font-size: 1.9rem; }
-            .txt-closing-cursive { font-size: 3.3rem; }
-            .txt-closing-sans { font-size: 1.1rem; }
-            .gold-text-effect { font-size: 1.65rem; } 
-            .rsvp-box-container { padding: 12px 10px; }
-            .gold-plate-container { padding: 12px 14px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bautizo y 2 Añitos - Bianca Eilany</title>
+<!-- Favicon SVG Dinámico (Paloma con degradado Rosa-Dorado) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23E84393' /%3E%3Cstop offset='100%25' stop-color='%23E5C060' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M474.9 146.5c-48.4-13.8-100-2-132.8 30.8L281.9 237.5c-15.4 15.4-38.3 19.3-58 9.9L106.8 191.7c-40.4-19.4-86.3-21.4-128.2-5.7C-48.2 195.9 44.9 316.3 118 348.6l103.5 45.8c21.8 9.6 47 6.4 66.2-8.5l98.3-76.8c34.9-27.2 46.1-75.9 26.5-115.6l-6.2-12.7c-2.4-4.9-1.9-10.7 1.3-15l32.1-42.8c20.3-27.1 53.6-40.2 86.8-35.4 7.6 1.1 13.5-5.9 11-13.1-4.7-13.5-14.7-23.7-29.3-27.5zM22.5 281.8c-1.8 4.2-7.5 4.9-10.4 1.3C5.9 275.4 2.8 266.3 1 256c-2.2-12.4 1.4-25.1 9.8-34.4 2.8-3.1 7.8-1.5 8.3 2.6.4 3 .8 6 1.5 9 1.6 7.6 4.6 14.8 9 21.2 4.1 5.9 6.7 13.1 7.2 20.6.3 4.2-3.6 8-7.5 7.4-4.8-.7-9.3-2-13.6-4-1.1-.5-2.2-1.1-3.2-1.6z'/%3E%3C/svg%3E">
+<!-- Fuentes de Alta Gama -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- FontAwesome para Iconografía Premium -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+/* PALETA DE ORO CÁLIDO E INTENSO /
+--gold-base: #E5C060;   / Oro amarillo brillante /
+--gold-light: #FFF0CA;  / Oro blanco brillante con destello /
+--gold-dark: #A67C1E;   / Sombra de oro profundo para contraste /
+--gold-bright: #F9D976; / Oro sol vívido */
+--vivid-pink: #E84393;
+--blush-pink: #FF7597;
+--text-main: #1F1514;
+--text-muted: #4A3A38;
+--transition-cinema: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+-webkit-tap-highlight-color: transparent;
+}
+body, html {
+font-family: 'Montserrat', sans-serif;
+background-color: #FAF6F0;
+color: var(--text-main);
+overflow: hidden;
+height: 100%;
+width: 100%;
+}
+/* --- SISTEMA DE FONDOS CRUZADOS --- */
+.viewport-backgrounds {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+pointer-events: none;
+background-color: #000;
+}
+.bg-layer {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+opacity: 0;
+transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 20s alternate infinite ease-in-out;
+transform: scale(1.05);
+filter: brightness(1.1) contrast(1.05);
+}
+.bg-layer.active {
+opacity: 1;
+transform: scale(1.12);
+}
+/* Filtro oscuro unificado para asegurar que el Glassmorphism funcione sobre cualquier imagen */
+.bg-filter-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom,
+rgba(250, 246, 240, 0.25) 0%,
+rgba(31, 21, 20, 0.25) 50%,
+rgba(250, 246, 240, 0.25) 100%);
+z-index: 3;
+transition: opacity 1s ease;
+}
+/* Ocultar los filtros globales cuando estemos en la escena final limpia */
+.hide-filters .bg-filter-overlay {
+opacity: 0;
+}
+/* --- EFECTOS AMBIENTALES DE PÉTALOS Y DESTELLOS --- */
+.ambient-effects {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 5;
+overflow: hidden;
+perspective: 1000px;
+}
+.rose-petal {
+position: absolute;
+background: radial-gradient(circle, var(--blush-pink) 30%, var(--vivid-pink) 100%);
+border-radius: 50% 0 50% 50%;
+opacity: 0.85;
+pointer-events: none;
+animation: floatPetal 14s linear infinite;
+}
+.sparkle {
+position: absolute;
+background: radial-gradient(circle, #FFF 20%, var(--gold-light) 60%, transparent 100%);
+border-radius: 50%;
+opacity: 0;
+animation: pulseSparkle 5s ease-in-out infinite;
+}
+/* --- CONTROL DE MÚSICA ULTRA DISCRETO --- */
+.music-widget {
+position: fixed;
+top: 20px;
+right: 20px;
+z-index: 999;
+background: rgba(255, 255, 255, 0.95);
+border: 1.5px solid var(--vivid-pink);
+width: 45px;
+height: 45px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 15px rgba(232, 108, 128, 0.15);
+opacity: 0;
+transform: scale(0.8) translateY(-10px);
+transition: var(--transition-cinema);
+pointer-events: none;
+}
+.music-widget.active {
+opacity: 1;
+transform: scale(1) translateY(0);
+pointer-events: auto;
+}
+.music-widget i {
+color: var(--vivid-pink);
+font-size: 1.1rem;
+}
+.music-widget.playing i {
+animation: spinMusic 4s linear infinite;
+}
+/* --- SOBRE INTERACTIVO 3D --- */
+#envelope-gate {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG4.webp') center/cover no-repeat;
+z-index: 10000;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+perspective: 1500px;
+cursor: pointer;
+}
+#envelope-gate::before {
+content: '';
+position: absolute;
+top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(255, 255, 255, 0.45);
+backdrop-filter: blur(5px);
+z-index: 1;
+}
+.envelope-text-top, .envelope-container, .envelope-instruction {
+position: relative;
+z-index: 2;
+}
+.envelope-text-top {
+font-family: 'Pinyon Script', cursive;
+font-size: 2.3rem;
+color: #000000;
+font-weight: 800;
+margin-bottom: 25px;
+letter-spacing: 0.5px;
+text-align: center;
+padding: 0 20px;
+pointer-events: none;
+text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.8);
+}
+.envelope-container {
+width: 360px;
+height: 260px;
+background: #FDFBF7;
+border-radius: 16px;
+box-shadow: 0 30px 70px rgba(61, 46, 44, 0.22);
+transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+transform-style: preserve-3d;
+pointer-events: none;
+}
+.envelope-flap {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #F5ECE0;
+clip-path: polygon(0 0, 50% 50%, 100% 0);
+z-index: 3;
+transform-origin: top;
+transition: transform 0.8s ease-in-out, z-index 0.3s 0.4s;
+border-radius: 16px 16px 0 0;
+}
+.envelope-container.open .envelope-flap {
+transform: rotateX(180deg);
+z-index: 1;
+}
+.envelope-paper {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #EADECB;
+clip-path: polygon(0 100%, 0 0, 15% 50%, 85% 50%, 100% 0, 100% 100%);
+z-index: 4;
+border-radius: 0 0 16px 16px;
+}
+.envelope-bottom {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 55%;
+background: #E5D6C0;
+clip-path: polygon(0 100%, 50% 0, 100% 100%);
+z-index: 4;
+border-radius: 0 0 16px 16px;
+}
+.envelope-letter {
+position: absolute;
+bottom: 10px;
+left: 5%;
+width: 90%;
+height: 90%;
+background: #FFFFFF;
+border: 2px solid var(--vivid-pink);
+border-radius: 12px;
+z-index: 2;
+padding: 20px 15px;
+text-align: center;
+transition: transform 1.2s 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s 1.2s;
+display: flex;
+flex-direction: column;
+justify-content: center;
+box-shadow: inset 0 0 20px rgba(232, 108, 128, 0.08);
+}
+.envelope-container.open .envelope-letter {
+transform: translateY(-170px) scale(1.05);
+opacity: 0.98;
+}
+.letter-title {
+font-family: 'Pinyon Script', cursive;
+font-size: 2.5rem;
+color: var(--vivid-pink);
+margin-bottom: 2px;
+font-weight: 500;
+}
+.letter-subtitle {
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: var(--gold-dark);
+font-weight: 700;
+line-height: 1.4;
+}
+.wax-seal {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -40%);
+width: 95px;
+height: 95px;
+background: linear-gradient(135deg, var(--gold-base), var(--gold-dark));
+border-radius: 50%;
+z-index: 5;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+box-shadow: 0 10px 25px rgba(143, 107, 45, 0.45);
+}
+.wax-seal .seal-b {
+font-family: 'Pinyon Script', cursive;
+font-size: 2.2rem;
+color: #FFFFFF;
+line-height: 1;
+margin-bottom: -5px;
+}
+.wax-seal i {
+color: var(--gold-light);
+font-size: 1.2rem;
+animation: pulse-heart 2s infinite ease-in-out;
+}
+.envelope-container.open .wax-seal {
+opacity: 0;
+transform: translate(-50%, -40%) scale(0.5);
+}
+.envelope-instruction {
+font-size: 0.9rem;
+color: var(--vivid-pink);
+margin-top: 30px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 2px;
+pointer-events: none;
+background: rgba(255, 255, 255, 0.85);
+padding: 10px 20px;
+border-radius: 20px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+animation: pulse-heart 2s infinite ease-in-out;
+}
+/* --- PORTAL DE ESCENAS EXPANSIVAS --- */
+.cinema-viewport {
+height: 100%;
+width: 100%;
+overflow-y: scroll;
+scroll-snap-type: y mandatory;
+scroll-behavior: smooth;
+}
+.scene-frame {
+height: 100%;
+width: 100%;
+scroll-snap-align: start;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+z-index: 2;
+}
+/* Glassmorphism optimizado para lucir bien sobre distintas imágenes */
+.cinema-card {
+position: relative;
+z-index: 3;
+width: 100vw;
+height: 100vh;
+background-color: rgba(255, 255, 255, 0.35);
+padding: 50px 20px 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+opacity: 0;
+transform: scale(1.02);
+transition: var(--transition-cinema);
+}
+.scene-frame.active .cinema-card {
+opacity: 1;
+transform: scale(1);
+}
+.txt-intro {
+font-family: 'Pinyon Script', cursive;
+font-size: 3.2rem;
+color: var(--vivid-pink);
+margin-bottom: 2px;
+line-height: 1;
+display: block;
+text-shadow: 0 2px 5px rgba(255,255,255,1);
+}
+/* --- EFECTO ATENCIÓN "Te esperamos" LIGERO Y EXTREMADAMENTE LIMPIO --- */
+.animate-attention {
+font-family: 'Pinyon Script', cursive;
+font-weight: 700;
+color: var(--vivid-pink);
+animation: pulseClean 3s ease-in-out infinite;
+display: inline-block;
+text-shadow: none;
+}
+/* --- CONTENEDOR PLACA OSCURA DE LUJO RSVP --- */
+.gold-plate-container {
+background: linear-gradient(135deg, rgba(31, 21, 20, 0.92) 0%, rgba(45, 30, 28, 0.95) 100%);
+padding: 18px 22px;
+border-radius: 16px;
+border: 2px solid var(--gold-base);
+box-shadow: inset 0 1px 12px rgba(229, 192, 96, 0.35), 0 8px 25px rgba(0,0,0,0.5);
+margin-bottom: 12px;
+width: 100%;
+text-align: center;
+}
+/* --- EFECTO ORO METALIZADO EN MÁXIMA NITIDEZ (MIXTO) --- */
+.gold-text-effect {
+font-family: 'Playfair Display', serif;
+font-weight: 800;
+font-size: 1.85rem;
+text-align: center;
+background: linear-gradient(135deg,
+var(--gold-dark) 0%,
+var(--gold-base) 20%,
+var(--gold-bright) 40%,
+var(--gold-light) 60%,
+var(--gold-bright) 80%,
+var(--gold-dark) 100%
+);
+background-size: 200% auto;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: liquidGold 3s linear infinite;
+filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.95)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.8));
+line-height: 1.25;
+margin-bottom: 2px;
+}
+/* --- MARCO PREMIUM RETRATO EN EL HERO --- */
+.hero-image-container {
+margin: 10px auto 8px;
+width: 135px;
+height: 135px;
+border-radius: 35px;
+padding: 4px;
+background: linear-gradient(135deg, var(--gold-light), var(--gold-base), var(--vivid-pink));
+box-shadow: 0 12px 28px rgba(61, 46, 44, 0.3);
+position: relative;
+z-index: 5;
+}
+.hero-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 31px;
+border: 2px solid #FFF;
+}
+/* --- NOMBRE PRINCIPAL EN PORTADA: ALTO CONTRASTE --- */
+.txt-main-title {
+font-family: 'Playfair Display', serif;
+font-size: 2.1rem;
+font-weight: 800;
+line-height: 1.15;
+margin-bottom: 8px;
+letter-spacing: -0.5px;
+background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-base) 25%, var(--gold-bright) 50%, var(--gold-base) 75%, var(--gold-dark) 100%);
+background-size: 200% auto;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: liquidGold 4s linear infinite;
+filter: drop-shadow(1px 1px 0px #1f1514)
+drop-shadow(-1px -1px 0px #1f1514)
+drop-shadow(1px -1px 0px #1f1514)
+drop-shadow(-1px 1px 0px #1f1514)
+drop-shadow(0px 4px 10px rgba(0,0,0,0.6));
+}
+.invite-text-block {
+margin-bottom: 10px;
+text-align: center;
+}
+.invite-normal {
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 0.85rem;
+color: var(--text-main);
+letter-spacing: 1px;
+text-transform: uppercase;
+text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+}
+.invite-cursive {
+font-family: 'Pinyon Script', cursive;
+font-weight: 700;
+font-size: 2.2rem;
+color: var(--text-main);
+display: block;
+margin-top: -4px;
+line-height: 1;
+text-shadow: 0 1px 4px rgba(255,255,255,1);
+}
+.prose-container {
+background: rgba(255, 255, 255, 0.75);
+padding: 14px 16px;
+border-radius: 16px;
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(232, 108, 128, 0.2);
+margin-bottom: 12px;
+width: 100%;
+max-width: 410px;
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+/* --- RECUADRO RSVP CON MARCO GLASSMORPHISM BLANCO NÁCAR --- */
+.rsvp-box-container {
+background: rgba(255, 255, 255, 0.82);
+border: 1.5px solid rgba(229, 192, 96, 0.3);
+border-radius: 20px;
+padding: 16px;
+width: 100%;
+max-width: 410px;
+box-shadow: 0 10px 30px rgba(61, 46, 44, 0.12);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+margin-bottom: 12px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.txt-prose {
+font-size: 0.85rem;
+line-height: 1.5;
+color: var(--text-muted);
+font-weight: 700;
+text-align: center;
+text-justify: auto;
+width: 100%;
+word-wrap: break-word;
+}
+.txt-prose::after {
+content: '|';
+animation: blinkCursor 0.8s step-end infinite;
+color: var(--vivid-pink);
+font-weight: bold;
+display: inline-block;
+margin-left: 2px;
+}
+.scene-frame:not(.active) .txt-prose::after,
+.typewriter-finished .txt-prose::after {
+display: none !important;
+}
+.scroll-down-indicator {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 4px;
+margin-top: 10px;
+color: var(--vivid-pink);
+font-weight: 800;
+font-size: 0.75rem;
+letter-spacing: 1.2px;
+text-transform: uppercase;
+opacity: 0;
+transform: translateY(8px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+text-shadow: 0 1px 4px rgba(255,255,255,1);
+}
+.scroll-down-indicator.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.scroll-down-indicator i {
+font-size: 1.1rem;
+animation: bounceArrow 1.5s infinite ease-in-out;
+}
+.animate-element {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.scene-frame.active .animate-element {
+opacity: 1;
+transform: translateY(0);
+}
+.scene-frame.active .animate-element.delay-1 { transition-delay: 0.15s; }
+.scene-frame.active .animate-element.delay-2 { transition-delay: 0.3s; }
+.scene-frame.active .animate-element.delay-3 { transition-delay: 0.45s; }
+.ceremony-names-block {
+margin-top: 10px;
+text-align: center;
+width: 100%;
+border-top: 1px dashed rgba(232, 108, 128, 0.4);
+padding-top: 10px;
+}
+.name-label-normal {
+font-family: 'Montserrat', sans-serif;
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+color: var(--text-main);
+font-weight: 800;
+margin-bottom: 2px;
+}
+.name-value-cursive {
+font-family: 'Pinyon Script', cursive;
+font-size: 2.1rem;
+color: var(--vivid-pink);
+font-weight: bold;
+line-height: 1.1;
+margin-bottom: 8px;
+text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+}
+.logistics-container {
+background: linear-gradient(135deg, rgba(255, 253, 251, 0.88) 0%, rgba(255, 245, 246, 0.88) 100%);
+border: 1px solid rgba(232, 108, 128, 0.3);
+border-radius: 16px;
+padding: 14px 16px;
+margin: 8px 0;
+text-align: center;
+width: 100%;
+max-width: 410px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+}
+.logistics-item {
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+.logistics-item:last-child {
+margin-bottom: 0;
+}
+.logistics-item i {
+font-size: 1.2rem;
+color: var(--vivid-pink);
+}
+.logistics-label {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 1.2px;
+color: var(--gold-dark);
+font-weight: 800;
+text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.95), 0px 1px 2px rgba(31, 21, 20, 0.2);
+}
+.logistics-value {
+font-family: 'Playfair Display', serif;
+font-size: 1.05rem;
+font-weight: 800;
+color: var(--text-main);
+}
+.logistics-centered-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 100%;
+}
+.action-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+text-decoration: none;
+font-size: 0.75rem;
+font-weight: 800;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: #FFFFFF;
+background: linear-gradient(135deg, var(--vivid-pink) 0%, #D84B61 100%);
+width: 100%;
+max-width: 410px;
+padding: 14px 18px;
+border-radius: 30px;
+border: none;
+box-shadow: 0 5px 15px rgba(232, 108, 128, 0.4);
+transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+cursor: pointer;
+margin-top: 4px;
+animation: pulsate-btn-strong 2.5s infinite;
+}
+.action-button:hover, .action-button:active {
+transform: scale(1.02);
+background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-dark) 100%);
+animation: none;
+}
+.persuasive-text {
+font-family: 'Pinyon Script', cursive;
+font-size: 2.2rem;
+color: var(--vivid-pink);
+margin-top: 15px;
+margin-bottom: 5px;
+line-height: 1;
+text-shadow: 0 2px 4px rgba(255, 255, 255, 1);
+text-align: center;
+}
+.clock-wrapper {
+display: flex;
+justify-content: center;
+gap: 6px;
+margin: 8px 0 15px 0;
+width: 100%;
+max-width: 410px;
+}
+.clock-tile {
+background: rgba(255, 255, 255, 0.90);
+border: 1.5px solid var(--vivid-pink);
+padding: 8px 6px;
+border-radius: 12px;
+min-width: 65px;
+box-shadow: 0 4px 10px rgba(232, 108, 128, 0.15);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+}
+.clock-val {
+font-family: 'Playfair Display', serif;
+font-size: 1.3rem;
+font-weight: 800;
+color: var(--vivid-pink);
+display: block;
+}
+.clock-tag {
+font-size: 0.60rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: var(--text-main);
+font-weight: 800;
+margin-top: 2px;
+}
+.rsvp-selector {
+background: rgba(255, 245, 246, 0.95);
+border: 1.5px dashed var(--vivid-pink);
+border-radius: 14px;
+padding: 12px;
+margin: 5px 0 0 0;
+width: 100%;
+max-width: 380px;
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+}
+.rsvp-label {
+font-size: 0.75rem;
+font-weight: 800;
+color: var(--text-main);
+display: block;
+margin-bottom: 10px;
+}
+.rsvp-counter {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+}
+.rsvp-btn {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+border: 1.5px solid var(--vivid-pink);
+background: #FFFFFF;
+color: var(--vivid-pink);
+cursor: pointer;
+font-size: 1.2rem;
+font-weight: 800;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s ease;
+box-shadow: 0 3px 8px rgba(232, 108, 128, 0.2);
+}
+.rsvp-btn:hover {
+background: var(--vivid-pink);
+color: #FFFFFF;
+}
+#rsvp-qty {
+font-family: 'Playfair Display', serif;
+font-size: 1.3rem;
+font-weight: 800;
+color: var(--text-main);
+min-width: 85px;
+text-align: center;
+transition: font-size 0.3s ease;
+}
+/* --- ESCENA FINAL: PANTALLA COMPLETA LIMPIA --- */
+#sceneFive {
+background: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp') center/cover no-repeat;
+z-index: 10;
+}
+.closing-overlay {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+padding: 100px 20px 40px;
+background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
+text-align: center;
+}
+.txt-closing-cursive {
+font-family: 'Pinyon Script', cursive;
+font-size: 3.8rem;
+color: #FFFFFF;
+line-height: 1;
+margin-bottom: 5px;
+text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+opacity: 0;
+transform: translateY(-30px);
+transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+}
+.txt-closing-sans {
+font-family: 'Montserrat', sans-serif;
+font-weight: 800;
+font-size: 1.3rem;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--gold-light);
+text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+opacity: 0;
+transform: translateY(-30px);
+transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
+}
+#sceneFive.active .txt-closing-cursive,
+#sceneFive.active .txt-closing-sans {
+opacity: 1;
+transform: translateY(0);
+}
+/* --- ANIMACIONES --- */
+@keyframes pulseClean {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.06); }
+}
+@keyframes blinkCursor {
+from, to { border-color: transparent }
+50% { border-color: var(--vivid-pink); }
+}
+@keyframes bounceArrow {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(4px); }
+}
+@keyframes pulse-heart {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.06); }
+}
+@keyframes floatPetal {
+0% { transform: translateY(-10%) rotate(0deg) translateX(0); }
+100% { transform: translateY(110vh) rotate(720deg) translateX(120px); }
+}
+@keyframes pulseSparkle {
+0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+50% { opacity: 0.85; transform: scale(1.2) rotate(180deg); }
+}
+@keyframes spinMusic {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+@keyframes liquidGold {
+0% { background-position: 0% 50%; }
+100% { background-position: 200% 50%; }
+}
+@keyframes pulsate-btn-strong {
+0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 108, 128, 0.6); }
+70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(232, 108, 128, 0); }
+100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 108, 128, 0); }
+}
+@media (max-width: 480px) {
+.txt-main-title { font-size: 1.85rem; }
+.txt-intro { font-size: 2.8rem; }
+.cinema-card { padding: 40px 14px 20px; }
+.logistics-value { font-size: 0.95rem; }
+.envelope-container { width: 310px; height: 230px; }
+.letter-title { font-size: 2.2rem; }
+.prose-container { min-height: 90px; padding: 12px 14px; margin-bottom: 10px; }
+.hero-image-container { width: 120px; height: 120px; border-radius: 30px; }
+.hero-image { border-radius: 26px; }
+.persuasive-text { font-size: 1.9rem; }
+.txt-closing-cursive { font-size: 3.3rem; }
+.txt-closing-sans { font-size: 1.1rem; }
+.gold-text-effect { font-size: 1.65rem; }
+.rsvp-box-container { padding: 12px 10px; }
+.gold-plate-container { padding: 12px 14px; }
+}
+</style>
 </head>
 <body>
 <!-- SISTEMA DE FONDOS CRUZADOS DINÁMICOS POR SECCIÓN -->
-    <div class="viewport-backgrounds" id="viewport-bgs">
-        <div class="bg-layer active" id="bg-sceneOne" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp');"></div>
-        <div class="bg-layer" id="bg-sceneTwo" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG5.webp');"></div>
-        <div class="bg-layer" id="bg-sceneThree" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG6.webp');"></div>
-        <div class="bg-layer" id="bg-sceneFour" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG8.webp');"></div>
-        
-        <div class="bg-filter-overlay"></div>
-    </div>
+<div class="viewport-backgrounds" id="viewport-bgs">
+<div class="bg-layer active" id="bg-sceneOne" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp');"></div>
+<div class="bg-layer" id="bg-sceneTwo" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG5.webp');"></div>
+<div class="bg-layer" id="bg-sceneThree" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG6.webp');"></div>
+<div class="bg-layer" id="bg-sceneFour" style="background-image: url('https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG8.webp');"></div>
+<div class="bg-filter-overlay"></div>
+</div>
+<!-- Audio de Fondo -->
+<audio id="bgMusic" loop preload="auto">
+<source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mpeg">
+</audio>
+<div class="ambient-effects" id="effectsContainer"></div>
+<div class="music-widget" id="musicWidget" onclick="toggleAudioState()">
+<i class="fa-solid fa-music"></i>
+</div>
+<!-- SISTEMA DEL SOBRE -->
+<div id="envelope-gate" onclick="unlockEnvelope()">
+<div class="envelope-text-top">Has recibido una invitación especial</div>
+<div class="envelope-container" id="envContainer">
+<div class="envelope-flap"></div>
+<div class="envelope-paper"></div>
+<div class="envelope-bottom"></div>
+<div class="wax-seal">
+<span class="seal-b">B</span>
+<i class="fa-solid fa-dove"></i>
+</div>
+<div class="envelope-letter" id="envLetter">
+<h2 class="letter-title" style="font-family: 'Pinyon Script', cursive;">Mi Bautizo</h2>
+<p class="letter-subtitle" style="font-family: 'Playfair Display', serif; font-weight: 800; color: var(--text-main);">y Cumpleaños</p>
+<button class="action-button" style="margin-top: 15px; pointer-events: none;">Abrir invitación</button>
+</div>
+</div>
+<div class="envelope-instruction">Abrir invitación</div>
+</div>
+<!-- Contenedor Cinemático -->
+<div class="cinema-viewport" id="scrollContainer">
+<!-- ESCENA 1: LA PORTADA -->
+<section class="scene-frame" id="sceneOne">
+<div class="cinema-card">
+<span class="txt-intro animate-element delay-1">Nuestra Bendición</span>
+<div class="hero-image-container animate-element delay-1">
+<img src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp" alt="Bianca Eilany" class="hero-image">
+</div>
+<h1 class="txt-main-title animate-element delay-2">Bianca Eilany
+Ayala Lanchimba</h1>
+<div class="invite-text-block animate-element delay-2">
+<span class="invite-normal">Te invita a su</span>
 
-    <!-- Audio de Fondo -->
-    <audio id="bgMusic" loop preload="auto">
-        <source src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/music.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="ambient-effects" id="effectsContainer"></div>
-
-    <div class="music-widget" id="musicWidget" onclick="toggleAudioState()">
-        <i class="fa-solid fa-music"></i>
-    </div>
-
-    <!-- SISTEMA DEL SOBRE -->
-    <div id="envelope-gate" onclick="unlockEnvelope()">
-        <div class="envelope-text-top">Has recibido una invitación especial</div>
-        <div class="envelope-container" id="envContainer">
-            <div class="envelope-flap"></div>
-            <div class="envelope-paper"></div>
-            <div class="envelope-bottom"></div>
-            
-            <div class="wax-seal">
-                <span class="seal-b">B</span>
-                <i class="fa-solid fa-dove"></i>
-            </div>
-            
-            <div class="envelope-letter" id="envLetter">
-                <h2 class="letter-title" style="font-family: 'Pinyon Script', cursive;">Mi Bautizo</h2>
-                <p class="letter-subtitle" style="font-family: 'Playfair Display', serif; font-weight: 800; color: var(--text-main);">y Cumpleaños</p>
-                <button class="action-button" style="margin-top: 15px; pointer-events: none;">Abrir invitación</button>
-            </div>
-        </div>
-        <div class="envelope-instruction">Abrir invitación</div>
-    </div>
-
-    <!-- Contenedor Cinemático -->
-    <div class="cinema-viewport" id="scrollContainer">
-
-        <!-- ESCENA 1: LA PORTADA -->
-        <section class="scene-frame" id="sceneOne">
-            <div class="cinema-card">
-                <span class="txt-intro animate-element delay-1">Nuestra Bendición</span>
-                
-                <div class="hero-image-container animate-element delay-1">
-                    <img src="https://raw.githubusercontent.com/Hardskies-Studio/Invitacion-Bianca/main/IMG3.webp" alt="Bianca Eilany" class="hero-image">
-                </div>
-
-                <h1 class="txt-main-title animate-element delay-2">Bianca Eilany<br>Ayala Lanchimba</h1>
-                
-                <div class="invite-text-block animate-element delay-2">
-                    <span class="invite-normal">Te invita a su</span><br>
-                    <span class="invite-cursive">bautizo y cumpleaños</span>
-                </div>
-                
-                <div class="prose-container animate-element delay-3">
-                    <p class="txt-prose" id="proseText1">
-                        Con el corazón lleno de gratitud y guiada por el amor infinito de Dios y de mis amados padres, doy mi primer paso en la fe y celebro con inmensa alegría mis primeros dos años de vida. Quiero compartir contigo este día tan especial, una celebración llena de luz, gracia y bendiciones eternas que marcará el inicio de mi camino espiritual.
-                    </p>
-                </div>
-                
-                <button onclick="scheduleGoogleCalendar()" class="action-button animate-element delay-3">
-                    <i class="fa-regular fa-calendar-plus"></i> Agendar Evento
-                </button>
-
-                <div class="scroll-down-indicator" id="scrollIndicator1">
-                    <span>Desliza para continuar</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
+<span class="invite-cursive">bautizo y cumpleaños</span>
+</div>
+<div class="prose-container animate-element delay-3">
+<p class="txt-prose" id="proseText1">
+Con el corazón lleno de gratitud y guiada por el amor infinito de Dios y de mis amados padres, doy mi primer paso en la fe y celebro con inmensa alegría mis primeros dos años de vida. Quiero compartir contigo este día tan especial, una celebración llena de luz, gracia y bendiciones eternas que marcará el inicio de mi camino espiritual.
+</p>
+</div>
+<button onclick="scheduleGoogleCalendar()" class="action-button animate-element delay-3">
+<i class="fa-regular fa-calendar-plus"></i> Agendar Evento
+</button>
+<div class="scroll-down-indicator" id="scrollIndicator1">
+<span>Desliza para continuar</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+</div>
+</section>
 <!-- ESCENA 2: EL BAUTIZO SAGRADO -->
-        <section class="scene-frame" id="sceneTwo">
-            <div class="cinema-card">
-                <span class="txt-intro animate-element delay-1">El Sacramento</span>
-                <h2 class="txt-main-title animate-element delay-2" style="font-size: 1.7rem; margin-bottom: 8px; background: none; -webkit-text-fill-color: initial; color: var(--text-main); filter: none; text-shadow: 0 1px 3px rgba(255,255,255,0.8);">La Ceremonia</h2>
-                
-                <div class="prose-container animate-element delay-2" style="flex-direction: column;">
-                    <p class="txt-prose" id="proseText2">
-                        Nuestra bendición recibirá el sagrado bautismo para iniciar su hermoso camino espiritual, guiada de la mano de Dios y rodeada del infinito amor de:
-                    </p>
-                    
-                    <div class="ceremony-names-block">
-                        <div class="name-label-normal">Su Padre</div>
-                        <div class="name-value-cursive">Álvaro Ayala</div>
-                        
-                        <div class="name-label-normal" style="margin-top: 10px;">Su Padrino</div>
-                        <div class="name-value-cursive" style="margin-bottom: 0;">Edwin Ayala</div>
-                    </div>
-                </div>
-
-                <div class="logistics-container animate-element delay-3">
-                    <div class="logistics-item">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        <div class="logistics-label">Fecha:</div>
-                        <div class="logistics-value">Sábado, 06 de Junio, 2026</div>
-                    </div>
-                    <div class="logistics-item">
-                        <i class="fa-solid fa-clock"></i>
-                        <div class="logistics-label">Hora:</div>
-                        <div class="logistics-value">4:00 de la Tarde</div>
-                    </div>
-                    <div class="logistics-item" style="border-top: 1px solid rgba(232, 108, 128, 0.2); padding-top: 8px; margin-top: 8px;">
-                        <i class="fa-solid fa-church"></i>
-                        <div class="logistics-label">Santuario:</div>
-                        <div class="logistics-value" style="font-size: 1rem;">Iglesia de Imantag</div>
-                    </div>
-                </div>
-
-                <a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="action-button animate-element delay-3">
-                    <i class="fa-solid fa-map-location-dot"></i> Ver Iglesia en GPS
-                </a>
-
-                <div class="scroll-down-indicator" id="scrollIndicator2">
-                    <span>Desliza para continuar</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
-        <!-- ESCENA 3: RECEPCIÓN Y PASES -->
-        <section class="scene-frame" id="sceneThree">
-            <div class="cinema-card">
-                <span class="txt-intro animate-element delay-1">La Celebración</span>
-                <h2 class="txt-main-title animate-element delay-2" style="font-size: 1.7rem; margin-bottom: 8px; background: none; -webkit-text-fill-color: initial; color: var(--text-main); filter: none; text-shadow: 0 1px 3px rgba(255,255,255,0.8);">Recepción</h2>
-
-                <div class="logistics-container animate-element delay-2" style="margin-top: 3px; margin-bottom: 10px;">
-                    <div class="logistics-centered-item">
-                        <i class="fa-solid fa-champagne-glasses logistics-centered-icon" style="font-size: 1.5rem; color: var(--vivid-pink); margin-bottom: 4px;"></i>
-                        <div class="logistics-centered-label" style="font-size: 0.75rem; margin-bottom: 2px; color: var(--gold-dark); font-weight: 800; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);">Lugar de la Recepción:</div>
-                        <div class="logistics-centered-value" style="font-size: 1.2rem; font-weight: 800; color: var(--text-main);">San Luis de la Carbonería</div>
-                    </div>
-                    <div style="width: 100%; border-top: 1px solid rgba(232, 108, 128, 0.2); margin: 10px 0;"></div>
-                    <div class="logistics-centered-item">
-                        <i class="fa-solid fa-hourglass-start logistics-centered-icon" style="font-size: 1.3rem; color: var(--vivid-pink); margin-bottom: 4px;"></i>
-                        <div class="logistics-centered-label" style="font-size: 0.75rem; margin-bottom: 2px; color: var(--gold-dark); font-weight: 800; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);">Hora de la Recepción:</div>
-                        <div class="logistics-centered-value" style="font-size: 1.15rem; font-weight: 800; color: var(--text-main);">5:30 PM</div>
-                    </div>
-                </div>
-
-                <div class="persuasive-text animate-element delay-3">
-                    ¡Falta muy poco para nuestro gran día!
-                </div>
-
-                <div class="clock-wrapper animate-element delay-3">
-                    <div class="clock-tile"><span class="clock-val" id="days">00</span><span class="clock-tag">Días</span></div>
-                    <div class="clock-tile"><span class="clock-val" id="hours">00</span><span class="clock-tag">Hrs</span></div>
-                    <div class="clock-tile"><span class="clock-val" id="minutes">00</span><span class="clock-tag">Min</span></div>
-                    <div class="clock-tile"><span class="clock-val" id="seconds">00</span><span class="clock-tag">Seg</span></div>
-                </div>
-
-                <a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="action-button animate-element delay-3">
-                    <i class="fa-solid fa-location-arrow"></i> Cómo Llegar al Salón
-                </a>
-                
-                <div class="scroll-down-indicator visible animate-element delay-3" style="margin-top: 10px;">
-                    <span>Desliza para continuar</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ESCENA 4: CONFIRMACIÓN Y CIERRE -->
-        <section class="scene-frame" id="sceneFour">
-            <div class="cinema-card">
-                <!-- "Te esperamos" en formato de minúsculas natural, limpio, nítido y sin sombras -->
-                <span class="txt-intro animate-element delay-1 animate-attention" style="font-size: 2.8rem; margin-bottom: 15px;">Te esperamos</span>
-                
-                <!-- Recuadro RSVP con fondo de cristal blanco nácar -->
-                <div class="rsvp-box-container animate-element delay-2">
-                    
-                    <!-- PLACA OSCURA DE ÉBANO: Ahora con formato Mixto de Altísima Legibilidad -->
-                    <div class="gold-plate-container">
-                        <div class="gold-text-effect">
-                            Confírmanos tu asistencia
-                        </div>
-                    </div>
-
-                    <!-- Mensaje sutil y elegante de persuasión -->
-                    <p style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; line-height: 1.5; color: var(--text-muted); font-weight: 700; text-align: center; margin: 4px 0 12px 0; max-width: 340px;">
-                        Para nosotros es muy importante tu compañía en este día sagrado. Por favor, indícanos cuántos pases te gustaría confirmar; al presionar el botón de abajo se generará tu confirmación automática por WhatsApp.
-                    </p>
-
-                    <!-- Selector de Asientos RSVP integrado en la tarjeta -->
-                    <div class="rsvp-selector">
-                        <span class="rsvp-label">Selecciona el número de pases asignados:</span>
-                        <div class="rsvp-counter">
-                            <button class="rsvp-btn" onclick="adjustPases(-1)">-</button>
-                            <span id="rsvp-qty">2 Pases</span>
-                            <button class="rsvp-btn" onclick="adjustPases(1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botón para finalizar confirmación mandando el mensaje formateado -->
-                <button onclick="dispatchRsvpWhatsApp()" class="action-button animate-element delay-3" style="margin-top: 5px;">
-                    <i class="fa-brands fa-whatsapp"></i> Confirmar Asistencia
-                </button>
-
-                <p class="animate-element delay-3" style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 800; margin-top: 8px;">
-                    * Tu confirmación se enviará de forma segura por WhatsApp *
-                </p>
-
-                <div class="scroll-down-indicator visible animate-element delay-3" style="margin-top: 10px;">
-                    <span>Desliza al final</span>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
+<section class="scene-frame" id="sceneTwo">
+<div class="cinema-card">
+<span class="txt-intro animate-element delay-1">El Sacramento</span>
+<h2 class="txt-main-title animate-element delay-2" style="font-size: 1.7rem; margin-bottom: 8px; background: none; -webkit-text-fill-color: initial; color: var(--text-main); filter: none; text-shadow: 0 1px 3px rgba(255,255,255,0.8);">La Ceremonia</h2>
+<div class="prose-container animate-element delay-2" style="flex-direction: column;">
+<p class="txt-prose" id="proseText2">
+Nuestra bendición recibirá el sagrado bautismo para iniciar su hermoso camino espiritual, guiada de la mano de Dios y rodeada del infinito amor de:
+</p>
+<div class="ceremony-names-block">
+<div class="name-label-normal">Sus Padres</div>
+<div class="name-value-cursive" style="margin-bottom: 2px;">Blanca Lanchimba</div>
+<div class="name-value-cursive">Álvaro Ayala</div>
+<div class="name-label-normal" style="margin-top: 10px;">Su Padrino</div>
+<div class="name-value-cursive" style="margin-bottom: 0;">Edwin Ayala</div>
+</div>
+</div>
+<div class="logistics-container animate-element delay-3">
+<div class="logistics-item">
+<i class="fa-solid fa-calendar-check"></i>
+<div class="logistics-label">Fecha:</div>
+<div class="logistics-value">Sábado, 06 de Junio, 2026</div>
+</div>
+<div class="logistics-item">
+<i class="fa-solid fa-clock"></i>
+<div class="logistics-label">Hora:</div>
+<div class="logistics-value">4:00 de la Tarde</div>
+</div>
+<div class="logistics-item" style="border-top: 1px solid rgba(232, 108, 128, 0.2); padding-top: 8px; margin-top: 8px;">
+<i class="fa-solid fa-church"></i>
+<div class="logistics-label">Santuario:</div>
+<div class="logistics-value" style="font-size: 1rem;">Iglesia de Imantag</div>
+</div>
+</div>
+<a href="https://maps.app.goo.gl/AdtYFm7owipaackSA" target="_blank" class="action-button animate-element delay-3">
+<i class="fa-solid fa-map-location-dot"></i> Ver Iglesia en GPS
+</a>
+<div class="scroll-down-indicator" id="scrollIndicator2">
+<span>Desliza para continuar</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+</div>
+</section>
+<!-- ESCENA 3: RECEPCIÓN Y PASES -->
+<section class="scene-frame" id="sceneThree">
+<div class="cinema-card">
+<span class="txt-intro animate-element delay-1">La Celebración</span>
+<h2 class="txt-main-title animate-element delay-2" style="font-size: 1.7rem; margin-bottom: 8px; background: none; -webkit-text-fill-color: initial; color: var(--text-main); filter: none; text-shadow: 0 1px 3px rgba(255,255,255,0.8);">Recepción</h2>
+<div class="logistics-container animate-element delay-2" style="margin-top: 3px; margin-bottom: 10px;">
+<div class="logistics-centered-item">
+<i class="fa-solid fa-champagne-glasses logistics-centered-icon" style="font-size: 1.5rem; color: var(--vivid-pink); margin-bottom: 4px;"></i>
+<div class="logistics-centered-label" style="font-size: 0.75rem; margin-bottom: 2px; color: var(--gold-dark); font-weight: 800; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);">Lugar de la Recepción:</div>
+<div class="logistics-centered-value" style="font-size: 1.2rem; font-weight: 800; color: var(--text-main);">San Luis de la Carbonería</div>
+</div>
+<div style="width: 100%; border-top: 1px solid rgba(232, 108, 128, 0.2); margin: 10px 0;"></div>
+<div class="logistics-centered-item">
+<i class="fa-solid fa-hourglass-start logistics-centered-icon" style="font-size: 1.3rem; color: var(--vivid-pink); margin-bottom: 4px;"></i>
+<div class="logistics-centered-label" style="font-size: 0.75rem; margin-bottom: 2px; color: var(--gold-dark); font-weight: 800; text-transform: uppercase; text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);">Hora de la Recepción:</div>
+<div class="logistics-centered-value" style="font-size: 1.15rem; font-weight: 800; color: var(--text-main);">5:30 PM</div>
+</div>
+</div>
+<div class="persuasive-text animate-element delay-3">
+¡Falta muy poco para nuestro gran día!
+</div>
+<div class="clock-wrapper animate-element delay-3">
+<div class="clock-tile"><span class="clock-val" id="days">00</span><span class="clock-tag">Días</span></div>
+<div class="clock-tile"><span class="clock-val" id="hours">00</span><span class="clock-tag">Hrs</span></div>
+<div class="clock-tile"><span class="clock-val" id="minutes">00</span><span class="clock-tag">Min</span></div>
+<div class="clock-tile"><span class="clock-val" id="seconds">00</span><span class="clock-tag">Seg</span></div>
+</div>
+<a href="https://maps.app.goo.gl/1ywLQ9C5kBQJwijn" target="_blank" class="action-button animate-element delay-3">
+<i class="fa-solid fa-location-arrow"></i> Cómo Llegar al Salón
+</a>
+<div class="scroll-down-indicator visible animate-element delay-3" style="margin-top: 10px;">
+<span>Desliza para continuar</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+</div>
+</section>
+<!-- ESCENA 4: CONFIRMACIÓN Y CIERRE -->
+<section class="scene-frame" id="sceneFour">
+<div class="cinema-card">
+<!-- "Te esperamos" en formato de minúsculas natural, limpio, nítido y sin sombras -->
+<span class="txt-intro animate-element delay-1 animate-attention" style="font-size: 2.8rem; margin-bottom: 15px;">Te esperamos</span>
+<!-- Recuadro RSVP con fondo de cristal blanco nácar -->
+<div class="rsvp-box-container animate-element delay-2">
+<!-- PLACA OSCURA DE ÉBANO: Ahora con formato Mixto de Altísima Legibilidad -->
+<div class="gold-plate-container">
+<div class="gold-text-effect">
+Confírmanos tu asistencia
+</div>
+</div>
+<!-- Mensaje sutil y elegante de persuasión -->
+<p style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; line-height: 1.5; color: var(--text-muted); font-weight: 700; text-align: center; margin: 4px 0 12px 0; max-width: 340px;">
+Para nosotros es muy importante tu compañía en este día sagrado. Por favor, indícanos cuántos pases te gustaría confirmar; al presionar el botón de abajo se generará tu confirmación automática por WhatsApp.
+</p>
+<!-- Selector de Asientos RSVP integrado en la tarjeta -->
+<div class="rsvp-selector">
+<span class="rsvp-label">Selecciona el número de pases asignados:</span>
+<div class="rsvp-counter">
+<button class="rsvp-btn" onclick="adjustPases(-1)">-</button>
+<span id="rsvp-qty">2 Pases</span>
+<button class="rsvp-btn" onclick="adjustPases(1)">+</button>
+</div>
+</div>
+</div>
+<!-- Botón para finalizar confirmación mandando el mensaje formateado -->
+<button onclick="dispatchRsvpWhatsApp()" class="action-button animate-element delay-3" style="margin-top: 5px;">
+<i class="fa-brands fa-whatsapp"></i> Confirmar Asistencia
+</button>
+<p class="animate-element delay-3" style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 800; margin-top: 8px;">
+* Tu confirmación se enviará de forma segura por WhatsApp *
+</p>
+<div class="scroll-down-indicator visible animate-element delay-3" style="margin-top: 10px;">
+<span>Desliza al final</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+</div>
+</section>
 <!-- ESCENA 5: EL GRAN FINAL -->
-        <section class="scene-frame" id="sceneFive">
-            <div class="closing-overlay">
-                <div class="txt-closing-cursive">Gracias por confirmar</div>
-                <div class="txt-closing-sans">Tu Asistencia</div>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        const bgAudio = document.getElementById('bgMusic');
-        const widget = document.getElementById('musicWidget');
-        const effectsContainer = document.getElementById('effectsContainer');
-        const envContainer = document.getElementById('envContainer');
-        const envelopeGate = document.getElementById('envelope-gate');
-        const viewportBgs = document.getElementById('viewport-bgs');
-        
-        // Motor de Máquina de Escribir
-        const textCache = {};
-        function startTypewriter(elementId, indicatorId) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
-            
-            element.parentElement.classList.remove('typewriter-finished');
-            
-            if (!textCache[elementId]) {
-                textCache[elementId] = element.innerHTML.trim();
-            }
-            
-            const rawText = textCache[elementId];
-            element.innerHTML = '';
-            
-            let i = 0;
-            if (element.typewriterInterval) {
-                clearInterval(element.typewriterInterval);
-            }
-
-            const indicator = document.getElementById(indicatorId);
-            if (indicator) indicator.classList.remove('visible');
-            
-            element.typewriterInterval = setInterval(() => {
-                if (i < rawText.length) {
-                    if (rawText[i] === '<') {
-                        const closeTagIndex = rawText.indexOf('>', i);
-                        if (closeTagIndex !== -1) {
-                            element.innerHTML += rawText.substring(i, closeTagIndex + 1);
-                            i = closeTagIndex + 1;
-                            return;
-                        }
-                    }
-                    element.innerHTML += rawText[i];
-                    i++;
-                } else {
-                    clearInterval(element.typewriterInterval);
-                    element.parentElement.classList.add('typewriter-finished');
-                    if (indicator) indicator.classList.add('visible');
-                }
-            }, 20); 
-        }
-
-        // Generar Pétalos y Sparkles
-        function initAmbientEffects() {
-            for (let i = 0; i < 15; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('rose-petal');
-                petal.style.width = `${Math.random() * 12 + 8}px`;
-                petal.style.height = `${Math.random() * 12 + 8}px`;
-                petal.style.left = `${Math.random() * 100}%`;
-                petal.style.animationDelay = `${Math.random() * 12}s`;
-                petal.style.transform = `rotate(${Math.random() * 360}deg)`;
-                effectsContainer.appendChild(petal);
-            }
-
-            for (let j = 0; j < 10; j++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                const size = Math.random() * 5 + 3;
-                sparkle.style.width = `${size}px`;
-                sparkle.style.height = `${size}px`;
-                sparkle.style.left = `${Math.random() * 100}%`;
-                sparkle.style.top = `${Math.random() * 100}%`;
-                sparkle.style.animationDelay = `${Math.random() * 6}s`;
-                effectsContainer.appendChild(sparkle);
-            }
-        }
-
-        // Apertura del sobre
-        function unlockEnvelope() {
-            envelopeGate.onclick = null; 
-            envContainer.classList.add('open');
-            
-            bgAudio.play().then(() => {
-                widget.classList.add('playing');
-            }).catch(e => console.log("Permisos de Autoplay:", e));
-
-            setTimeout(() => {
-                envelopeGate.style.opacity = '0';
-                envelopeGate.style.transform = 'translateY(100vh)'; 
-                
-                setTimeout(() => {
-                    envelopeGate.style.display = 'none';
-                    widget.classList.add('active');
-                    
-                    initAmbientEffects();
-                    
-                    document.getElementById('sceneOne').classList.add('active');
-                    startTypewriter('proseText1', 'scrollIndicator1');
-                }, 1000);
-            }, 1800);
-        }
-
-        function toggleAudioState() {
-            if (bgAudio.paused) {
-                bgAudio.play();
-                widget.classList.add('playing');
-            } else {
-                bgAudio.pause();
-                widget.classList.remove('playing');
-            }
-        }
-
-        // LÓGICA DE FONDOS POR SECCIÓN CON TRANSICIÓN SUAVE
-        const frameElements = document.querySelectorAll('.scene-frame');
-        
-        // Mapeo de Escenas a Fondos Globales
-        const bgMapping = {
-            'sceneOne': 'bg-sceneOne',
-            'sceneTwo': 'bg-sceneTwo',
-            'sceneThree': 'bg-sceneThree',
-            'sceneFour': 'bg-sceneFour'
-        };
-
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const targetId = entry.target.id;
-                
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Si llegamos a la Escena Final (5), ocultamos los filtros globales
-                    if (targetId === 'sceneFive') {
-                        viewportBgs.classList.add('hide-filters');
-                    } else {
-                        viewportBgs.classList.remove('hide-filters');
-                        
-                        // Activamos el fondo correspondiente de la escena 1 a 4
-                        const targetBgId = bgMapping[targetId];
-                        if (targetBgId) {
-                            document.querySelectorAll('.viewport-backgrounds .bg-layer').forEach(bg => {
-                                bg.classList.remove('active');
-                            });
-                            document.getElementById(targetBgId).classList.add('active');
-                        }
-                    }
-
-                    // Typewriters de las dos primeras escenas
-                    if (targetId === 'sceneOne') {
-                        startTypewriter('proseText1', 'scrollIndicator1');
-                    } else if (targetId === 'sceneTwo') {
-                        startTypewriter('proseText2', 'scrollIndicator2');
-                    }
-                } else {
-                    entry.target.classList.remove('active');
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.45 
-        });
-
-        frameElements.forEach(frame => {
-            scrollObserver.observe(frame);
-        });
-
-        // Gestor de Pases RSVP (1, 2, 3, Toda la familia)
-        let totalPases = 2;
-        
-        function updateRsvpDisplay() {
-            const qtySpan = document.getElementById('rsvp-qty');
-            if (totalPases === 4) {
-                qtySpan.innerText = "Familia Completa";
-                qtySpan.style.fontSize = "1rem";
-            } else {
-                qtySpan.innerText = totalPases + (totalPases === 1 ? " Pase" : " Pases");
-                qtySpan.style.fontSize = "1.3rem";
-            }
-        }
-
-        function adjustPases(change) {
-            totalPases += change; 
-            if(totalPases < 1) totalPases = 1;
-            if(totalPases > 4) totalPases = 4;
-            updateRsvpDisplay();
-        }
-
-        // WhatsApp de Confirmación Integrado
-        function dispatchRsvpWhatsApp() {
-            const targetPhone = "593959244811"; 
-            let pasesText = "";
-            
-            if (totalPases === 1) pasesText = "1 pase";
-            else if (totalPases === 2) pasesText = "2 pases";
-            else if (totalPases === 3) pasesText = "3 pases";
-            else if (totalPases === 4) pasesText = "para toda mi familia";
-
-            const baseMessage = `¡Hola! Confirmo con mucha alegría mi asistencia a la celebración de la pequeña Bianca Eilany. Confirmamos nuestra asistencia ${pasesText} para el evento. ¡Nos vemos el Sábado 06 de Junio!`;
-            const encodedUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(baseMessage)}`;
-            window.open(encodedUrl, '_blank');
-        }
-
-        // Enlace Integrado a Google Calendar Validad
-        function scheduleGoogleCalendar() {
-            const calendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bautizo+y+2+A%C3%B1itos+-+Bianca+Eilany&dates=20260606T210000Z/20260607T043000Z&details=Acomp%C3%A1nanos+a+celebrar+el+Bautizo+y+segundo+cumplea%C3%B1os+de+Bianca+Eilany.+Misa+en+la+Iglesia+de+Imantag+y+Recepci%C3%B3n+en+San+Luis+de+la+Carboner%C3%ADa.&location=Iglesia+de+Imantag%2C+Ecuador";
-            window.open(calendarUrl, '_blank');
-        }
-
-        // Cuenta Regresiva (Junio 6, 2026 16:00)
-        const eventDeadline = new Date('June 6, 2026 16:00:00').getTime();
-        
-        function refreshTimer() {
-            const currentTime = new Date().getTime();
-            const distance = eventDeadline - currentTime;
-
-            if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-            } else {
-                document.getElementById('days').innerText = "00";
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
-            }
-        }
-        
-        setInterval(refreshTimer, 1000);
-        refreshTimer();
-        
-        // Setup initial display
-        updateRsvpDisplay();
-    </script>
+<section class="scene-frame" id="sceneFive">
+<div class="closing-overlay">
+<div class="txt-closing-cursive">Gracias por confirmar</div>
+<div class="txt-closing-sans">Tu Asistencia</div>
+</div>
+</section>
+</div>
+<script>
+const bgAudio = document.getElementById('bgMusic');
+const widget = document.getElementById('musicWidget');
+const effectsContainer = document.getElementById('effectsContainer');
+const envContainer = document.getElementById('envContainer');
+const envelopeGate = document.getElementById('envelope-gate');
+const viewportBgs = document.getElementById('viewport-bgs');
+// Motor de Máquina de Escribir
+const textCache = {};
+function startTypewriter(elementId, indicatorId) {
+const element = document.getElementById(elementId);
+if (!element) return;
+element.parentElement.classList.remove('typewriter-finished');
+if (!textCache[elementId]) {
+textCache[elementId] = element.innerHTML.trim();
+}
+const rawText = textCache[elementId];
+element.innerHTML = '';
+let i = 0;
+if (element.typewriterInterval) {
+clearInterval(element.typewriterInterval);
+}
+const indicator = document.getElementById(indicatorId);
+if (indicator) indicator.classList.remove('visible');
+element.typewriterInterval = setInterval(() => {
+if (i < rawText.length) {
+if (rawText[i] === '<') {
+const closeTagIndex = rawText.indexOf('>', i);
+if (closeTagIndex !== -1) {
+element.innerHTML += rawText.substring(i, closeTagIndex + 1);
+i = closeTagIndex + 1;
+return;
+}
+}
+element.innerHTML += rawText[i];
+i++;
+} else {
+clearInterval(element.typewriterInterval);
+element.parentElement.classList.add('typewriter-finished');
+if (indicator) indicator.classList.add('visible');
+}
+}, 20);
+}
+// Generar Pétalos y Sparkles
+function initAmbientEffects() {
+for (let i = 0; i < 15; i++) {
+const petal = document.createElement('div');
+petal.classList.add('rose-petal');
+petal.style.width = ${Math.random() * 12 + 8}px;
+petal.style.height = ${Math.random() * 12 + 8}px;
+petal.style.left = ${Math.random() * 100}%;
+petal.style.animationDelay = ${Math.random() * 12}s;
+petal.style.transform = rotate(${Math.random() * 360}deg);
+effectsContainer.appendChild(petal);
+}
+for (let j = 0; j < 10; j++) {
+const sparkle = document.createElement('div');
+sparkle.classList.add('sparkle');
+const size = Math.random() * 5 + 3;
+sparkle.style.width = ${size}px;
+sparkle.style.height = ${size}px;
+sparkle.style.left = ${Math.random() * 100}%;
+sparkle.style.top = ${Math.random() * 100}%;
+sparkle.style.animationDelay = ${Math.random() * 6}s;
+effectsContainer.appendChild(sparkle);
+}
+}
+// Apertura del sobre
+function unlockEnvelope() {
+envelopeGate.onclick = null;
+envContainer.classList.add('open');
+bgAudio.play().then(() => {
+widget.classList.add('playing');
+}).catch(e => console.log("Permisos de Autoplay:", e));
+setTimeout(() => {
+envelopeGate.style.opacity = '0';
+envelopeGate.style.transform = 'translateY(100vh)';
+setTimeout(() => {
+envelopeGate.style.display = 'none';
+widget.classList.add('active');
+initAmbientEffects();
+document.getElementById('sceneOne').classList.add('active');
+startTypewriter('proseText1', 'scrollIndicator1');
+}, 1000);
+}, 1800);
+}
+function toggleAudioState() {
+if (bgAudio.paused) {
+bgAudio.play();
+widget.classList.add('playing');
+} else {
+bgAudio.pause();
+widget.classList.remove('playing');
+}
+}
+// LÓGICA DE FONDOS POR SECCIÓN CON TRANSICIÓN SUAVE
+const frameElements = document.querySelectorAll('.scene-frame');
+// Mapeo de Escenas a Fondos Globales
+const bgMapping = {
+'sceneOne': 'bg-sceneOne',
+'sceneTwo': 'bg-sceneTwo',
+'sceneThree': 'bg-sceneThree',
+'sceneFour': 'bg-sceneFour'
+};
+const scrollObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+const targetId = entry.target.id;
+if (entry.isIntersecting) {
+entry.target.classList.add('active');
+// Si llegamos a la Escena Final (5), ocultamos los filtros globales
+if (targetId === 'sceneFive') {
+viewportBgs.classList.add('hide-filters');
+} else {
+viewportBgs.classList.remove('hide-filters');
+// Activamos el fondo correspondiente de la escena 1 a 4
+const targetBgId = bgMapping[targetId];
+if (targetBgId) {
+document.querySelectorAll('.viewport-backgrounds .bg-layer').forEach(bg => {
+bg.classList.remove('active');
+});
+document.getElementById(targetBgId).classList.add('active');
+}
+}
+// Typewriters de las dos primeras escenas
+if (targetId === 'sceneOne') {
+startTypewriter('proseText1', 'scrollIndicator1');
+} else if (targetId === 'sceneTwo') {
+startTypewriter('proseText2', 'scrollIndicator2');
+}
+} else {
+entry.target.classList.remove('active');
+}
+});
+}, {
+root: null,
+threshold: 0.45
+});
+frameElements.forEach(frame => {
+scrollObserver.observe(frame);
+});
+// Gestor de Pases RSVP (1, 2, 3, Toda la familia)
+let totalPases = 2;
+function updateRsvpDisplay() {
+const qtySpan = document.getElementById('rsvp-qty');
+if (totalPases === 4) {
+qtySpan.innerText = "Familia Completa";
+qtySpan.style.fontSize = "1rem";
+} else {
+qtySpan.innerText = totalPases + (totalPases === 1 ? " Pase" : " Pases");
+qtySpan.style.fontSize = "1.3rem";
+}
+}
+function adjustPases(change) {
+totalPases += change;
+if(totalPases < 1) totalPases = 1;
+if(totalPases > 4) totalPases = 4;
+updateRsvpDisplay();
+}
+// WhatsApp de Confirmación Integrado
+function dispatchRsvpWhatsApp() {
+const targetPhone = "593959244811";
+let pasesText = "";
+if (totalPases === 1) pasesText = "1 pase";
+else if (totalPases === 2) pasesText = "2 pases";
+else if (totalPases === 3) pasesText = "3 pases";
+else if (totalPases === 4) pasesText = "para toda mi familia";
+const baseMessage = ¡Hola! Confirmo con mucha alegría mi asistencia a la celebración de la pequeña Bianca Eilany. Confirmamos nuestra asistencia ${pasesText} para el evento. ¡Nos vemos el Sábado 06 de Junio!;
+const encodedUrl = https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(baseMessage)};
+window.open(encodedUrl, '_blank');
+}
+// Enlace Integrado a Google Calendar Validad
+function scheduleGoogleCalendar() {
+const calendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bautizo+y+2+A%C3%B1itos+-+Bianca+Eilany&dates=20260606T210000Z/20260607T043000Z&details=Acomp%C3%A1nanos+a+celebrar+el+Bautizo+y+segundo+cumplea%C3%B1os+de+Bianca+Eilany.+Misa+en+la+Iglesia+de+Imantag+y+Recepci%C3%B3n+en+San+Luis+de+la+Carboner%C3%ADa.&location=Iglesia+de+Imantag%2C+Ecuador";
+window.open(calendarUrl, '_blank');
+}
+// Cuenta Regresiva (Junio 6, 2026 16:00)
+const eventDeadline = new Date('June 6, 2026 16:00:00').getTime();
+function refreshTimer() {
+const currentTime = new Date().getTime();
+const distance = eventDeadline - currentTime;
+if (distance > 0) {
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById('days').innerText = String(days).padStart(2, '0');
+document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+} else {
+document.getElementById('days').innerText = "00";
+document.getElementById('hours').innerText = "00";
+document.getElementById('minutes').innerText = "00";
+document.getElementById('seconds').innerText = "00";
+}
+}
+setInterval(refreshTimer, 1000);
+refreshTimer();
+// Setup initial display
+updateRsvpDisplay();
+</script>
 </body>
 </html>
